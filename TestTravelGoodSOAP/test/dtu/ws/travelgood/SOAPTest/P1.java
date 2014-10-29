@@ -21,6 +21,12 @@ public class P1 {
      *
      */
     public P1() {
+        //id GenerateItinerary(CC, name)
+
+        //Get List of flights 
+        //flights=getListOfFlights(Day,ToLocation)
+        
+        
     }
 
     
