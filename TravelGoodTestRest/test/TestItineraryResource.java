@@ -38,8 +38,28 @@ public class TestItineraryResource {
     }
     
     @Test
-    public void testCreateItinerary() {
+    public void testPlanningAndBooking() {
         Client client = Client.create();
-        WebResource r = client.resource("http://localhost:8080/");
+        WebResource r = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/");
+        String result = r.get(String.class);
+    }
+    
+    @Test
+    public void testCancelPlanning() {
+        
+    }
+    
+    @Test
+    public void testBookingFails() {
+        
+    }
+    
+    @Test
+    public void testCancelBooking() {
+        
+    }
+    
+    public void testCancelFails() {
+        
     }
 }
