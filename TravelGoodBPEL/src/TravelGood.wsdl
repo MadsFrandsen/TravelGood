@@ -27,50 +27,65 @@
                     <xsd:element name="newElement" type="ns1:hotelInformationType"></xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
+            <xsd:element name="itinerary" type="itineraryType"></xsd:element>
+            <xsd:simpleType name="itineraryIdType">
+                <xsd:restriction base="xsd:string"/>
+            </xsd:simpleType>
+            <xsd:element name="itineraryId" type="itineraryIdType"></xsd:element>
         </xsd:schema>
     </types>
-    <message name="CreateItineraryRequest"/>
-    <message name="CreateItineraryResponse">
-        <part name="part1" type="xsd:string"/>
+    <message name="CreateItineraryRequest">
+        <part name="name" type="xsd:string"/>
     </message>
-    <message name="BookItineraryRequest"/>
+    <message name="CreateItineraryResponse">
+        <part name="id" type="itineraryIdType"/>
+    </message>
+    <message name="BookItineraryRequest">
+        <part name="id" type="itineraryIdType"/>
+        <part name="creditCardNumber" element="ns0:creditCardNumber"/>
+    </message>
     <message name="BookItineraryResponse">
-        <part name="part1" type="xsd:string"/>
+        <part name="success" type="xsd:boolean"/>
     </message>
     <message name="AddFlightRequest">
-        <part name="part1" type="xsd:string"/>
+        <part name="id" type="itineraryIdType"/>
+        <part name="bookingNumber" type="xsd:int"/>
     </message>
     <message name="AddFlightResponse">
-        <part name="part1" type="xsd:string"/>
+        <part name="success" type="xsd:boolean"/>
     </message>
     <message name="AddHotelStayRequest">
-        <part name="hotel" type="xsd:string"/>
-        <part name="from" type="xsd:dateTime"/>
-        <part name="to" type="xsd:dateTime"/>
+        <part name="id" type="itineraryIdType"/>
+        <part name="bookingNumber" type="xsd:int"/>
     </message>
     <message name="AddHotelStayResponse">
-        <part name="part1" type="xsd:string"/>
+        <part name="success" type="xsd:boolean"/>
     </message>
-    <message name="CancelItineraryRequest"/>
+    <message name="CancelItineraryRequest">
+        <part name="id" type="itineraryIdType"/>
+    </message>
     <message name="CancelItineraryResponse">
-        <part name="part1" type="xsd:string"/>
+        <part name="success" type="xsd:boolean"/>
     </message>
     <message name="getFlightsRequest">
         <part name="destination" type="ns0:destinationType"/>
         <part name="time" type="xsd:dateTime"/>
+        <part name="departure" type="ns0:destinationType"/>
     </message>
     <message name="getFlightsResponse">
         <part name="flightList" type="flightList"/>
     </message>
     <message name="getHotelsRequest">
-        <part name="hotel" type="xsd:dateTime"/>
+        <part name="start" type="xsd:dateTime"/>
         <part name="end" type="xsd:dateTime"/>
         <part name="city" type="xsd:string"/>
     </message>
     <message name="getHotelsResponse">
         <part name="hotels" type="hotelList"/>
     </message>
-    <message name="getItineraryRequest"/>
+    <message name="getItineraryRequest">
+        <part name="id" type="itineraryIdType"/>
+    </message>
     <message name="getItineraryResponse">
         <part name="itinerary" type="itineraryType"/>
     </message>

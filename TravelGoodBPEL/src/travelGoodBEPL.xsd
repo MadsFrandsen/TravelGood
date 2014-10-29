@@ -42,4 +42,8 @@
             <xsd:element name="reservationServiceName" type="xsd:string"></xsd:element>
         </xsd:sequence>
     </xsd:complexType>
+    <xsd:simpleType name="creditCardNumberType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:element name="creditCardNumber" type="tns:creditCardNumberType"></xsd:element>
 </xsd:schema>
