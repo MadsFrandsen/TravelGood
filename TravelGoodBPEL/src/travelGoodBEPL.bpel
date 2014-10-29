@@ -9,22 +9,23 @@
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
     xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
-    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="" xmlns:ns1="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood">
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="http://travelgood.ws" xmlns:ns1="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood">
     <import namespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" location="TravelGood.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/TravelGoodWrapper" location="TravelGoodWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <partnerLinks>
         <partnerLink name="PartnerLink1" xmlns:tns="http://enterprise.netbeans.org/bpel/TravelGoodWrapper" partnerLinkType="tns:ItineraryLinkType" myRole="ItineraryRole"/>
     </partnerLinks>
     <variables>
+        <variable name="CreateItineraryIn" messageType="ns1:CreateItineraryRequest"/>
         <variable name="AddFlightIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" messageType="tns:AddFlightRequest"/>
         <variable name="AddHotelStayIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" messageType="tns:AddHotelStayRequest"/>
         <variable name="booked" type="xs:boolean"/>
     </variables>
     <sequence>
-        <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="CreateItinerary" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" portType="tns:ItineraryPortType"/>
+        <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="CreateItinerary" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" portType="tns:ItineraryPortType" variable="CreateItineraryIn"/>
         <scope name="Scope7">
             <variables>
-                <variable name="Itinerary" element="ns0:itinerary"/>
+                <variable name="CancelItineraryOut" messageType="ns1:CancelItineraryResponse"/>
             </variables>
             <eventHandlers>
                 <onEvent partnerLink="PartnerLink1" operation="getItinerary" portType="ns1:ItineraryPortType">
@@ -33,7 +34,6 @@
                             <variable name="GetItineraryOut" messageType="ns1:getItineraryResponse"/>
                         </variables>
                         <sequence name="Sequence6">
-                            <assign name="Assign9"/>
                             <reply name="Reply5" partnerLink="PartnerLink1" operation="getItinerary" portType="ns1:ItineraryPortType" variable="GetItineraryOut"/>
                         </sequence>
                     </scope>
@@ -41,60 +41,69 @@
             </eventHandlers>
             <sequence name="Sequence5">
                 <scope name="Scope1">
+                    <variables>
+                        <variable name="BookItineraryOut" messageType="ns1:BookItineraryResponse"/>
+                        <variable name="BookItineraryIn" messageType="ns1:BookItineraryRequest"/>
+                    </variables>
                     <eventHandlers>
                         <onEvent partnerLink="PartnerLink1" operation="AddFlight" portType="ns1:ItineraryPortType">
                                 <scope name="Scope4">
-                                        <sequence name="Sequence4">
-                                                <assign name="Assign3"/>
-                                                    <invoke name="Invoke2"/>
-                                                    <reply name="Reply4" partnerLink="PartnerLink1" operation="AddFlight" portType="ns1:ItineraryPortType"/>
+                                    <variables>
+                                        <variable name="AddFlightOut" messageType="ns1:AddFlightResponse"/>
+                                    </variables>
+                                    <sequence name="Sequence4">
+                                        <empty name="Empty1"/>
+                                        <reply name="Reply4" partnerLink="PartnerLink1" operation="AddFlight" portType="ns1:ItineraryPortType" variable="AddFlightOut"/>
                                             </sequence>
                                     </scope>
                             </onEvent>
                             <onEvent partnerLink="PartnerLink1" operation="AddHotelStay" portType="ns1:ItineraryPortType">
                                 <scope name="Scope5">
-                                        <sequence name="Sequence3">
-                                                <assign name="Assign4"/>
-                                                    <invoke name="Invoke1"/>
-                                                    <reply name="Reply3" partnerLink="PartnerLink1" operation="AddHotelStay" portType="ns1:ItineraryPortType"/>
+                                    <variables>
+                                        <variable name="AddHotelStayOut" messageType="ns1:AddHotelStayResponse"/>
+                                    </variables>
+                                    <sequence name="Sequence3">
+                                        <empty name="Empty2"/>
+                                        <reply name="Reply3" partnerLink="PartnerLink1" operation="AddHotelStay" portType="ns1:ItineraryPortType" variable="AddHotelStayOut"/>
                                             </sequence>
                                     </scope>
                             </onEvent>
                             <onEvent partnerLink="PartnerLink1" operation="getFlights" portType="ns1:ItineraryPortType">
                                 <scope name="Scope2">
-                                        <sequence name="Sequence1">
-                                                <assign name="Assign5"/>
-                                                    <invoke name="Invoke3"/>
-                                                    <assign name="Assign7"/>
-                                                    <reply name="Reply1" partnerLink="PartnerLink1" operation="getFlights" portType="ns1:ItineraryPortType"/>
+                                    <variables>
+                                        <variable name="GetFlightsOut" messageType="ns1:getFlightsResponse"/>
+                                    </variables>
+                                    <sequence name="Sequence1">
+                                        <empty name="Empty3"/>
+                                                    <reply name="Reply1" partnerLink="PartnerLink1" operation="getFlights" portType="ns1:ItineraryPortType" variable="GetFlightsOut"/>
                                             </sequence>
                                     </scope>
                             </onEvent>
                             <onEvent partnerLink="PartnerLink1" operation="getHotels" portType="ns1:ItineraryPortType">
                                 <scope name="Scope3">
-                                        <sequence name="Sequence2">
-                                                <assign name="Assign6"/>
-                                                    <invoke name="Invoke4"/>
-                                                    <assign name="Assign8"/>
-                                                    <reply name="Reply2" partnerLink="PartnerLink1" operation="getHotels" portType="ns1:ItineraryPortType"/>
+                                    <variables>
+                                        <variable name="GetHotelsOut" messageType="ns1:getHotelsResponse"/>
+                                    </variables>
+                                    <sequence name="Sequence2">
+                                        <empty name="Empty4"/>
+                                        <reply name="Reply2" partnerLink="PartnerLink1" operation="getHotels" portType="ns1:ItineraryPortType" variable="GetHotelsOut"/>
                                             </sequence>
                                     </scope>
                             </onEvent>
                     </eventHandlers>
-                        <receive name="Receive2" partnerLink="PartnerLink1" operation="BookItinerary" portType="ns1:ItineraryPortType"/>
+                    <sequence name="Sequence7">
+                        <receive name="Receive2" partnerLink="PartnerLink1" operation="BookItinerary" portType="ns1:ItineraryPortType" createInstance="no" variable="BookItineraryIn"/>
+                        <reply name="Reply6" partnerLink="PartnerLink1" operation="BookItinerary" portType="ns1:ItineraryPortType" variable="BookItineraryOut"/>
+                    </sequence>
                 </scope>
                 <pick name="Pick2">
-                    <onMessage partnerLink="PartnerLink1" operation="CancelItinerary" portType="tns:ItineraryPortType">
-                            <forEach name="ForEach1" parallel="no" counterName="ForEach1Counter">
-                                    <startCounterValue>1</startCounterValue>
-                                        <scope name="Scope9">
-                                            <if name="If1"/>
-                                        </scope>
-                                </forEach>
-                        </onMessage>
-                        <onAlarm>
+                    <onMessage partnerLink="PartnerLink1" operation="CancelItinerary" portType="ns1:ItineraryPortType">
+                        <reply name="Reply7" partnerLink="PartnerLink1" operation="CancelItinerary" portType="ns1:ItineraryPortType" variable="CancelItineraryOut"/>
+                    </onMessage>
+                    <onAlarm>
                             <for>'P0Y0M0DT0H0M0S'</for>
-                        </onAlarm>
+                        <exit name="Exit1"/>
+                    </onAlarm>
                 </pick>
             </sequence>
         </scope>
