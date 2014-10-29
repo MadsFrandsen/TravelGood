@@ -2,12 +2,12 @@
 <definitions name="TravelGood" targetNamespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood"
     xmlns="http://schemas.xmlsoap.org/wsdl/"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" xmlns:ns0="http://xml.netbeans.org/schema/travelGoodBEPL" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" xmlns:ns0="http://xml.netbeans.org/schema/travelGoodBEPL" xmlns:ns1="http://travelgood.ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
     <types>
         <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood">
             <xsd:import schemaLocation="travelGoodBEPL.xsd" namespace="http://xml.netbeans.org/schema/travelGoodBEPL"/>
         </xsd:schema>
-        <xsd:schema xmlns:ns1="http://xml.netbeans.org/schema/travelGoodBEPL">
+        <xsd:schema xmlns:ns1="http://xml.netbeans.org/schema/travelGoodBEPL" targetNamespace="http://travelgood.ws" xmlns:tns1="http://travelgood.ws">
             <xsd:import schemaLocation="travelGoodBEPL.xsd" namespace="http://xml.netbeans.org/schema/travelGoodBEPL"/>
             <xsd:complexType name="itineraryType">
                 <xsd:sequence>
@@ -27,42 +27,40 @@
                     <xsd:element name="newElement" type="ns1:hotelInformationType"></xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
-            <xsd:element name="itinerary" type="itineraryType"></xsd:element>
             <xsd:simpleType name="itineraryIdType">
                 <xsd:restriction base="xsd:string"/>
             </xsd:simpleType>
-            <xsd:element name="itineraryId" type="itineraryIdType"></xsd:element>
         </xsd:schema>
     </types>
     <message name="CreateItineraryRequest">
         <part name="name" type="xsd:string"/>
     </message>
     <message name="CreateItineraryResponse">
-        <part name="id" type="itineraryIdType"/>
+        <part name="id" type="ns1:itineraryIdType"/>
     </message>
     <message name="BookItineraryRequest">
-        <part name="id" type="itineraryIdType"/>
+        <part name="id" type="ns1:itineraryIdType"/>
         <part name="creditCardNumber" element="ns0:creditCardNumber"/>
     </message>
     <message name="BookItineraryResponse">
         <part name="success" type="xsd:boolean"/>
     </message>
     <message name="AddFlightRequest">
-        <part name="id" type="itineraryIdType"/>
+        <part name="id" type="ns1:itineraryIdType"/>
         <part name="bookingNumber" type="xsd:int"/>
     </message>
     <message name="AddFlightResponse">
         <part name="success" type="xsd:boolean"/>
     </message>
     <message name="AddHotelStayRequest">
-        <part name="id" type="itineraryIdType"/>
+        <part name="id" type="ns1:itineraryIdType"/>
         <part name="bookingNumber" type="xsd:int"/>
     </message>
     <message name="AddHotelStayResponse">
         <part name="success" type="xsd:boolean"/>
     </message>
     <message name="CancelItineraryRequest">
-        <part name="id" type="itineraryIdType"/>
+        <part name="id" type="ns1:itineraryIdType"/>
     </message>
     <message name="CancelItineraryResponse">
         <part name="success" type="xsd:boolean"/>
@@ -73,7 +71,7 @@
         <part name="departure" type="ns0:destinationType"/>
     </message>
     <message name="getFlightsResponse">
-        <part name="flightList" type="flightList"/>
+        <part name="flightList" type="ns1:flightList"/>
     </message>
     <message name="getHotelsRequest">
         <part name="start" type="xsd:dateTime"/>
@@ -81,13 +79,13 @@
         <part name="city" type="xsd:string"/>
     </message>
     <message name="getHotelsResponse">
-        <part name="hotels" type="hotelList"/>
+        <part name="hotels" type="ns1:hotelList"/>
     </message>
     <message name="getItineraryRequest">
-        <part name="id" type="itineraryIdType"/>
+        <part name="id" type="ns1:itineraryIdType"/>
     </message>
     <message name="getItineraryResponse">
-        <part name="itinerary" type="itineraryType"/>
+        <part name="itinerary" type="ns1:itineraryType"/>
     </message>
     <portType name="ItineraryPortType">
         <operation name="CreateItinerary">
