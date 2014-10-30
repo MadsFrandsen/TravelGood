@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions name="TravelGood" targetNamespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood"
-    xmlns="http://schemas.xmlsoap.org/wsdl/"
-    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" xmlns:ns0="http://xml.netbeans.org/schema/travelGoodBEPL" xmlns:ns1="http://travelgood.ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" xmlns:ns0="http://xml.netbeans.org/schema/travelGoodBEPL" xmlns:ns1="http://travelgood.ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
     <types>
         <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood">
             <xsd:import schemaLocation="travelGoodBEPL.xsd" namespace="http://xml.netbeans.org/schema/travelGoodBEPL"/>
@@ -10,21 +10,22 @@
         <xsd:schema xmlns:ns1="http://xml.netbeans.org/schema/travelGoodBEPL" targetNamespace="http://travelgood.ws" xmlns:tns1="http://travelgood.ws">
             <xsd:import schemaLocation="travelGoodBEPL.xsd" namespace="http://xml.netbeans.org/schema/travelGoodBEPL"/>
             <xsd:complexType name="itineraryType">
-                <xsd:sequence>
-                    <xsd:choice>
-                        <xsd:element ref="ns1:flightInformation"/>
-                        <xsd:element name="newElement" type="ns1:hotelInformationType"></xsd:element>
-                    </xsd:choice>
+                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xsd:element ref="ns1:flightInformation" maxOccurs="unbounded" minOccurs="0"/>
+                    <xsd:element name="hotelinformation" type="ns1:hotelInformationType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
                 </xsd:sequence>
+                
+                
+                
             </xsd:complexType>
             <xsd:complexType name="flightList">
-                <xsd:sequence>
+                <xsd:sequence minOccurs="1" maxOccurs="1">
                     <xsd:element name="flight" type="ns1:flightInformationType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="hotelList">
-                <xsd:sequence>
-                    <xsd:element name="newElement" type="ns1:hotelInformationType"></xsd:element>
+                <xsd:sequence minOccurs="1" maxOccurs="1">
+                    <xsd:element name="newElement" type="ns1:hotelInformationType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:simpleType name="itineraryIdType">
