@@ -4,6 +4,7 @@ import dtu.ws.travelgood.client.FlightInformationType;
 import dtu.ws.travelgood.client.FlightList;
 import dtu.ws.travelgood.client.HotelList;
 import dtu.ws.travelgood.client.ItineraryType;
+import java.util.List;
 import org.junit.Test;
 //For date
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -44,21 +45,53 @@ public class P1 {
         String destination="Berlin";
         String departure="Copenhagen";
         DatatypeFactory df = DatatypeFactory.newInstance();
-        XMLGregorianCalendar date = df.newXMLGregorianCalendar("2015-09-15");
-        
+        XMLGregorianCalendar date1 = df.newXMLGregorianCalendar("2015-09-15");
+        XMLGregorianCalendar date2 = df.newXMLGregorianCalendar("2015-09-16");
+        XMLGregorianCalendar date3 = df.newXMLGregorianCalendar("2015-09-17");
         
         
         //Output data
-        String itenary;
-        FlightList flightList;
+        String itenaryId;
+        ItineraryType itenary;
+        FlightList flightList1,flightList2,flightList3;
+        int flightBookingNumber1,flightBookingNumber2,flightBookingNumber3;
+        int hotelBookingNumber1,hotelBookingNumber2;
         
+        itenaryId=createItinerary(name);
         
-        itenary=createItinerary(name);
-        flightList=getFlights(destination, date, departure);
-        FlightInformationType flightInformation = flightList.getFlight();
-        int flightBookingNumber=flightInformation.getBookingNumber();
+        //get a list if fights and choose the first
+        flightBookingNumber1=getFlights(destination, date1, departure).getFlight().get(0).getBookingNumber();
+        // add the first flight to itenary
+        addFlight(name, flightBookingNumber1);
         
-        addFlight(itenary, flightBookingNumber);
+        //get list of avaviable hotels
+        hotelBookingNumber1=getHotels(date1, date2, destination).getHotel().get(0).getBookingNumber();
+        //book the first hotel
+        addHotelStay(name, hotelBookingNumber1);
+        
+        //plan another flight
+        flightBookingNumber2=getFlights(destination, date2, departure).getFlight().get(0).getBookingNumber();
+        addFlight(name, flightBookingNumber2);
+        
+        //plan a third flight
+        flightBookingNumber2=getFlights(destination, date3, departure).getFlight().get(0).getBookingNumber();
+        addFlight(name, flightBookingNumber2);
+        
+        //finally add a hotel
+        hotelBookingNumber2=getHotels(date1, date3, destination).getHotel().get(0).getBookingNumber();
+        //book the first hotel
+        addHotelStay(name, hotelBookingNumber2);
+        
+        itenary=getItinerary(name);
+        
+        for (Object order : itenary.getFlightInformationAndHotelinformation()) {
+            if (order instanceof FlightInformationType){
+                FlightInformationType fit=(FlightInformationType) order;
+                int bookingnumber=fit.getBookingNumber();
+            
+            }
+        }
+        
     }
 
     private static boolean addFlight(java.lang.String id, int bookingNumber) {

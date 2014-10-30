@@ -10,7 +10,7 @@
         <xsd:schema xmlns:ns1="http://xml.netbeans.org/schema/travelGoodBEPL" targetNamespace="http://travelgood.ws" xmlns:tns1="http://travelgood.ws">
             <xsd:import schemaLocation="travelGoodBEPL.xsd" namespace="http://xml.netbeans.org/schema/travelGoodBEPL"/>
             <xsd:complexType name="itineraryType">
-                <xsd:sequence minOccurs="1" maxOccurs="1">
+                <xsd:sequence minOccurs="1" maxOccurs="unbounded">
                     <xsd:element ref="ns1:flightInformation" maxOccurs="unbounded" minOccurs="0"/>
                     <xsd:element name="hotelinformation" type="ns1:hotelInformationType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
                 </xsd:sequence>
