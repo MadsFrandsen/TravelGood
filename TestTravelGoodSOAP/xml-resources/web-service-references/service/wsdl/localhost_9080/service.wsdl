@@ -7,21 +7,22 @@
     <xsd:schema targetNamespace="http://travelgood.ws" xmlns:ns1="http://xml.netbeans.org/schema/travelGoodBEPL" xmlns:tns1="http://travelgood.ws">
             <xsd:import namespace="http://xml.netbeans.org/schema/travelGoodBEPL" schemaLocation="http://jonas-XPS13:9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelGoodBEPL.xsd"/>
             <xsd:complexType name="itineraryType">
-                <xsd:sequence>
-                    <xsd:choice>
-                        <xsd:element ref="ns1:flightInformation"/>
-                        <xsd:element name="newElement" type="ns1:hotelInformationType"/>
-                    </xsd:choice>
+                <xsd:sequence maxOccurs="1" minOccurs="1">
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ns1:flightInformation"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="hotelinformation" type="ns1:hotelInformationType"/>
                 </xsd:sequence>
+                
+                
+                
             </xsd:complexType>
             <xsd:complexType name="flightList">
-                <xsd:sequence>
-                    <xsd:element name="flight" type="ns1:flightInformationType"/>
+                <xsd:sequence maxOccurs="1" minOccurs="1">
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="flight" type="ns1:flightInformationType"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="hotelList">
-                <xsd:sequence>
-                    <xsd:element name="newElement" type="ns1:hotelInformationType"/>
+                <xsd:sequence maxOccurs="1" minOccurs="1">
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="hotel" type="ns1:hotelInformationType"/>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:simpleType name="itineraryIdType">

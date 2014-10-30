@@ -1,6 +1,8 @@
 
 package dtu.ws.travelgood.client;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -17,10 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;choice>
- *           &lt;element ref="{http://xml.netbeans.org/schema/travelGoodBEPL}flightInformation"/>
- *           &lt;element name="newElement" type="{http://xml.netbeans.org/schema/travelGoodBEPL}hotelInformationType"/>
- *         &lt;/choice>
+ *         &lt;element ref="{http://xml.netbeans.org/schema/travelGoodBEPL}flightInformation" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="hotelinformation" type="{http://xml.netbeans.org/schema/travelGoodBEPL}hotelInformationType" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,61 +32,71 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "itineraryType", namespace = "http://travelgood.ws", propOrder = {
     "flightInformation",
-    "newElement"
+    "hotelinformation"
 })
 public class ItineraryType {
 
     @XmlElement(namespace = "http://xml.netbeans.org/schema/travelGoodBEPL")
-    protected FlightInformationType flightInformation;
+    protected List<FlightInformationType> flightInformation;
     @XmlElement(namespace = "")
-    protected HotelInformationType newElement;
+    protected List<HotelInformationType> hotelinformation;
 
     /**
      * Gets the value of the flightInformation property.
      * 
-     * @return
-     *     possible object is
-     *     {@link FlightInformationType }
-     *     
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the flightInformation property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getFlightInformation().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link FlightInformationType }
+     * 
+     * 
      */
-    public FlightInformationType getFlightInformation() {
-        return flightInformation;
+    public List<FlightInformationType> getFlightInformation() {
+        if (flightInformation == null) {
+            flightInformation = new ArrayList<FlightInformationType>();
+        }
+        return this.flightInformation;
     }
 
     /**
-     * Sets the value of the flightInformation property.
+     * Gets the value of the hotelinformation property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link FlightInformationType }
-     *     
-     */
-    public void setFlightInformation(FlightInformationType value) {
-        this.flightInformation = value;
-    }
-
-    /**
-     * Gets the value of the newElement property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the hotelinformation property.
      * 
-     * @return
-     *     possible object is
-     *     {@link HotelInformationType }
-     *     
-     */
-    public HotelInformationType getNewElement() {
-        return newElement;
-    }
-
-    /**
-     * Sets the value of the newElement property.
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getHotelinformation().add(newItem);
+     * </pre>
      * 
-     * @param value
-     *     allowed object is
-     *     {@link HotelInformationType }
-     *     
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link HotelInformationType }
+     * 
+     * 
      */
-    public void setNewElement(HotelInformationType value) {
-        this.newElement = value;
+    public List<HotelInformationType> getHotelinformation() {
+        if (hotelinformation == null) {
+            hotelinformation = new ArrayList<HotelInformationType>();
+        }
+        return this.hotelinformation;
     }
 
 }
