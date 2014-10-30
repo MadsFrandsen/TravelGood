@@ -19,7 +19,7 @@
             </xsd:complexType>
             <xsd:complexType name="flightList">
                 <xsd:sequence>
-                    <xsd:element name="flight" type="ns1:flightInformationType"></xsd:element>
+                    <xsd:element name="flight" type="ns1:flightInformationType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="hotelList">

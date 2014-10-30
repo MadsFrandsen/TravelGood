@@ -1,6 +1,15 @@
 package dtu.ws.travelgood.SOAPTest;
 
+import dtu.ws.travelgood.client.FlightInformationType;
+import dtu.ws.travelgood.client.FlightList;
+import dtu.ws.travelgood.client.HotelList;
+import dtu.ws.travelgood.client.ItineraryType;
 import org.junit.Test;
+//For date
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+
 import static org.junit.Assert.*;
 
 /**
@@ -21,9 +30,7 @@ public class P1 {
      *
      */
     public P1() {
-        //id=GenerateItinerary(CC, name)
-        //flights=getFlights(Copenhagen,Berlin,date)
-        
+       
     }
 
     
@@ -31,6 +38,68 @@ public class P1 {
      *
      */
     @Test
-    public void testP1() {
+    public void testP1() throws DatatypeConfigurationException {
+        //Input data
+        String name="Poul Thomsen";
+        String destination="Berlin";
+        String departure="Copenhagen";
+        DatatypeFactory df = DatatypeFactory.newInstance();
+        XMLGregorianCalendar date = df.newXMLGregorianCalendar("2015-09-15");
+        
+        
+        
+        //Output data
+        String itenary;
+        FlightList flightList;
+        
+        
+        itenary=createItinerary(name);
+        flightList=getFlights(destination, date, departure);
+        FlightInformationType flightInformation = flightList.getFlight();
+        int flightBookingNumber=flightInformation.getBookingNumber();
+        
+        addFlight(itenary, flightBookingNumber);
+    }
+
+    private static boolean addFlight(java.lang.String id, int bookingNumber) {
+        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
+        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.addFlight(id, bookingNumber);
+    }
+
+    private static boolean addHotelStay(java.lang.String id, int bookingNumber) {
+        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
+        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.addHotelStay(id, bookingNumber);
+    }
+
+    private static boolean cancelItinerary(java.lang.String id) {
+        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
+        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.cancelItinerary(id);
+    }
+
+    private static String createItinerary(java.lang.String name) {
+        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
+        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.createItinerary(name);
+    }
+
+    private static FlightList getFlights(java.lang.String destination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departure) {
+        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
+        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getFlights(destination, time, departure);
+    }
+
+    private static HotelList getHotels(javax.xml.datatype.XMLGregorianCalendar start, javax.xml.datatype.XMLGregorianCalendar end, java.lang.String city) {
+        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
+        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getHotels(start, end, city);
+    }
+
+    private static ItineraryType getItinerary(java.lang.String id) {
+        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
+        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getItinerary(id);
     }
 }
