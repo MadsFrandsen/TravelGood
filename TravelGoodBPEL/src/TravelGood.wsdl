@@ -25,7 +25,7 @@
             </xsd:complexType>
             <xsd:complexType name="hotelList">
                 <xsd:sequence minOccurs="1" maxOccurs="1">
-                    <xsd:element name="newElement" type="ns1:hotelInformationType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+                    <xsd:element name="hotel" type="ns1:hotelInformationType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:simpleType name="itineraryIdType">
