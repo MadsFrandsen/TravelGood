@@ -1,2 +1,6 @@
 TravelGoodBPEL/nbproject/private
 TravelGoodBPELApplication/nbproject/private
+/TravelGoodBPEL/build/
+/TravelGoodBPELApplication/build/
+/TravelGoodBPELApplication/src/jbiServiceUnits/
+/TravelGoodBPELApplication/dist/

@@ -127,10 +127,10 @@
         <operation name="CreateItinerary">
             <soap:operation/>
             <input name="input1">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood"/>
             </input>
             <output name="output1">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood"/>
             </output>
         </operation>
         <operation name="BookItinerary">
