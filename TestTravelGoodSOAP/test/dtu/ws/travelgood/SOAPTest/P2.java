@@ -23,5 +23,6 @@ public class P2 {
      */
     @Test
     public void testP2() {
+        
     }
 }
