@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="stay" type="{http://xml.travelgood.ws}stay" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="stays" type="{http://xml.travelgood.ws}stay" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,25 +29,25 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "accommodationOptions", propOrder = {
-    "stay"
+    "stays"
 })
 public class AccommodationOptions {
 
-    protected List<Stay> stay;
+    protected List<Stay> stays;
 
     /**
-     * Gets the value of the stay property.
+     * Gets the value of the stays property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the stay property.
+     * This is why there is not a <CODE>set</CODE> method for the stays property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getStay().add(newItem);
+     *    getStays().add(newItem);
      * </pre>
      * 
      * 
@@ -57,11 +57,11 @@ public class AccommodationOptions {
      * 
      * 
      */
-    public List<Stay> getStay() {
-        if (stay == null) {
-            stay = new ArrayList<Stay>();
+    public List<Stay> getStays() {
+        if (stays == null) {
+            stays = new ArrayList<Stay>();
         }
-        return this.stay;
+        return this.stays;
     }
 
 }

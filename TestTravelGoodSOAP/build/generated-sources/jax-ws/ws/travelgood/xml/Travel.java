@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="reservationService" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="flight" type="{http://xml.travelgood.ws}flight"/>
+ *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,7 +35,8 @@ import javax.xml.bind.annotation.XmlType;
     "bookingNumber",
     "price",
     "reservationService",
-    "flight"
+    "flight",
+    "status"
 })
 public class Travel {
 
@@ -44,6 +46,8 @@ public class Travel {
     protected String reservationService;
     @XmlElement(required = true)
     protected Flight flight;
+    @XmlElement(required = true)
+    protected String status;
 
     /**
      * Gets the value of the bookingNumber property.
@@ -123,6 +127,30 @@ public class Travel {
      */
     public void setFlight(Flight value) {
         this.flight = value;
+    }
+
+    /**
+     * Gets the value of the status property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * Sets the value of the status property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStatus(String value) {
+        this.status = value;
     }
 
 }

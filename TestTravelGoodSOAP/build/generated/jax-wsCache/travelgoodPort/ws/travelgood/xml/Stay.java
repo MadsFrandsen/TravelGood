@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="creditCardRequired" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="reservationServiceName" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,7 +39,8 @@ import javax.xml.bind.annotation.XmlType;
     "bookingNumber",
     "price",
     "creditCardRequired",
-    "reservationServiceName"
+    "reservationServiceName",
+    "status"
 })
 public class Stay {
 
@@ -51,6 +53,8 @@ public class Stay {
     protected boolean creditCardRequired;
     @XmlElement(required = true)
     protected String reservationServiceName;
+    @XmlElement(required = true)
+    protected String status;
 
     /**
      * Gets the value of the name property.
@@ -170,6 +174,30 @@ public class Stay {
      */
     public void setReservationServiceName(String value) {
         this.reservationServiceName = value;
+    }
+
+    /**
+     * Gets the value of the status property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * Sets the value of the status property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStatus(String value) {
+        this.status = value;
     }
 
 }

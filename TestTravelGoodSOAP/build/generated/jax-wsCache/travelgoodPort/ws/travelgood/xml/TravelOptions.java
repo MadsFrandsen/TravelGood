@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="travel" type="{http://xml.travelgood.ws}travel" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="travels" type="{http://xml.travelgood.ws}travel" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,25 +29,25 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "travelOptions", propOrder = {
-    "travel"
+    "travels"
 })
 public class TravelOptions {
 
-    protected List<Travel> travel;
+    protected List<Travel> travels;
 
     /**
-     * Gets the value of the travel property.
+     * Gets the value of the travels property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the travel property.
+     * This is why there is not a <CODE>set</CODE> method for the travels property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getTravel().add(newItem);
+     *    getTravels().add(newItem);
      * </pre>
      * 
      * 
@@ -57,11 +57,11 @@ public class TravelOptions {
      * 
      * 
      */
-    public List<Travel> getTravel() {
-        if (travel == null) {
-            travel = new ArrayList<Travel>();
+    public List<Travel> getTravels() {
+        if (travels == null) {
+            travels = new ArrayList<Travel>();
         }
-        return this.travel;
+        return this.travels;
     }
 
 }

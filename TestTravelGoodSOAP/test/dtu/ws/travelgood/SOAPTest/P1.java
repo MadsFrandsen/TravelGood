@@ -1,5 +1,6 @@
 package dtu.ws.travelgood.SOAPTest;
 
+import java.beans.DesignMode;
 import java.util.Arrays;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -25,25 +26,12 @@ import ws.travelgood.xml.TravelOptions;
  * @author Jonas Karlsson (S143341)
  * @return
  */
-public class P1 {
+public class P1 extends T {
 
-    private DatatypeFactory df;
-    private XMLGregorianCalendar fromDate, toDate;
-    private String personName, Copenhagen, Oslo, Berlin, itinearyID;
-    int creditCardNumber;
-    Travel[] travels, itinearyTravels;
-    Stay[] stays, itinearyStays;
-
+    
+    
     public P1() throws DatatypeConfigurationException {
-        df = DatatypeFactory.newInstance();
-        fromDate = df.newXMLGregorianCalendar("2015-09-15");
-        toDate = df.newXMLGregorianCalendar("2015-09-18");
-        personName = "Poul Thomsen";
-        creditCardNumber = 661011002;
-
-        Copenhagen = "Copenhagen";
-        Berlin = "Berlin";
-        Oslo = "Oslo";
+      
 
         travels = new Travel[3];
         itinearyTravels = new Travel[3];
@@ -58,33 +46,31 @@ public class P1 {
      *
      */
     @Test
-    public void testP1() throws DatatypeConfigurationException {
+    public void testP1()  {
 
+        itinearyID = createItinerary(personNames[0]);
 
-
-
-        itinearyID = createItinerary(personName);
-
+        
         //Plan first flight
-        travels[0] = getFlights(Copenhagen, fromDate, Berlin).getTravel().get(0);
+        travels[0] = getFlights(destinations[0], dates[0], destinations[1]).getTravels().get(0);
         addFlight(itinearyID, travels[0].getBookingNumber());
 
 
         //Plan a hotol
-        stays[0] = getHotels(fromDate, toDate, Berlin).getStay().get(0);
+        stays[0] = getHotels(dates[0], dates[2], destinations[2]).getStays().get(0);
         addHotel(itinearyID, stays[0].getBookingNumber());
 
         //Plan another flight
-        travels[1] = getFlights(Oslo, fromDate, Berlin).getTravel().get(0);
+        travels[1] = getFlights(destinations[2], dates[0], destinations[1]).getTravels().get(0);
         addFlight(itinearyID, travels[1].getBookingNumber());
 
         //Plan a third flight
-        travels[2] = getFlights(Berlin, toDate, Copenhagen).getTravel().get(0);
+        travels[2] = getFlights(destinations[0], dates[4], destinations[0]).getTravels().get(0);
         addFlight(itinearyID, travels[2].getBookingNumber());
 
 
         //Plan a 2nd hotel
-        stays[1] = getHotels(fromDate, toDate, Copenhagen).getStay().get(0);
+        stays[1] = getHotels(dates[0], dates[4], destinations[1]).getStays().get(0);
         addHotel(itinearyID, stays[1].getBookingNumber());
 
 
@@ -94,7 +80,7 @@ public class P1 {
         assertEquals("unconfirmed", getItinerary(itinearyID).getStatus());
 
         //Do booking 
-        bookItinerary(itinearyID, creditCardNumber, personName);
+        bookItinerary(itinearyID, creditCardNumbers[1], personNames[1]);
 
         //get itinerary
         Itinerary itinerary = getItinerary(itinearyID);
@@ -108,57 +94,31 @@ public class P1 {
         Arrays.sort(itinearyStays);
         Arrays.sort(travels);
         Arrays.sort(itinearyTravels);
+        
+        assertEquals(itinearyTravels.length,travels.length);
+        
+        for (int i = 0; i < itinearyTravels.length; i++) {
+            assertEquals(itinearyTravels[i].getBookingNumber(),travels[i].getBookingNumber());
+            assertEquals(itinearyTravels[i].getFlight(),travels[i].getFlight());
+            assertEquals(itinearyTravels[i].getReservationService(),travels[i].getReservationService());
+            assertEquals(itinearyTravels[i].getStatus(),"confirmed");
+            
+        }
+        
+        assertEquals(itinearyStays.length,stays.length);
+        
+        for (int i = 0; i < itinearyStays.length; i++) {
+            assertEquals(itinearyStays[i].getAddress(),stays[i].getAddress());
+            assertEquals(itinearyStays[i].getBookingNumber(),stays[i].getBookingNumber());
+            assertEquals(itinearyStays[i].getName(),stays[i].getName());
+            assertEquals(itinearyStays[i].getReservationServiceName(),stays[i].getReservationServiceName());
+            assertEquals(itinearyStays[i].isCreditCardRequired(),stays[i].isCreditCardRequired());
+            assertEquals(itinearyStays[i],"confirmed");
+            
+        }
 
-        assertArrayEquals(stays, itinearyStays);
-        assertArrayEquals(travels, itinearyTravels);
-
+        
     }
 
-    private static boolean addFlight(java.lang.String itenaryID, int bookingNumber) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
-        return port.addFlight(itenaryID, bookingNumber);
-    }
-
-    private static boolean bookItinerary(java.lang.String itenaryID, int creditCardNumber, java.lang.String cardOwner) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
-        return port.bookItinerary(itenaryID, creditCardNumber, cardOwner);
-    }
-
-    private static boolean cancelItinerary(java.lang.String itenaryID) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
-        return port.cancelItinerary(itenaryID);
-    }
-
-    private static String createItinerary(java.lang.String personName) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
-        return port.createItinerary(personName);
-    }
-
-    private static TravelOptions getFlights(java.lang.String arrivalDestination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departureDestination) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
-        return port.getFlights(arrivalDestination, time, departureDestination);
-    }
-
-    private static AccommodationOptions getHotels(javax.xml.datatype.XMLGregorianCalendar start, javax.xml.datatype.XMLGregorianCalendar end, java.lang.String city) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
-        return port.getHotels(start, end, city);
-    }
-
-    private static Itinerary getItinerary(java.lang.String id) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
-        return port.getItinerary(id);
-    }
-
-    private static boolean addHotel(java.lang.String itineraryID, int bookingNumber) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
-        return port.addHotel(itineraryID, bookingNumber);
-    }
+    
 }
