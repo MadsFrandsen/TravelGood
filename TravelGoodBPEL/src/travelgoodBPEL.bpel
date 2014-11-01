@@ -15,11 +15,11 @@
         <partnerLink name="PartnerLink1" xmlns:tns="http://travelgood.ws" partnerLinkType="tns:travelgood" myRole="itineraryPortTypeRole"/>
     </partnerLinks>
     <variables>
-        <variable name="CreateItineraryOut" xmlns:tns="http://travelgood.ws" messageType="tns:CreateItineraryResponse"/>
-        <variable name="CreateItineraryIn" xmlns:tns="http://travelgood.ws" messageType="tns:CreateItineraryRequest"/>
+        <variable name="CreateItineraryOut1" xmlns:tns="http://travelgood.ws" messageType="tns:createItineraryResponse"/>
+        <variable name="CreateItineraryIn1" xmlns:tns="http://travelgood.ws" messageType="tns:createItineraryRequest"/>
     </variables>
     <sequence>
-        <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="CreateItinerary" xmlns:tns="http://travelgood.ws" portType="tns:itineraryPortType" variable="CreateItineraryIn"/>
-        <reply name="Reply1" partnerLink="PartnerLink1" operation="CreateItinerary" xmlns:tns="http://travelgood.ws" portType="tns:itineraryPortType" variable="CreateItineraryOut"/>
+        <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="createItinerary" xmlns:tns="http://travelgood.ws" portType="tns:itineraryPortType" variable="CreateItineraryIn1"/>
+        <reply name="Reply1" partnerLink="PartnerLink1" operation="createItinerary" xmlns:tns="http://travelgood.ws" portType="tns:itineraryPortType" variable="CreateItineraryOut1"/>
     </sequence>
 </process>
