@@ -60,25 +60,25 @@ public class P1 {
         itenaryId=createItinerary(name);
         
         //get a list if fights and choose the first
-        flightBookingNumber1=getFlights(destination, date1, departure).getFlight().get(0).getBookingNumber();
+        flightBookingNumber1=getFlights(itenaryId, destination, date1, departure).getFlight().get(0).getBookingNumber();
         // add the first flight to itenary
         addFlight(name, flightBookingNumber1);
         
         //get list of avaviable hotels
-        hotelBookingNumber1=getHotels(date1, date2, destination).getHotel().get(0).getBookingNumber();
+        hotelBookingNumber1=getHotels(itenaryId, date1, date2, destination).getHotel().get(0).getBookingNumber();
         //book the first hotel
         addHotelStay(name, hotelBookingNumber1);
         
         //plan another flight
-        flightBookingNumber2=getFlights(destination, date2, departure).getFlight().get(0).getBookingNumber();
+        flightBookingNumber2=getFlights(itenaryId, destination, date2, departure).getFlight().get(0).getBookingNumber();
         addFlight(name, flightBookingNumber2);
         
         //plan a third flight
-        flightBookingNumber2=getFlights(destination, date3, departure).getFlight().get(0).getBookingNumber();
+        flightBookingNumber2=getFlights(itenaryId, destination, date3, departure).getFlight().get(0).getBookingNumber();
         addFlight(name, flightBookingNumber2);
         
         //finally add a hotel
-        hotelBookingNumber2=getHotels(date1, date3, destination).getHotel().get(0).getBookingNumber();
+        hotelBookingNumber2=getHotels(itenaryId, date1, date3, destination).getHotel().get(0).getBookingNumber();
         //book the first hotel
         addHotelStay(name, hotelBookingNumber2);
         
@@ -118,21 +118,21 @@ public class P1 {
         return port.createItinerary(name);
     }
 
-    private static FlightList getFlights(java.lang.String destination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departure) {
-        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
-        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
-        return port.getFlights(destination, time, departure);
-    }
-
-    private static HotelList getHotels(javax.xml.datatype.XMLGregorianCalendar start, javax.xml.datatype.XMLGregorianCalendar end, java.lang.String city) {
-        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
-        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
-        return port.getHotels(start, end, city);
-    }
-
     private static ItineraryType getItinerary(java.lang.String id) {
         dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
         dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
         return port.getItinerary(id);
+    }
+
+    private static FlightList getFlights(java.lang.String id, java.lang.String destination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departure) {
+        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
+        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getFlights(id, destination, time, departure);
+    }
+
+    private static HotelList getHotels(java.lang.String id, javax.xml.datatype.XMLGregorianCalendar start, javax.xml.datatype.XMLGregorianCalendar end, java.lang.String city) {
+        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
+        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getHotels(id, start, end, city);
     }
 }

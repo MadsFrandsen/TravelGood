@@ -80,6 +80,7 @@ public interface ItineraryPortType {
 
     /**
      * 
+     * @param id
      * @param time
      * @param departure
      * @param destination
@@ -89,6 +90,8 @@ public interface ItineraryPortType {
     @WebMethod
     @WebResult(name = "flightList", partName = "flightList")
     public FlightList getFlights(
+        @WebParam(name = "id", partName = "id")
+        String id,
         @WebParam(name = "destination", partName = "destination")
         String destination,
         @WebParam(name = "time", partName = "time")
@@ -98,6 +101,7 @@ public interface ItineraryPortType {
 
     /**
      * 
+     * @param id
      * @param start
      * @param end
      * @param city
@@ -107,6 +111,8 @@ public interface ItineraryPortType {
     @WebMethod
     @WebResult(name = "hotels", partName = "hotels")
     public HotelList getHotels(
+        @WebParam(name = "id", partName = "id")
+        String id,
         @WebParam(name = "start", partName = "start")
         XMLGregorianCalendar start,
         @WebParam(name = "end", partName = "end")
