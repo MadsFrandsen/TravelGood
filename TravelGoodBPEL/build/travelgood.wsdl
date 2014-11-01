@@ -8,20 +8,14 @@
             <xsd:import schemaLocation="travelgoodBPEL.xsd" namespace="http://xml.travelgood.ws"/>
         </xsd:schema>
     </types>
-    <message name="travelgoodOperationRequest">
-        <part name="pa1" type="xsd:string"/>
-    </message>
-    <message name="travelgoodOperationResponse">
-        <part name="par1" type="xsd:string"/>
-    </message>
     <message name="CreateItineraryRequest">
         <part name="personName" type="ns1:personName"/>
     </message>
     <message name="CreateItineraryResponse">
-        <part name="itenaryID" type="ns1:itenaryID"/>
+        <part name="itineraryID" type="ns1:itineraryID"/>
     </message>
     <message name="BookItineraryRequest">
-        <part name="itenaryID" type="ns1:itenaryID"/>
+        <part name="itineraryID" type="ns1:itineraryID"/>
         <part name="creditCardNumber" type="ns1:creditCardNumber"/>
         <part name="cardOwner" type="ns1:personName"/>
     </message>
@@ -29,21 +23,21 @@
         <part name="successful" type="xsd:boolean"/>
     </message>
     <message name="AddFlightRequest">
-        <part name="itenaryID" type="ns1:itenaryID"/>
+        <part name="itineraryID" type="ns1:itineraryID"/>
         <part name="bookingNumber" type="xsd:int"/>
     </message>
     <message name="AddFlightResponse">
         <part name="successfull" type="xsd:boolean"/>
     </message>
     <message name="AddHotelStayRequest">
-        <part name="itenaryID" type="ns1:itenaryID"/>
+        <part name="itineraryID" type="ns1:itineraryID"/>
         <part name="bookingNumber" type="xsd:int"/>
     </message>
     <message name="AddHotelStayResponse">
         <part name="successfull" type="xsd:boolean"/>
     </message>
     <message name="CancelItineraryRequest">
-        <part name="itenaryID" type="ns1:itenaryID"/>
+        <part name="itineraryID" type="ns1:itineraryID"/>
     </message>
     <message name="CancelItineraryResponse">
         <part name="success" type="xsd:boolean"/>
@@ -66,17 +60,13 @@
         <part name="hotels" type="ns1:accommodationOptions"/>
     </message>
     <message name="getItineraryRequest">
-        <part name="id" type="ns1:itenaryID"/>
+        <part name="id" type="ns1:itineraryID"/>
     </message>
     <message name="getItineraryResponse">
-        <part name="itinerary" type="ns1:itenary"/>
+        <part name="itinerary" type="ns1:itinerary"/>
     </message>
     
     <portType name="itineraryPortType">
-        <operation name="travelgoodOperation">
-            <input name="input0" message="tns:travelgoodOperationRequest"/>
-            <output name="output0" message="tns:travelgoodOperationResponse"/>
-        </operation>
         <operation name="CreateItinerary">
             <input name="input1" message="tns:CreateItineraryRequest"/>
             <output name="output1" message="tns:CreateItineraryResponse"/>
@@ -117,15 +107,6 @@
     <binding name="travelgoodBinding" type="tns:itineraryPortType">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
         
-        <operation name="travelgoodOperation">
-            <soap:operation/>
-            <input name="input0">
-                <soap:body use="literal" namespace="http://travelgood.ws"/>
-            </input>
-            <output name="output0">
-                <soap:body use="literal" namespace="http://travelgood.ws"/>
-            </output>
-        </operation>
         
         <operation name="CreateItinerary">
             <soap:operation/>

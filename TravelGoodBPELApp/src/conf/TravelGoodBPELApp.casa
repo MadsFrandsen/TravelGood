@@ -10,7 +10,7 @@
         </service-engine-service-unit>
         <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="TravelGoodBPELApp-sun-http-binding" unit-name="sun-http-binding">
             <ports>
-                <port x="67" y="37">
+                <port state="deleted" x="67" y="37">
                     <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/travelgood.wsdl#xpointer(/definitions/service[@name='travelgoodService']/port[@name='travelgoodPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint1"/>
                     <provides endpoint="endpoint1"/>
