@@ -1,4 +1,3 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://xml.travelgood.ws" uri="src/_references/_relative/nbproject/private/retriever/xml.travelgood.ws"/>
 </catalog>
