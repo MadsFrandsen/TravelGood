@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://travelgood.ws" xmlns:ns2="http://enterprise.netbeans.org/bpel/BpelModule1/bpelModule1" version="1.0">
+    <services binding-component="true">
+        <consumes endpoint-name="travelgoodPort" interface-name="ns1:itineraryPortType" service-name="ns1:travelgoodService"/>
+    </services>
+</jbi>
