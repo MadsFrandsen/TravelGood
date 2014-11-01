@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            targetNamespace="http://travelGood/schema/"
-    elementFormDefault="qualified" xmlns:tns="http://travelGood/schema/">
+            targetNamespace="http://xml.netbeans.org/schema/travelGoodBEPL"
+    xmlns:tns="http://xml.netbeans.org/schema/travelGoodBEPL"
+    elementFormDefault="qualified">
     <xsd:complexType name="flightInformationType">
         <xsd:sequence>
             <xsd:element name="bookingNumber" type="xsd:int"></xsd:element>
@@ -27,7 +28,7 @@
         <xsd:restriction base="xsd:string"/>
     </xsd:simpleType>
     <xsd:element name="flight" type="tns:flightType"></xsd:element>
-    <xsd:element name="flightInformation" type="tns:flightInformation"></xsd:element>
+    <xsd:element name="flightInformation" type="tns:flightInformationType"></xsd:element>
     <xsd:simpleType name="destinationType">
         <xsd:restriction base="xsd:string"/>
     </xsd:simpleType>

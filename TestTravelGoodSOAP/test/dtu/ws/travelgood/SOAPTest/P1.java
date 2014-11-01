@@ -4,6 +4,7 @@ import dtu.ws.travelgood.client.FlightInformationType;
 import dtu.ws.travelgood.client.FlightList;
 import dtu.ws.travelgood.client.HotelList;
 import dtu.ws.travelgood.client.ItineraryType;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
 //For date
@@ -54,43 +55,62 @@ public class P1 {
         String itenaryId;
         ItineraryType itenary;
         FlightList flightList1,flightList2,flightList3;
-        int flightBookingNumber1,flightBookingNumber2,flightBookingNumber3;
-        int hotelBookingNumber1,hotelBookingNumber2;
+        int [] flightBookingNumbers=new int[3];
+        int [] hotelBookingNumbers = new int[2];
+        int [] itenaryFlightBookingNumbers=new int[3];
+        int [] itenaryHotelBookingNumbers = new int[2];
         
+                
         itenaryId=createItinerary(name);
         
-        //get a list if fights and choose the first
-        flightBookingNumber1=getFlights(destination, date1, departure).getFlight().get(0).getBookingNumber();
-        // add the first flight to itenary
-        addFlight(name, flightBookingNumber1);
+        //get a list if flights and choose the first
+        flightBookingNumbers[0]=getFlights(destination, date1, departure).getFlight().get(0).getBookingNumber();
+        // add the flight to itenary
+        addFlight(name, flightBookingNumbers[0]);
         
         //get list of avaviable hotels
-        hotelBookingNumber1=getHotels(date1, date2, destination).getHotel().get(0).getBookingNumber();
+        hotelBookingNumbers[0]=getHotels(date1, date2, destination).getHotel().get(0).getBookingNumber();
         //book the first hotel
-        addHotelStay(name, hotelBookingNumber1);
+        addHotelStay(name, hotelBookingNumbers[0]);
         
         //plan another flight
-        flightBookingNumber2=getFlights(destination, date2, departure).getFlight().get(0).getBookingNumber();
-        addFlight(name, flightBookingNumber2);
+        flightBookingNumbers[1]=getFlights(destination, date2, departure).getFlight().get(0).getBookingNumber();
+        addFlight(name, flightBookingNumbers[1]);
         
         //plan a third flight
-        flightBookingNumber2=getFlights(destination, date3, departure).getFlight().get(0).getBookingNumber();
-        addFlight(name, flightBookingNumber2);
+        flightBookingNumbers[2]=getFlights(destination, date3, departure).getFlight().get(0).getBookingNumber();
+        addFlight(name, flightBookingNumbers[2]);
         
         //finally add a hotel
-        hotelBookingNumber2=getHotels(date1, date3, destination).getHotel().get(0).getBookingNumber();
+        hotelBookingNumbers[1]=getHotels(date1, date3, destination).getHotel().get(0).getBookingNumber();
         //book the first hotel
-        addHotelStay(name, hotelBookingNumber2);
+        addHotelStay(name, hotelBookingNumbers[1]);
         
         itenary=getItinerary(name);
         
+        int flightIndex=0;
+        int hotelIndex=0;
+                
+        
         for (Object order : itenary.getFlightInformationAndHotelinformation()) {
             if (order instanceof FlightInformationType){
+                
                 FlightInformationType fit=(FlightInformationType) order;
-                int bookingnumber=fit.getBookingNumber();
+                itenaryFlightBookingNumbers[flightIndex]=fit.getBookingNumber();
+                flightIndex++;
             
             }
+            
+            if (order instanceof HotelList){
+                HotelList hl=(HotelList) order;
+                hl.getHotel();
+            
+            } 
         }
+        
+        Arrays.sort(flightBookingNumbers);
+        Arrays.sort(hotelBookingNumbers);
+        
         
     }
 
