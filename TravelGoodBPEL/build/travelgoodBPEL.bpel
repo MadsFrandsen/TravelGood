@@ -26,17 +26,47 @@
     </correlationSets>
     <sequence>
         <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="createItinerary" xmlns:tns="http://travelgood.ws" portType="tns:itineraryPortType" variable="CreateItineraryIn"/>
+        <scope name="Scope7">
+            <faultHandlers>
+                <catchAll>
+                    <assign name="Assign3">
+                        <copy>
+                            <from>0</from>
+                            <to variable="idCount"/>
+                        </copy>
+                    </assign>
+                </catchAll>
+            </faultHandlers>
+            <assign name="Assign2">
+                <copy>
+                    <from>1 + $idCount</from>
+                    <to variable="idCount"/>
+                </copy>
+            </assign>
+        </scope>
+        <assign name="Assign4">
+            <copy>
+                <from variable="CreateItineraryIn" part="personName"/>
+                <to>$itinerary/ns1:owner</to>
+            </copy>
+            <copy>
+                <from>'unconfirmed'</from>
+                <to>$itinerary/ns1:status</to>
+            </copy>
+            <copy>
+                <from>string($idCount)</from>
+                <to>$itinerary/ns1:ID</to>
+            </copy>
+            <copy>
+                <from>string($idCount)</from>
+                <to variable="CreateItineraryOut" part="itineraryID"/>
+            </copy>
+        </assign>
         <reply name="Reply1" partnerLink="PartnerLink1" operation="createItinerary" xmlns:tns="http://travelgood.ws" portType="tns:itineraryPortType" variable="CreateItineraryOut">
             <correlations>
                 <correlation set="itineraryCorrelation" initiate="yes"/>
             </correlations>
         </reply>
-        <assign name="Assign1">
-            <copy>
-                <from variable="CreateItineraryIn" part="personName"/>
-                <to>$itinerary/ns1:owner</to>
-            </copy>
-        </assign>
         <scope name="Scope1">
             <variables>
                 <variable name="BookItineraryIn" messageType="ns0:bookItineraryRequest"/>
