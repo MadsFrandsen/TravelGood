@@ -33,9 +33,7 @@
 
   <xs:complexType name="reservation">
     <xs:sequence>
-      <xs:element name="account" type="tns:accountType" minOccurs="0"/>
       <xs:element name="bookingNumber" type="xs:int"/>
-      <xs:element name="creditCardInfo" type="tns:creditCardInfoType" minOccurs="0"/>
       <xs:element name="hotelInfo" type="tns:hotel" minOccurs="0"/>
       <xs:element name="totalPrice" type="xs:int"/>
     </xs:sequence>
@@ -66,11 +64,9 @@
   <xs:complexType name="hotel">
     <xs:sequence>
       <xs:element name="address" type="xs:string" minOccurs="0"/>
-      <xs:element name="city" type="xs:string" minOccurs="0"/>
       <xs:element name="creditCardGuarantee" type="xs:boolean"/>
       <xs:element name="hotelReservationService" type="xs:string" minOccurs="0"/>
       <xs:element name="name" type="xs:string" minOccurs="0"/>
-      <xs:element name="price" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 
