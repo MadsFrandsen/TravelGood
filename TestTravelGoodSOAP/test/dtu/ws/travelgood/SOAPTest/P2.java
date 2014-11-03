@@ -35,7 +35,7 @@ public class P2 extends T {
     @Test
     public void testP2() {
         itinearyID = createItinerary(personNames[0]);
-        int bookingNumber = getFlights(destinations[0], dates[0], destinations[1]).getTravels().get(0).getBookingNumber();
+        int bookingNumber = getFlights(itinearyID, destinations[0], dates[0], destinations[1]).getTravels().get(0).getBookingNumber();
         bookItinerary(itinearyID, creditCardNumbers[0], personNames[1]);
         cancelItinerary(itinearyID);
         assertEquals("canceled", getItinerary(itinearyID).getStatus());

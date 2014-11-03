@@ -16,6 +16,7 @@
         <partnerLink name="PartnerLink1" xmlns:tns="http://travelgood.ws" partnerLinkType="tns:travelgood" myRole="itineraryPortTypeRole"/>
     </partnerLinks>
     <variables>
+        <variable name="idCount" type="xs:int"/>
         <variable name="itinerary" type="ns1:itinerary"/>
         <variable name="CreateItineraryOut" xmlns:tns="http://travelgood.ws" messageType="tns:createItineraryResponse"/>
         <variable name="CreateItineraryIn" xmlns:tns="http://travelgood.ws" messageType="tns:createItineraryRequest"/>
@@ -69,7 +70,7 @@
                             <assign name="assignItineraryToRetVal">
                                 <copy>
                                     <from variable="itinerary"/>
-                                    <to variable="GetItineraryOut"/>
+                                    <to variable="GetItineraryOut" part="itinerary"/>
                                 </copy>
                             </assign>
                             <reply name="returnItinerary" partnerLink="PartnerLink1" operation="getItinerary" portType="ns0:itineraryPortType" variable="GetItineraryOut"/>
@@ -108,8 +109,8 @@
                         </onMessage>
                             <onMessage partnerLink="PartnerLink1" operation="cancelItinerary" portType="ns0:itineraryPortType">
                             <correlations>
-                                    <correlation set="itineraryCorrelation" initiate="no"/>
-                                </correlations>
+                                <correlation set="itineraryCorrelation" initiate="no"/>
+                            </correlations>
                                 <exit name="Exit1"/>
                         </onMessage>
                     </pick>

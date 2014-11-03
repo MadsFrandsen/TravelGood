@@ -52,25 +52,25 @@ public class P1 extends T {
 
         
         //Plan first flight
-        travels[0] = getFlights(destinations[0], dates[0], destinations[1]).getTravels().get(0);
+        travels[0] = getFlights(itinearyID, destinations[0], dates[0], destinations[1]).getTravels().get(0);
         addFlight(itinearyID, travels[0].getBookingNumber());
 
 
         //Plan a hotol
-        stays[0] = getHotels(dates[0], dates[2], destinations[2]).getStays().get(0);
+        stays[0] = getHotels(itinearyID, dates[0], dates[2], destinations[2]).getStays().get(0);
         addHotel(itinearyID, stays[0].getBookingNumber());
 
         //Plan another flight
-        travels[1] = getFlights(destinations[2], dates[0], destinations[1]).getTravels().get(0);
+        travels[1] = getFlights(itinearyID, destinations[2], dates[0], destinations[1]).getTravels().get(0);
         addFlight(itinearyID, travels[1].getBookingNumber());
 
         //Plan a third flight
-        travels[2] = getFlights(destinations[0], dates[4], destinations[0]).getTravels().get(0);
+        travels[2] = getFlights(itinearyID, destinations[0], dates[4], destinations[0]).getTravels().get(0);
         addFlight(itinearyID, travels[2].getBookingNumber());
 
 
         //Plan a 2nd hotel
-        stays[1] = getHotels(dates[0], dates[4], destinations[1]).getStays().get(0);
+        stays[1] = getHotels(itinearyID, dates[0], dates[4], destinations[1]).getStays().get(0);
         addHotel(itinearyID, stays[1].getBookingNumber());
 
 

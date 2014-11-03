@@ -28,11 +28,11 @@ public class C1 extends T {
     @Test
     public void testC1() {
         itinearyID = createItinerary(itinearyID);
-        int bookingNumber = getFlights(destinations[0], dates[0], destinations[1]).getTravels().get(0).getBookingNumber();
+        int bookingNumber = getFlights(itinearyID, destinations[0], dates[0], destinations[1]).getTravels().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
-        bookingNumber = getFlights(destinations[1], dates[1], destinations[0]).getTravels().get(0).getBookingNumber();
+        bookingNumber = getFlights(itinearyID, destinations[1], dates[1], destinations[0]).getTravels().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
-        addHotel(itinearyID, getHotels(dates[0], dates[1], destinations[0]).getStays().get(0).getBookingNumber());
+        addHotel(itinearyID, getHotels(itinearyID, dates[0], dates[1], destinations[0]).getStays().get(0).getBookingNumber());
 
 
         travels = (Travel[]) getItinerary(itinearyID).getFlightIbookings().toArray();

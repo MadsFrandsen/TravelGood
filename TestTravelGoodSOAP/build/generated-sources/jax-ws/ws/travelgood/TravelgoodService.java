@@ -67,9 +67,9 @@ public class TravelgoodService
      * @return
      *     returns ItineraryPortType
      */
-    @WebEndpoint(name = "travelgoodPort")
-    public ItineraryPortType getTravelgoodPort() {
-        return super.getPort(new QName("http://travelgood.ws", "travelgoodPort"), ItineraryPortType.class);
+    @WebEndpoint(name = "itineraryPortTypeBindingPort")
+    public ItineraryPortType getItineraryPortTypeBindingPort() {
+        return super.getPort(new QName("http://travelgood.ws", "itineraryPortTypeBindingPort"), ItineraryPortType.class);
     }
 
     /**
@@ -79,9 +79,9 @@ public class TravelgoodService
      * @return
      *     returns ItineraryPortType
      */
-    @WebEndpoint(name = "travelgoodPort")
-    public ItineraryPortType getTravelgoodPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://travelgood.ws", "travelgoodPort"), ItineraryPortType.class, features);
+    @WebEndpoint(name = "itineraryPortTypeBindingPort")
+    public ItineraryPortType getItineraryPortTypeBindingPort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://travelgood.ws", "itineraryPortTypeBindingPort"), ItineraryPortType.class, features);
     }
 
     private static URL __getWsdlLocation() {

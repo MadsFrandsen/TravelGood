@@ -105,12 +105,15 @@ public interface ItineraryPortType {
      * @param departureDestination
      * @param time
      * @param arrivalDestination
+     * @param itineraryID
      * @return
      *     returns ws.travelgood.xml.TravelOptions
      */
     @WebMethod
     @WebResult(name = "flightList", partName = "flightList")
     public TravelOptions getFlights(
+        @WebParam(name = "itineraryID", partName = "itineraryID")
+        String itineraryID,
         @WebParam(name = "arrivalDestination", partName = "arrivalDestination")
         String arrivalDestination,
         @WebParam(name = "time", partName = "time")
@@ -121,6 +124,7 @@ public interface ItineraryPortType {
     /**
      * 
      * @param start
+     * @param itineraryID
      * @param end
      * @param city
      * @return
@@ -129,6 +133,8 @@ public interface ItineraryPortType {
     @WebMethod
     @WebResult(name = "hotels", partName = "hotels")
     public AccommodationOptions getHotels(
+        @WebParam(name = "itineraryID", partName = "itineraryID")
+        String itineraryID,
         @WebParam(name = "start", partName = "start")
         XMLGregorianCalendar start,
         @WebParam(name = "end", partName = "end")
@@ -138,14 +144,14 @@ public interface ItineraryPortType {
 
     /**
      * 
-     * @param id
+     * @param itineraryID
      * @return
      *     returns ws.travelgood.xml.Itinerary
      */
     @WebMethod
     @WebResult(name = "itinerary", partName = "itinerary")
     public Itinerary getItinerary(
-        @WebParam(name = "id", partName = "id")
-        String id);
+        @WebParam(name = "itineraryID", partName = "itineraryID")
+        String itineraryID);
 
 }

@@ -43,7 +43,7 @@
         <part name="success" type="xsd:boolean"/>
     </message>
     <message name="getFlightsRequest">
-        <part name="itineraryID" type="ns1:itineraryID"/>
+        <part name="itineraryID" type="ns1:itineraryID" />
         <part name="arrivalDestination" type="ns1:destination"/>
         <part name="time" type="xsd:dateTime"/>
         <part name="departureDestination" type="ns1:destination"/>
@@ -52,7 +52,7 @@
         <part name="flightList" type="ns1:travelOptions"/>
     </message>
     <message name="getHotelsRequest">
-        <part name="itineraryID" type="ns1:itineraryID"/>
+        <part name="itineraryID" type="ns1:itineraryID" />
         <part name="start" type="xsd:dateTime"/>
         <part name="end" type="xsd:dateTime"/>
         <part name="city" type="ns1:destination"/>

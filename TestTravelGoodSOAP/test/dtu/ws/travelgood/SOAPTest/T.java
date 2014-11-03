@@ -57,53 +57,51 @@ public class T {
 
     }
 
-  
-
-    public  boolean addFlight(java.lang.String itineraryID, int bookingNumber) {
+    public boolean addFlight(java.lang.String itineraryID, int bookingNumber) {
         ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
         return port.addFlight(itineraryID, bookingNumber);
     }
 
-    public  boolean addHotel(java.lang.String itineraryID, int bookingNumber) {
+    public boolean addHotel(java.lang.String itineraryID, int bookingNumber) {
         ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
         return port.addHotel(itineraryID, bookingNumber);
     }
 
-    public  boolean bookItinerary(java.lang.String itineraryID, int creditCardNumber, java.lang.String cardOwner) {
+    public boolean bookItinerary(java.lang.String itineraryID, int creditCardNumber, java.lang.String cardOwner) {
         ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
         return port.bookItinerary(itineraryID, creditCardNumber, cardOwner);
     }
 
-    public  boolean cancelItinerary(java.lang.String itineraryID) {
+    public boolean cancelItinerary(java.lang.String itineraryID) {
         ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
         return port.cancelItinerary(itineraryID);
     }
 
-    public  String createItinerary(java.lang.String personName) {
+    public String createItinerary(java.lang.String personName) {
         ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
         return port.createItinerary(personName);
     }
 
-    public  TravelOptions getFlights(java.lang.String arrivalDestination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departureDestination) {
+    public Itinerary getItinerary(java.lang.String itineraryID) {
         ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
-        return port.getFlights(arrivalDestination, time, departureDestination);
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getItinerary(itineraryID);
     }
 
-    public  AccommodationOptions getHotels(javax.xml.datatype.XMLGregorianCalendar start, javax.xml.datatype.XMLGregorianCalendar end, java.lang.String city) {
+    public TravelOptions getFlights(java.lang.String itineraryID, java.lang.String arrivalDestination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departureDestination) {
         ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
-        return port.getHotels(start, end, city);
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getFlights(itineraryID, arrivalDestination, time, departureDestination);
     }
 
-    public  Itinerary getItinerary(java.lang.String id) {
+    public AccommodationOptions getHotels(java.lang.String itineraryID, javax.xml.datatype.XMLGregorianCalendar start, javax.xml.datatype.XMLGregorianCalendar end, java.lang.String city) {
         ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getTravelgoodPort();
-        return port.getItinerary(id);
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getHotels(itineraryID, start, end, city);
     }
 }
