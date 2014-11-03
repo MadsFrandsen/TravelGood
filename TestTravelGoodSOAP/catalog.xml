@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://localhost:9080/travelgoodService/travelgoodPort?wsdl" uri="xml-resources/web-service-references/travelgoodPort/wsdl/localhost_9080/travelgoodService/travelgoodPort.wsdl"/>
     <system systemId="http://jonas-XPS13:9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd" uri="xml-resources/web-service-references/travelgoodPort/wsdl/jonas-XPS13_9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd"/>
+    <system systemId="http://localhost:9080/travelgoodService/travelgoodPort?wsdl" uri="xml-resources/web-service-references/travelgoodPort/wsdl/localhost_9080/travelgoodService/travelgoodPort.wsdl"/>
+    <system systemId="http://192.168.0.100:9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd" uri="xml-resources/web-service-references/travelgoodPort/wsdl/192.168.0.100_9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd"/>
 </catalog>
