@@ -48,13 +48,13 @@ public class ItineraryResource {
  
     @Path("{id}")
     @DELETE
-    public void cancelItineraryBooking(String id) {
+    public void cancelItineraryBooking(String id) throws CancelException {
         throw new NotImplementedException();
     }
     
     @Path("{itineraryId}/book")
     @POST
-    public void bookItinerary(@PathParam("itineraryId") String itineraryId) {
+    public void bookItinerary(@PathParam("itineraryId") String itineraryId) throws BookingException {
         throw new NotImplementedException();
     }
     
@@ -87,5 +87,13 @@ public class ItineraryResource {
     @PUT
     public void addHotel(String hotelId, @PathParam("itineraryId") String itineraryId) {
         throw new NotImplementedException();
+    }
+    
+    public class BookingException extends Exception {
+        
+    }
+    
+    public class CancelException extends Exception {
+        
     }
 }
