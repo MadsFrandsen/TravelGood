@@ -46,7 +46,7 @@ public class ItineraryResource {
         throw new NotImplementedException();
     }
  
-    @Path("booking")
+    @Path("{id}")
     @DELETE
     public void cancelItineraryBooking(String id) {
         throw new NotImplementedException();
