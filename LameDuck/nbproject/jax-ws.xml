@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="LameDuckWebService">
+      <implementation-class>LameDuck.LameDuckWebService</implementation-class>
+    </service>
+    <service name="BankService">
+      <implementation-class>fastmoney.imm.dtu.dk.BankService</implementation-class>
+      <wsdl-url>file:/Users/Nygaard/Code/GitHub/TravelGood/TravelGood/NiceView/web/WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl</wsdl-url>
+      <local-wsdl-file>BankService.wsdl</local-wsdl-file>
+      <service-name>BankService</service-name>
+      <port-name>BankPort</port-name>
+      <package-name>dk.dtu.imm.fastmoney</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <use-provider>false</use-provider>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>target</wsimport-option-name>
+          <wsimport-option-value>2.1</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </service>
+  </services>
+  <clients/>
+  <jsr109>true</jsr109>
+</jax-ws>
