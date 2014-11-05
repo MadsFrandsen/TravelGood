@@ -50,13 +50,11 @@ public class TestItineraryResource {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
-
         addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
         addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "Paris", "Copenhagen", "3-1-2015");
         addRandomHotelToItinerary(client, itineraryId, "Copenhagen", "3-1-2015", "8-1-2015");
-
         Itinerary itinerary = getItinerary(client, itineraryId);
 
         // Assert, that all flights are unconfirmed
@@ -103,7 +101,7 @@ public class TestItineraryResource {
             assertEquals(bookingItem.getBookingStatus(), BookingStatus.UNCONFIRMED);
         }
         
-        // TODO: Assert error
+        // TODO: Cause and assert error
         bookItinerary(client, itineraryId);
         
         assertEquals(itinerary.getFlights()[0].getBookingStatus(), BookingStatus.CANCELLED);
@@ -113,6 +111,37 @@ public class TestItineraryResource {
 
     @Test
     public void testC1() {
+        Client client = Client.create();
+
+        String itineraryId = createItinerary(client);
+        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
+        bookItinerary(client, itineraryId);
+        Itinerary itinerary = getItinerary(client, itineraryId);
+
+        // Assert, that all flights are confirmed
+        for(BookingItem bookingItem : itinerary.getFlights()) {
+            assertEquals(bookingItem.getBookingStatus(), BookingStatus.CONFIRMED);
+        }
+        
+        // Assert, that all hotels are confirmed
+        for(BookingItem bookingItem : itinerary.getHotels()) {
+            assertEquals(bookingItem.getBookingStatus(), BookingStatus.CONFIRMED);
+        }
+        
+        cancelItinerary(client, itineraryId);
+        itinerary = getItinerary(client, itineraryId);
+
+        // Assert, that all flights are cancelled
+        for(BookingItem bookingItem : itinerary.getFlights()) {
+            assertEquals(bookingItem.getBookingStatus(), BookingStatus.CANCELLED);
+        }
+        
+        // Assert, that all hotels are cancelled
+        for(BookingItem bookingItem : itinerary.getHotels()) {
+            assertEquals(bookingItem.getBookingStatus(), BookingStatus.CANCELLED);
+        }
     }
 
     @Test
