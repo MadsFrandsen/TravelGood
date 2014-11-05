@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ws.rs.DELETE;
@@ -32,13 +33,12 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 @Path("itineraries")
 public class ItineraryResource {
     
-    private static Map<String, Itinerary> itineraries;
+    private static Map<String, Itinerary> itineraries = new HashMap<String, Itinerary>();
     
     @Path("{id}")
     @GET
-    public String getItinerary(@PathParam("id") String id) {
-        return id;
-        //return itineraries.get(id);
+    public Itinerary getItinerary(@PathParam("id") String id) {
+        return itineraries.get(id);
     }
     
     @POST
