@@ -4,15 +4,13 @@
     <service name="LameDuckWebService">
       <implementation-class>LameDuck.LameDuckWebService</implementation-class>
     </service>
-    <service name="BankService">
-      <implementation-class>fastmoney.imm.dtu.dk.BankService</implementation-class>
-      <wsdl-url>file:/Users/Nygaard/Code/GitHub/TravelGood/TravelGood/NiceView/web/WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl</wsdl-url>
-      <local-wsdl-file>BankService.wsdl</local-wsdl-file>
-      <service-name>BankService</service-name>
-      <port-name>BankPort</port-name>
-      <package-name>dk.dtu.imm.fastmoney</package-name>
+  </services>
+  <clients>
+    <client name="BankService">
+      <wsdl-url>http://fastmoney.imm.dtu.dk:8080/BankService?wsdl</wsdl-url>
+      <local-wsdl-file>fastmoney.imm.dtu.dk_8080/BankService.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">fastmoney.imm.dtu.dk</package-name>
       <catalog-file>catalog.xml</catalog-file>
-      <use-provider>false</use-provider>
       <wsimport-options>
         <wsimport-option>
           <wsimport-option-name>extension</wsimport-option-name>
@@ -23,16 +21,23 @@
           <wsimport-option-value>true</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://fastmoney.imm.dtu.dk:8080/BankService?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>package</wsimport-option-name>
+          <wsimport-option-value>fastmoney.imm.dtu.dk</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>target</wsimport-option-name>
           <wsimport-option-value>2.1</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
-    </service>
-  </services>
-  <clients/>
+    </client>
+  </clients>
   <jsr109>true</jsr109>
 </jax-ws>
