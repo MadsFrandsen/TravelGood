@@ -10,17 +10,10 @@ import java.util.Calendar;
  *
  * @author Mads
  */
-public class Flight {
+public class Flight extends BookingItem {
     
-    private String id;
     private Calendar departureTime;
     private Route route;
-    
-    public Flight(String id, Calendar departureTime, Route route) {
-        this.id = id;
-        this.departureTime = departureTime;
-        this.route = route;
-    }
     
     public Route getRoute() {
         return route;

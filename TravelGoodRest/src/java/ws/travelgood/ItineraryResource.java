@@ -60,7 +60,7 @@ public class ItineraryResource {
     
     @Path("flights")
     @GET
-    public List<Flight> getFlights(@QueryParam("departureLocation") Location departureLocation,
+    public Flight[] getFlights(@QueryParam("departureLocation") Location departureLocation,
         @QueryParam("arrivalLocation") Location arrivalLocation,
         @QueryParam("departureDate") String departureDate) throws ParseException {
         Date departure = new SimpleDateFormat().parse(departureDate);
@@ -75,7 +75,7 @@ public class ItineraryResource {
     
     @Path("hotels")
     @GET
-    public List<Hotel> getHotels(@QueryParam("departureDate") String departureDate, 
+    public Flight[] getHotels(@QueryParam("departureDate") String departureDate, 
         @QueryParam("arrivalDate") String arrivalDate, 
         @QueryParam("location") Location location) throws ParseException {
         Date departure = new SimpleDateFormat().parse(departureDate);
@@ -83,7 +83,7 @@ public class ItineraryResource {
         throw new NotImplementedException();
     }
     
-    @Path("hotels")
+    @Path("{itineraryId}/hotels")
     @PUT
     public void addHotel(String hotelId, @PathParam("itineraryId") String itineraryId) {
         throw new NotImplementedException();

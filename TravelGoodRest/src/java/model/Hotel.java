@@ -6,16 +6,10 @@ package model;
 
 import java.util.Calendar;
 
-/**
- *
- * @author Mads
- */
-public class Hotel {
+public class Hotel extends BookingItem {
     
     private Location location;
     private Calendar arrival;
     private Calendar departure;
     
-    public Hotel() {}
-               
 }
