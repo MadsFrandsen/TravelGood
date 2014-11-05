@@ -52,9 +52,9 @@ public class ItineraryResource {
         throw new NotImplementedException();
     }
     
-    @Path("booking")
+    @Path("{itineraryId}/book")
     @POST
-    public void bookItinerary(String id) {
+    public void bookItinerary(@PathParam("itineraryId") String itineraryId) {
         throw new NotImplementedException();
     }
     

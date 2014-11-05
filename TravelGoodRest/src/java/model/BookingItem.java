@@ -11,11 +11,15 @@ public class BookingItem {
     
     public enum BookingStatus {
         CONFIRMED,
-        UNCONFIRMED
+        UNCONFIRMED,
+        CANCELLED
     }
     
     public String getBookingId() {
         return bookingId;
     }
     
+    public BookingStatus getBookingStatus() {
+        return bookingStatus;
+    }
 }

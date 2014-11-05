@@ -8,6 +8,8 @@ import com.sun.jersey.api.client.WebResource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import model.BookingItem;
+import model.BookingItem.BookingStatus;
 import model.Flight;
 import model.Hotel;
 import model.Itinerary;
@@ -47,7 +49,7 @@ public class TestItineraryResource {
     public void testP1() {
         Client client = Client.create();
 
-        String itineraryId = createItinerary();
+        String itineraryId = createItinerary(client);
 
         addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
         addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
@@ -57,17 +59,23 @@ public class TestItineraryResource {
 
         Itinerary itinerary = getItinerary(client, itineraryId);
 
-        // TODO: Add assertions
+        // Assert, that all flights are unconfirmed
+        for(BookingItem bookingItem : itinerary.getFlights()) {
+            assertEquals(bookingItem.getBookingStatus(), BookingStatus.UNCONFIRMED);
+        }
+        
+        // Assert, that all hotels are unconfirmed
+        for(BookingItem bookingItem : itinerary.getHotels()) {
+            assertEquals(bookingItem.getBookingStatus(), BookingStatus.UNCONFIRMED);
+        }
     }
 
     @Test
     public void testP2() {
         Client client = Client.create();
 
-        String itineraryId = createItinerary();
-
+        String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-
         cancelItinerary(client, itineraryId);
 
         // TODO: Add assertions
@@ -75,6 +83,32 @@ public class TestItineraryResource {
 
     @Test
     public void testB() {
+        Client client = Client.create();
+
+        String itineraryId = createItinerary(client);
+
+        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
+
+        Itinerary itinerary = getItinerary(client, itineraryId);
+
+        // Assert, that all flights are unconfirmed
+        for(BookingItem bookingItem : itinerary.getFlights()) {
+            assertEquals(bookingItem.getBookingStatus(), BookingStatus.UNCONFIRMED);
+        }
+        
+        // Assert, that all hotels are unconfirmed
+        for(BookingItem bookingItem : itinerary.getHotels()) {
+            assertEquals(bookingItem.getBookingStatus(), BookingStatus.UNCONFIRMED);
+        }
+        
+        // TODO: Assert error
+        bookItinerary(client, itineraryId);
+        
+        assertEquals(itinerary.getFlights()[0].getBookingStatus(), BookingStatus.CANCELLED);
+        assertEquals(itinerary.getFlights()[1].getBookingStatus(), BookingStatus.UNCONFIRMED);
+        assertEquals(itinerary.getHotels()[0].getBookingStatus(), BookingStatus.UNCONFIRMED);
     }
 
     @Test
@@ -85,13 +119,20 @@ public class TestItineraryResource {
     public void testC2() {
     }
     
+    private void bookItinerary(Client client, String itineraryId) {
+        WebResource resourceBookItinerary = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/" +
+                itineraryId +
+                "/book");
+        resourceBookItinerary.post();
+    }
+    
     private void cancelItinerary(Client client, String itineraryId) {
         WebResource resourceCancelItinerary = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/" +
                 itineraryId);
         resourceCancelItinerary.delete();
     }
     
-    private String createItinerary() {
+    private String createItinerary(Client client) {
         WebResource resourceCreateItinerary = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/");
         return resourceCreateItinerary.post(String.class);
     }

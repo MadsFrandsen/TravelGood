@@ -13,10 +13,18 @@ import java.util.List;
 public class Itinerary {
     
     private String id;
-    private List<Flight> flights;
-    private List<Hotel> hotels;
+    private Flight[] flights;
+    private Hotel[] hotels;
     
     public Itinerary() {
         
+    }
+    
+    public Flight[] getFlights() {
+        return flights;
+    }
+    
+    public Hotel[] getHotels() {
+        return hotels;
     }
 }
