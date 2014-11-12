@@ -37,9 +37,9 @@ public class ItineraryResource {
     
     private static Map<String, Itinerary> itineraries = new HashMap<String, Itinerary>();
     
-    @Path("{id}")
+    @Path("itineraries")
     @GET
-    public Itinerary getItinerary(@PathParam("id") String id) {
+    public Itinerary getItinerary(@QueryParam("itineraryId") String id) {
         return itineraries.get(id);
     }
     
@@ -50,13 +50,13 @@ public class ItineraryResource {
         return itinerary.getId();
     }
  
-    @Path("{id}")
-    @DELETE
-    public void cancelItinerary(String id) throws CancelException, UnknownItineraryException {
-        Itinerary itinerary = itineraries.get(id);
+    @Path("itineraries/{itineraryId}/cancel")
+    @POST
+    public void cancelItinerary(@PathParam("itineraryId") String itineraryId) throws CancelException, UnknownItineraryException {
+        Itinerary itinerary = itineraries.get(itineraryId);
         
         if(itinerary == null) {
-            throw new UnknownItineraryException(id);
+            throw new UnknownItineraryException(itineraryId);
         }
         
         List<String> failedFlightIds = new ArrayList<String>();
@@ -82,7 +82,7 @@ public class ItineraryResource {
         }
     }
     
-    @Path("{itineraryId}/book")
+    @Path("itineraries/{itineraryId}/book")
     @POST
     public void bookItinerary(@PathParam("itineraryId") String itineraryId) throws BookingException, UnknownItineraryException, CancelException {
         Itinerary itinerary = itineraries.get(itineraryId);
@@ -114,9 +114,15 @@ public class ItineraryResource {
         throw new NotImplementedException();
     }
     
-    @Path("{itineraryId}/flights")
+    @Path("itineraries/{itineraryId}/flights/{bookingNumber}")
     @PUT
-    public void addFlight(String flightId, @PathParam("itineraryId") String itineraryId) {
+    public void addFlight(@PathParam("bookingNumber") String flightId, @PathParam("itineraryId") String itineraryId) {
+        throw new NotImplementedException();
+    }
+    
+    @Path("itineraries/{itineraryId}/flights/{bookingNumber}")
+    @DELETE
+    public void removeFlight(@PathParam("bookingNumber") String flightId, @PathParam("itineraryId") String itineraryId) {
         throw new NotImplementedException();
     }
     
@@ -130,9 +136,15 @@ public class ItineraryResource {
         throw new NotImplementedException();
     }
     
-    @Path("{itineraryId}/hotels")
+    @Path("itineraries/{itineraryId}/hotels/{bookingNumber}")
     @PUT
-    public void addHotel(String hotelId, @PathParam("itineraryId") String itineraryId) {
+    public void addHotel(@PathParam("bookingNumber") String hotelId, @PathParam("itineraryId") String itineraryId) {
+        throw new NotImplementedException();
+    }
+    
+    @Path("itineraries/{itineraryId}/hotels/{bookingNumber}")
+    @DELETE
+    public void removeHotel(@PathParam("bookingNumber") String hotelId, @PathParam("itineraryId") String itineraryId) {
         throw new NotImplementedException();
     }
     
