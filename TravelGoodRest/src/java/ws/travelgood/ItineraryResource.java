@@ -7,6 +7,7 @@ package ws.travelgood;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -51,8 +52,36 @@ public class ItineraryResource {
  
     @Path("{id}")
     @DELETE
-    public void cancelItineraryBooking(String id) throws CancelException {
-        throw new NotImplementedException();
+    public void cancelItinerary(String id) throws CancelException, UnknownItineraryException {
+        Itinerary itinerary = itineraries.get(id);
+        
+        if(itinerary == null) {
+            throw new UnknownItineraryException(id);
+        }
+        
+        List<String> failedFlightIds = new ArrayList<String>();
+        for(Flight flight : itinerary.getFlights()) {
+            try {
+                // TODO: Cancel flight
+            } catch(Exception e) {
+                failedFlightIds.add(flight.getBookingId());
+            }
+        }
+        
+        List<String> failedHotelIds = new ArrayList<String>();
+        for(Hotel hotel : itinerary.getHotels()) {
+            try {
+                // TODO: Cancel hotel
+            } catch(Exception e) {
+                failedHotelIds.add(hotel.getBookingId());
+            }
+        }
+        
+        if(!failedFlightIds.isEmpty() || !failedHotelIds.isEmpty()) {
+            throw new CancelException(failedFlightIds, failedHotelIds);
+        }
+        
+        itineraries.remove(id);
     }
     
     @Path("{itineraryId}/book")
@@ -97,6 +126,34 @@ public class ItineraryResource {
     }
     
     public class CancelException extends Exception {
+        public CancelException(List<String> flightIds, List<String> hotelIds) {
+            super("Cancelling some flights/hotels failed" + getCancelString(flightIds, hotelIds));
+        }
+    }
+    
+    private static String getCancelString(List<String> flightIds, List<String> hotelIds) {
+        String flightString = "";
+        if(!flightIds.isEmpty()) {
+            flightString += ". The following flight ids are still booked: " + flightIds.get(0);
+            for(int i = 1; i < flightIds.size(); i++) {
+                flightString += ", " + flightIds.get(1);
+            }
+        }
         
+        String hotelsString = "";
+        if(!hotelIds.isEmpty()) {
+            hotelsString += ". The following hotel ids are still booked: " + hotelIds.get(0);
+            for(int i = 1; i < hotelIds.size(); i++) {
+                hotelsString += ", " + hotelIds.get(1);
+            }
+        }
+        
+        return flightString + hotelsString;
+    }
+    
+    public class UnknownItineraryException extends Exception {
+        public UnknownItineraryException(String itineraryId) {
+            super("No itinerary found with the id: " + itineraryId);
+        }
     }
 }
