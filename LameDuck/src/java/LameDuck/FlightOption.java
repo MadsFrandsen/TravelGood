@@ -24,8 +24,12 @@ public class FlightOption {
         this.bookingNumber = nextBookingNumber;
         this.flight = flight;
         this.airlineReservationService = airlineReservationService;
-        Random rng = new Random();
-        this.price = rng.nextInt(5000);
+        if (flight.getAirline().equals("Disney")){
+            this.price = 1000000;
+        } else {
+            Random rng = new Random();
+            this.price = rng.nextInt(5000);
+        }
     }
 
     /**

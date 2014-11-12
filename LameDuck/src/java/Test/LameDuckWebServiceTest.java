@@ -17,7 +17,7 @@ public class LameDuckWebServiceTest {
     
     public static void main(String[] args) throws Exception{
     
-    LameDuckWebService ws = new LameDuckWebService("flightdata.csv");
+    LameDuckWebService ws = new LameDuckWebService();
     GregorianCalendar cal = new GregorianCalendar(1, 12, 2014);
     ArrayList<FlightOption> flights = ws.getFlights("CPH", "SFO", cal);
     
