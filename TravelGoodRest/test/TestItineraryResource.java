@@ -62,12 +62,12 @@ public class TestItineraryResource {
         Itinerary itinerary = getItinerary(client, itineraryId);
 
         // Assert, that all flights are unconfirmed
-        for (BookingItem bookingItem : itinerary.getFlights()) {
+        for (BookingItem bookingItem : itinerary.getFlights().values()) {
             assertEquals(bookingItem.getBookingStatus(), BookingStatus.UNCONFIRMED);
         }
 
         // Assert, that all hotels are unconfirmed
-        for (BookingItem bookingItem : itinerary.getHotels()) {
+        for (BookingItem bookingItem : itinerary.getHotels().values()) {
             assertEquals(bookingItem.getBookingStatus(), BookingStatus.UNCONFIRMED);
         }
         
@@ -91,19 +91,19 @@ public class TestItineraryResource {
 
         String itineraryId = createItinerary(client);
 
-        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
+        String flightIdFirst = addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
+        String hotelId = addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
+        String flightIdSecond = addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
 
         Itinerary itinerary = getItinerary(client, itineraryId);
 
         // Assert, that all flights are unconfirmed
-        for (BookingItem bookingItem : itinerary.getFlights()) {
+        for (BookingItem bookingItem : itinerary.getFlights().values()) {
             assertEquals(bookingItem.getBookingStatus(), BookingStatus.UNCONFIRMED);
         }
 
         // Assert, that all hotels are unconfirmed
-        for (BookingItem bookingItem : itinerary.getHotels()) {
+        for (BookingItem bookingItem : itinerary.getHotels().values()) {
             assertEquals(bookingItem.getBookingStatus(), BookingStatus.UNCONFIRMED);
         }
 
@@ -112,9 +112,9 @@ public class TestItineraryResource {
             fail("BookingException not thrown");
         } catch(BookingException exception) {
             itinerary = getItinerary(client, itineraryId);
-            assertEquals(itinerary.getFlights()[0].getBookingStatus(), BookingStatus.CANCELLED);
-            assertEquals(itinerary.getHotels()[0].getBookingStatus(), BookingStatus.UNCONFIRMED);
-            assertEquals(itinerary.getFlights()[1].getBookingStatus(), BookingStatus.UNCONFIRMED);
+            assertEquals(itinerary.getFlights().get(flightIdFirst).getBookingStatus(), BookingStatus.CANCELLED);
+            assertEquals(itinerary.getHotels().get(hotelId).getBookingStatus(), BookingStatus.UNCONFIRMED);
+            assertEquals(itinerary.getFlights().get(flightIdSecond).getBookingStatus(), BookingStatus.UNCONFIRMED);
         }
     }
 
@@ -130,12 +130,12 @@ public class TestItineraryResource {
         Itinerary itinerary = getItinerary(client, itineraryId);
 
         // Assert, that all flights are confirmed
-        for (BookingItem bookingItem : itinerary.getFlights()) {
+        for (BookingItem bookingItem : itinerary.getFlights().values()) {
             assertEquals(bookingItem.getBookingStatus(), BookingStatus.CONFIRMED);
         }
 
         // Assert, that all hotels are confirmed
-        for (BookingItem bookingItem : itinerary.getHotels()) {
+        for (BookingItem bookingItem : itinerary.getHotels().values()) {
             assertEquals(bookingItem.getBookingStatus(), BookingStatus.CONFIRMED);
         }
 
@@ -143,12 +143,12 @@ public class TestItineraryResource {
         itinerary = getItinerary(client, itineraryId);
 
         // Assert, that all flights are cancelled
-        for (BookingItem bookingItem : itinerary.getFlights()) {
+        for (BookingItem bookingItem : itinerary.getFlights().values()) {
             assertEquals(bookingItem.getBookingStatus(), BookingStatus.CANCELLED);
         }
 
         // Assert, that all hotels are cancelled
-        for (BookingItem bookingItem : itinerary.getHotels()) {
+        for (BookingItem bookingItem : itinerary.getHotels().values()) {
             assertEquals(bookingItem.getBookingStatus(), BookingStatus.CANCELLED);
         }
     }
@@ -158,19 +158,19 @@ public class TestItineraryResource {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
-        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
+        String flightIdFirst = addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
+        String hotelId = addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
+        String flightIdSecond = addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
 
         // Assert, that all flights are confirmed
-        for (BookingItem bookingItem : itinerary.getFlights()) {
+        for (BookingItem bookingItem : itinerary.getFlights().values()) {
             assertEquals(bookingItem.getBookingStatus(), BookingStatus.CONFIRMED);
         }
 
         // Assert, that all hotels are confirmed
-        for (BookingItem bookingItem : itinerary.getHotels()) {
+        for (BookingItem bookingItem : itinerary.getHotels().values()) {
             assertEquals(bookingItem.getBookingStatus(), BookingStatus.CONFIRMED);
         }
 
@@ -180,9 +180,9 @@ public class TestItineraryResource {
         } catch(CancelException e) {
             itinerary = getItinerary(client, itineraryId);
             
-            assertEquals(itinerary.getFlights()[0].getBookingStatus(), BookingStatus.CANCELLED);
-            assertEquals(itinerary.getHotels()[0].getBookingStatus(), BookingStatus.CONFIRMED);
-            assertEquals(itinerary.getFlights()[1].getBookingStatus(), BookingStatus.CANCELLED);
+            assertEquals(itinerary.getFlights().get(flightIdFirst).getBookingStatus(), BookingStatus.CANCELLED);
+            assertEquals(itinerary.getHotels().get(hotelId).getBookingStatus(), BookingStatus.CONFIRMED);
+            assertEquals(itinerary.getFlights().get(flightIdSecond).getBookingStatus(), BookingStatus.CANCELLED);
         }
     }
 
@@ -210,12 +210,14 @@ public class TestItineraryResource {
         return resourceGetItinerary.get(Itinerary.class);
     }
 
-    private void addRandomFlightToItinerary(Client client, String itineraryId, String origin, String destination, String departureDate) {
+    private String addRandomFlightToItinerary(Client client, String itineraryId, String origin, String destination, String departureDate) {
         Flight[] flights = getFlights(client, origin, destination, departureDate);
 
         // Randomly picks a flight from the array, and adds it to the itinerary
         int randomIndex = new Random().nextInt(flights.length);
-        addFlightToItinerary(client, itineraryId, flights[randomIndex]);
+        Flight flight = flights[randomIndex];
+        addFlightToItinerary(client, itineraryId, flight);
+        return flight.getBookingId();
     }
 
     private Flight[] getFlights(Client client, String origin, String destination, String departureDate) {
@@ -233,12 +235,14 @@ public class TestItineraryResource {
         addFlightResource.put(flight.getBookingId());
     }
 
-    private void addRandomHotelToItinerary(Client client, String itineraryId, String location, String arrivalDate, String departureDate) {
+    private String addRandomHotelToItinerary(Client client, String itineraryId, String location, String arrivalDate, String departureDate) {
         Hotel[] hotels = getHotels(client, itineraryId, location, arrivalDate, departureDate);
 
         // Randomly picks a hotel from the array, and adds it to the itinerary
         int randomIndex = new Random().nextInt(hotels.length);
-        addHotelToItinerary(client, itineraryId, hotels[randomIndex]);
+        Hotel hotel = hotels[randomIndex];
+        addHotelToItinerary(client, itineraryId, hotel);
+        return hotel.getBookingId();
     }
 
     private Hotel[] getHotels(Client client, String itineraryId, String location, String arrivalDate, String departureDate) {
