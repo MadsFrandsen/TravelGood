@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?wsdl" uri="xml-resources/web-service-references/LameDuckWebService/wsdl/localhost_8080/LameDuck/LameDuckWebService.wsdl"/>
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?xsd=1" uri="xml-resources/web-service-references/LameDuckWebService/wsdl/localhost_8080/LameDuck/LameDuckWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?xsd=2" uri="xml-resources/web-service-references/LameDuckWebService/wsdl/localhost_8080/LameDuck/LameDuckWebService.xsd_2.xsd"/>
+</catalog>

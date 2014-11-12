@@ -18,6 +18,10 @@ public class FlightOption {
     private static int nextBookingNumber = 0;
     private String airlineReservationService;
     private int price;
+    
+    public FlightOption(){
+        
+    }
 
     public FlightOption(Flight flight, String airlineReservationService) {
         nextBookingNumber++;

@@ -24,11 +24,11 @@ import javax.xml.ws.WebServiceRef;
  * @author Nygaard
  */
 @WebService(serviceName = "LameDuckWebService")
-@WebFault(name="LameDuckException")
+@WebFault(name = "LameDuckException")
 public class LameDuckWebService {
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl")
+    //@WebServiceRef(wsdlLocation = "WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl")
+
     private BankService service;
-    
     private final AccountType LAME_DUCK_ACCOUNT = new AccountType();
     private ArrayList<Flight> flights = new ArrayList<Flight>();
     private ArrayList<FlightOption> flightsAvailable = new ArrayList<FlightOption>();
@@ -38,16 +38,18 @@ public class LameDuckWebService {
      */
     public LameDuckWebService() throws LameDuckException {
         try {
-            
-            String flightData = "";
-            
+
+            String flightData = "/Users/Nygaard/Code/GitHub/TravelGood/LameDuck/src/java/LameDuck/flightsdata.csv";
+
             LAME_DUCK_ACCOUNT.setName("LameDuck");
             LAME_DUCK_ACCOUNT.setNumber("50208812");
-            
+
             File f = new File(flightData);
             Scanner in = new Scanner(f);
+            String headers = in.nextLine(); // skip first line as it is only headers
             while (in.hasNext()) {
-                String[] flightInfo = in.next().split(";"); // Excel data is seperated by ;
+                String[] flightInfo = in.nextLine().split(";"); // Excel data is seperated by ;
+                System.out.println(flightInfo[2]);
                 String airline = flightInfo[0];
                 String source = flightInfo[1];
                 int departureDate = Integer.parseInt(flightInfo[2]);
@@ -55,7 +57,6 @@ public class LameDuckWebService {
                 String destination = flightInfo[4];
                 int arrivalDate = Integer.parseInt(flightInfo[5]);
                 int arrivalTime = Integer.parseInt(flightInfo[6]);
-                
                 Flight flight = new Flight(airline, source, departureDate, departureTime, destination, arrivalDate, arrivalTime);
                 flights.add(flight);
 
@@ -139,11 +140,11 @@ public class LameDuckWebService {
 
         try {
             canceled = refundCreditCard(0, creditCard, refund, LAME_DUCK_ACCOUNT);
-            
+
         } catch (Exception e) {
             throw new LameDuckException();
         }
-        
+
 
         return canceled;
     }
@@ -151,7 +152,6 @@ public class LameDuckWebService {
     /*
      * BankService Methods
      */
-
     private boolean chargeCreditCard(int group, fastmoney.imm.dtu.dk.CreditCardInfoType creditCardInfo, int amount, fastmoney.imm.dtu.dk.AccountType account) throws CreditCardFaultMessage {
         fastmoney.imm.dtu.dk.BankPortType port = service.getBankPort();
         return port.chargeCreditCard(group, creditCardInfo, amount, account);
@@ -166,5 +166,4 @@ public class LameDuckWebService {
         fastmoney.imm.dtu.dk.BankPortType port = service.getBankPort();
         return port.validateCreditCard(group, creditCardInfo, amount);
     }
-    
 }
