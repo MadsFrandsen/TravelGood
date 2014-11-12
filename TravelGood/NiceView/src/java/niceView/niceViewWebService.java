@@ -19,8 +19,8 @@ import javax.xml.ws.WebServiceRef;
  *
  * @author planaspa
  */
-@WebService(serviceName = "niceViewWebService")
-@WebFault(name="ReservationServiceFault")
+@WebService(serviceName = "NiceViewService")
+@WebFault(name="NiceViewFault")
 public class niceViewWebService {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl")
     private BankService service;
@@ -64,13 +64,14 @@ public class niceViewWebService {
      * Web service operation
      */
     @WebMethod(operationName = "bookHotel")
-    public boolean bookHotel(@WebParam(name = "bookingNumber") int bookingNumber, @WebParam(name = "creditCardInfo") dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, @WebParam(name = "account")dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
+    public boolean bookHotel(@WebParam(name = "bookingNumber") int bookingNumber, @WebParam(name = "creditCardInfo") dk.dtu.imm.fastmoney.CreditCardInfoType creditCardInfo, @WebParam(name = "account")dk.dtu.imm.fastmoney.AccountType account) throws NiceViewFault {
 
         boolean booked = false;
         
         for (Reservation reservation : possibleHotels){
             if (reservation.getBookingNumber() == bookingNumber){
-                if (reservation.isCreditCardGuarantee()){        
+                try{
+                if (reservation.isCreditCardGuarantee()){  
                     validateCreditCard(0, creditCardInfo, reservation.getTotalPrice());
                     reservation.setAccount(account);
                     reservation.setCreditCardInfo(creditCardInfo);
@@ -80,6 +81,10 @@ public class niceViewWebService {
                 reservations.add(reservation);
                 possibleHotels.remove(reservation);
                 booked = true;
+                }
+                catch (CreditCardFaultMessage er){
+                    throw new NiceViewFault();
+                }
             }
         }
         return booked;
@@ -89,37 +94,42 @@ public class niceViewWebService {
      * Web service operation
      */
     @WebMethod(operationName = "cancelHotel")
-    public void cancelHotel(@WebParam(name = "bookingNumber") int bookingNumber) throws ReservationNotFoundFault, CreditCardFaultMessage {
+    public void cancelHotel(@WebParam(name = "bookingNumber") int bookingNumber) throws NiceViewFault{
         
         boolean found = false;
         for (Reservation reservation : reservations){
             if (reservation.getBookingNumber() == bookingNumber){
                 //Cancellation
-                refundCreditCard(0,reservation.getCreditCardInfo(),reservation.getTotalPrice(),reservation.getAccount());
-                reservations.remove(reservation);
-                found = true;
+                try{
+                    refundCreditCard(0,reservation.getCreditCardInfo(),reservation.getTotalPrice(),reservation.getAccount());
+                    reservations.remove(reservation);
+                    found = true;
+                }
+                catch (CreditCardFaultMessage er){
+                    throw new NiceViewFault();
+                }
             }
         }
-        if (!found) throw new ReservationNotFoundFault();
+        if (!found) throw new NiceViewFault();
     }
 
     /*
      * BankService Methods
      */
-    
-    private boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
+
+    private boolean chargeCreditCard(int group, dk.dtu.imm.fastmoney.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.AccountType account) throws CreditCardFaultMessage {
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
-        return port.validateCreditCard(group, creditCardInfo, amount);
+        return port.chargeCreditCard(group, creditCardInfo, amount, account);
     }
 
-    private boolean refundCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
+    private boolean refundCreditCard(int group, dk.dtu.imm.fastmoney.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.AccountType account) throws CreditCardFaultMessage {
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.refundCreditCard(group, creditCardInfo, amount, account);
     }
 
-    private boolean chargeCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
+    private boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
-        return port.chargeCreditCard(group, creditCardInfo, amount, account);
+        return port.validateCreditCard(group, creditCardInfo, amount);
     }
 
 }

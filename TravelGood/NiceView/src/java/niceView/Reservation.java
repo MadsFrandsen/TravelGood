@@ -4,8 +4,8 @@
  */
 package niceView;
 
-import dk.dtu.imm.fastmoney.types.AccountType;
-import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
+import dk.dtu.imm.fastmoney.AccountType;
+import dk.dtu.imm.fastmoney.CreditCardInfoType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -19,17 +19,23 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement
 @XmlType(propOrder = {"hotelInfo", "bookingNumber", "totalPrice"})
-@XmlAccessorType(XmlAccessType.NONE)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Reservation {
-    @XmlElement
+   // @XmlElement
     private Hotel hotelInfo;
-    @XmlElement
+    //@XmlElement
     private int bookingNumber;
-    @XmlElement
+    //@XmlElement
     private int totalPrice;
-    private dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo;
-    private dk.dtu.imm.fastmoney.types.AccountType account;
+    @XmlTransient
+    private dk.dtu.imm.fastmoney.CreditCardInfoType creditCardInfo;
+    @XmlTransient
+    private dk.dtu.imm.fastmoney.AccountType account;
 
+    public Reservation(){
+        
+    }
+    
     public Reservation(Hotel hotelInfo, int bookingNumber, int totalPrice) {
         this.hotelInfo = hotelInfo;
         this.bookingNumber = bookingNumber;

@@ -17,17 +17,19 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement
 @XmlType(propOrder = {"name", "address", "creditCardGuarantee", "hotelReservationService"})
-@XmlAccessorType(XmlAccessType.NONE)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Hotel {   
-    @XmlElement
+    //@XmlElement
     private String name;
-    @XmlElement
+    //@XmlElement
     private String address;
-    @XmlElement
+    //@XmlElement
     private boolean creditCardGuarantee;
+    @XmlTransient
     private int price;   //Price per night
-    @XmlElement
+  //  @XmlElement
     private String hotelReservationService;
+    @XmlTransient
     private String city;
 
     public Hotel(String name, String address, boolean creditCardGuarantee, int price, String hotelReservationService, String city) {
@@ -39,6 +41,9 @@ public class Hotel {
         this.city = city;
     }
 
+    public Hotel(){
+        
+    }
     public String getName() {
         return name;
     }
@@ -82,7 +87,7 @@ public class Hotel {
     public String getHotelReservationService() {
         return hotelReservationService;
     }
-    
+    //@XmlTransient
     public String getCity(){
         return city;
     }
