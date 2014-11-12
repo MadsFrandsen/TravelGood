@@ -108,8 +108,8 @@ public class ItineraryResource {
     @Path("flights")
     @GET
     public Flight[] getFlights(@QueryParam("departureLocation") Location departureLocation,
-        @QueryParam("arrivalLocation") Location arrivalLocation,
-        @QueryParam("departureDate") String departureDate) throws ParseException {
+                                @QueryParam("arrivalLocation") Location arrivalLocation,
+                                @QueryParam("departureDate") String departureDate) throws ParseException {
         Date departure = new SimpleDateFormat().parse(departureDate);
         throw new NotImplementedException();
     }
@@ -137,7 +137,9 @@ public class ItineraryResource {
     }
     
     public class BookingException extends Exception {
-        
+        public BookingException() {
+            super("Booking failed.");
+        }
     }
     
     public class CancelException extends Exception {
