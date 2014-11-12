@@ -9,14 +9,14 @@
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
     xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
-    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="http://travelgood.ws" xmlns:ns1="http://xml.travelgood.ws">
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="http://travelgood.ws" xmlns:ns1="http://xml.travelgood.ws" xmlns:sxxf="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/XPathFunctions">
     <import namespace="http://travelgood.ws" location="travelgood.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://xml.travelgood.ws" location="travelgoodBPEL.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
     <partnerLinks>
         <partnerLink name="PartnerLink1" xmlns:tns="http://travelgood.ws" partnerLinkType="tns:travelgood" myRole="itineraryPortTypeRole"/>
     </partnerLinks>
     <variables>
-        <variable name="idCount" type="xs:int"/>
+        
         <variable name="itinerary" type="ns1:itinerary"/>
         <variable name="CreateItineraryOut" xmlns:tns="http://travelgood.ws" messageType="tns:createItineraryResponse"/>
         <variable name="CreateItineraryIn" xmlns:tns="http://travelgood.ws" messageType="tns:createItineraryRequest"/>
@@ -26,39 +26,23 @@
     </correlationSets>
     <sequence>
         <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="createItinerary" xmlns:tns="http://travelgood.ws" portType="tns:itineraryPortType" variable="CreateItineraryIn"/>
-        <scope name="Scope7">
-            <faultHandlers>
-                <catchAll>
-                    <assign name="Assign3">
-                        <copy>
-                            <from>0</from>
-                            <to variable="idCount"/>
-                        </copy>
-                    </assign>
-                </catchAll>
-            </faultHandlers>
-            <assign name="Assign2">
-                <copy>
-                    <from>1 + $idCount</from>
-                    <to variable="idCount"/>
-                </copy>
-            </assign>
-        </scope>
-        <assign name="Assign4">
+        <assign name="Assign5">
             <copy>
-                <from variable="CreateItineraryIn" part="personName"/>
-                <to>$itinerary/ns1:owner</to>
+                <from>sxxf:getGUID()</from>
+                <to>$itinerary/ns1:ID</to>
             </copy>
             <copy>
                 <from>'unconfirmed'</from>
                 <to>$itinerary/ns1:status</to>
             </copy>
             <copy>
-                <from>string($idCount)</from>
-                <to>$itinerary/ns1:ID</to>
+                <from variable="CreateItineraryIn" part="personName"/>
+                <to>$itinerary/ns1:owner</to>
             </copy>
+        </assign>
+        <assign name="Assign4">
             <copy>
-                <from>string($idCount)</from>
+                <from>$itinerary/ns1:ID</from>
                 <to variable="CreateItineraryOut" part="itineraryID"/>
             </copy>
         </assign>

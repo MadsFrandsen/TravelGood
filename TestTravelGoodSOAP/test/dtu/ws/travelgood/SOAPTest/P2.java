@@ -1,14 +1,8 @@
 package dtu.ws.travelgood.SOAPTest;
 
 import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import ws.travelgood.xml.Itinerary;
-import ws.travelgood.xml.Stay;
-import ws.travelgood.xml.Travel;
-import ws.travelgood.xml.TravelOptions;
 
 /**
  * P2 (cancel planning) Plan a trip by first getting a list of flights and then
@@ -35,6 +29,7 @@ public class P2 extends T {
     @Test
     public void testP2() {
         itinearyID = createItinerary(personNames[0]);
+        itinearyID = createItinerary(personNames[1]);
         int bookingNumber = getFlights(itinearyID, destinations[0], dates[0], destinations[1]).getTravels().get(0).getBookingNumber();
         bookItinerary(itinearyID, creditCardNumbers[0], personNames[1]);
         cancelItinerary(itinearyID);

@@ -18,8 +18,8 @@
     </target>
     <target name="wsimport-client-travelgoodPort" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/travelgoodPort"/>
-        <property name="wsdl-travelgoodPort" location="xml-resources/web-service-references/travelgoodPort/wsdl/localhost_9080/travelgoodService/travelgoodPort.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/travelgoodPort" destdir="${build.generated.dir}/jax-wsCache/travelgoodPort" wsdl="${wsdl-travelgoodPort}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://localhost:9080/travelgoodService/travelgoodPort?wsdl" xnocompile="true" xendorsed="true">
+        <property name="wsdl-travelgoodPort" location="xml-resources/web-service-references/travelgoodPort/wsdl/localhost_9070/travelgoodService/travelgoodPort.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/travelgoodPort" destdir="${build.generated.dir}/jax-wsCache/travelgoodPort" wsdl="${wsdl-travelgoodPort}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="http://localhost:9070/travelgoodService/travelgoodPort?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-travelgoodPort}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/travelgoodPort"/>
         </wsimport>

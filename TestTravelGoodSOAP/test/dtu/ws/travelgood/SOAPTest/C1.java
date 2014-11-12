@@ -50,6 +50,8 @@ public class C1 extends T {
             assertEquals("cancelled", travels[i].getStatus());
         }
         assertEquals("cancelled", getItinerary(itinearyID).getHotelbookings().get(0).getStatus());
+        
+        
 
     }
 }

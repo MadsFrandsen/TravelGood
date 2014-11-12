@@ -3,8 +3,8 @@
   <services/>
   <clients>
     <client name="travelgoodPort">
-      <wsdl-url>http://localhost:9080/travelgoodService/travelgoodPort?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_9080/travelgoodService/travelgoodPort.wsdl</local-wsdl-file>
+      <wsdl-url>http://localhost:9070/travelgoodService/travelgoodPort?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_9070/travelgoodService/travelgoodPort.wsdl</local-wsdl-file>
       <package-name>ws.travelgood</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -18,7 +18,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:9080/travelgoodService/travelgoodPort?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:9070/travelgoodService/travelgoodPort?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

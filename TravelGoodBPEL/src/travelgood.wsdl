@@ -181,7 +181,7 @@
     </binding>
     <service name="travelgoodService">
         <port name="itineraryPortTypeBindingPort" binding="tns:itineraryPortTypeBinding">
-            <soap:address location="http://localhost:${HttpDefaultPort}/travelgoodService/travelgoodPort"/>
+            <soap:address location="http://localhost:9090/travelgoodService/travelgoodPort"/>
         </port>
     </service>
     <plnk:partnerLinkType name="travelgood">

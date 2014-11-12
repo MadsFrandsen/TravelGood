@@ -1,18 +1,13 @@
 package dtu.ws.travelgood.SOAPTest;
 
-import java.beans.DesignMode;
 import java.util.Arrays;
 import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import ws.travelgood.xml.AccommodationOptions;
-
 import ws.travelgood.xml.Itinerary;
 import ws.travelgood.xml.Stay;
 import ws.travelgood.xml.Travel;
-import ws.travelgood.xml.TravelOptions;
+
 
 /**
  * P1 (planning and booking) Plan a trip by first planning a flight (i.e.
