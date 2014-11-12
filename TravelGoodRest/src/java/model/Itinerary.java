@@ -4,7 +4,9 @@
  */
 package model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -13,22 +15,31 @@ import java.util.List;
 public class Itinerary {
     
     private String id;
-    private Flight[] flights;
-    private Hotel[] hotels;
+    private Map<String, Flight> flights = new HashMap<String, Flight>();
+    private Map<String, Hotel> hotels = new HashMap<String, Hotel>();
+    private boolean changeable = true;
     
     public Itinerary(String id) {
         this.id = id;
     }
     
-    public Flight[] getFlights() {
+    public Map<String, Flight> getFlights() {
         return flights;
     }
     
-    public Hotel[] getHotels() {
+    public Map<String, Hotel> getHotels() {
         return hotels;
     }
     
     public String getId() {
         return id;
+    }
+    
+    public void setChangeable(boolean value) {
+        changeable = value;
+    }
+    
+    public boolean isChangeable() {
+        return changeable;
     }
 }

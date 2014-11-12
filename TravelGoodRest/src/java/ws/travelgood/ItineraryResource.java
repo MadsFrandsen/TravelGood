@@ -60,7 +60,7 @@ public class ItineraryResource {
         }
         
         List<String> failedFlightIds = new ArrayList<String>();
-        for(Flight flight : itinerary.getFlights()) {
+        for(Flight flight : itinerary.getFlights().values()) {
             try {
                 // TODO: Cancel flight
             } catch(Exception e) {
@@ -69,7 +69,7 @@ public class ItineraryResource {
         }
         
         List<String> failedHotelIds = new ArrayList<String>();
-        for(Hotel hotel : itinerary.getHotels()) {
+        for(Hotel hotel : itinerary.getHotels().values()) {
             try {
                 // TODO: Cancel hotel
             } catch(Exception e) {
@@ -91,18 +91,22 @@ public class ItineraryResource {
             throw new UnknownItineraryException(itineraryId);
         }
         
+        itinerary.setChangeable(false);
+        
         try {   
-            for(Flight flight : itinerary.getFlights()) {
+            for(Flight flight : itinerary.getFlights().values()) {
                 // TODO: Book flight
             }
 
-            for(Hotel hotel : itinerary.getHotels()) {
+            for(Hotel hotel : itinerary.getHotels().values()) {
                 // TODO: Book hotel
             }
         } catch(Exception e) {
             // If any booking fails, we cancel all bookings
             cancelItinerary(itineraryId);
         }
+        
+        itinerary.setChangeable(true);
     }
     
     @Path("flights")
@@ -116,14 +120,22 @@ public class ItineraryResource {
     
     @Path("itineraries/{itineraryId}/flights/{bookingNumber}")
     @PUT
-    public void addFlight(@PathParam("bookingNumber") String flightId, @PathParam("itineraryId") String itineraryId) {
+    public void addFlight(@PathParam("bookingNumber") String flightId, 
+                            @PathParam("itineraryId") String itineraryId) {
         throw new NotImplementedException();
     }
     
     @Path("itineraries/{itineraryId}/flights/{bookingNumber}")
     @DELETE
-    public void removeFlight(@PathParam("bookingNumber") String flightId, @PathParam("itineraryId") String itineraryId) {
-        throw new NotImplementedException();
+    public void removeFlight(@PathParam("bookingNumber") String flightId, 
+                                @PathParam("itineraryId") String itineraryId) throws UnknownItineraryException {
+        Itinerary itinerary = itineraries.get(itineraryId);
+        
+        if(itinerary == null) {
+            throw new UnknownItineraryException(itineraryId);
+        }
+        
+        itinerary.getFlights().remove(flightId);
     }
     
     @Path("hotels")
@@ -138,14 +150,23 @@ public class ItineraryResource {
     
     @Path("itineraries/{itineraryId}/hotels/{bookingNumber}")
     @PUT
-    public void addHotel(@PathParam("bookingNumber") String hotelId, @PathParam("itineraryId") String itineraryId) {
+    public void addHotel(@PathParam("bookingNumber") String hotelId, 
+                            @PathParam("itineraryId") String itineraryId) {
         throw new NotImplementedException();
     }
     
     @Path("itineraries/{itineraryId}/hotels/{bookingNumber}")
     @DELETE
-    public void removeHotel(@PathParam("bookingNumber") String hotelId, @PathParam("itineraryId") String itineraryId) {
-        throw new NotImplementedException();
+    public void removeHotel(@PathParam("bookingNumber") String hotelId, 
+                            @PathParam("itineraryId") String itineraryId) throws UnknownItineraryException {
+        
+        Itinerary itinerary = itineraries.get(itineraryId);
+        
+        if(itinerary == null) {
+            throw new UnknownItineraryException(itineraryId);
+        }
+        
+        itinerary.getHotels().remove(hotelId);
     }
     
     public class BookingException extends Exception {
