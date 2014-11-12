@@ -16,8 +16,8 @@ public class Itinerary {
     private Flight[] flights;
     private Hotel[] hotels;
     
-    public Itinerary() {
-        
+    public Itinerary(String id) {
+        this.id = id;
     }
     
     public Flight[] getFlights() {
@@ -26,5 +26,9 @@ public class Itinerary {
     
     public Hotel[] getHotels() {
         return hotels;
+    }
+    
+    public String getId() {
+        return id;
     }
 }

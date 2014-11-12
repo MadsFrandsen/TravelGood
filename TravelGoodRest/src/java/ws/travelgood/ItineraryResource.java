@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -42,8 +43,10 @@ public class ItineraryResource {
     }
     
     @POST
-    public int createItinerary() {
-        throw new NotImplementedException();
+    public String createItinerary() {
+        Itinerary itinerary = new Itinerary(UUID.randomUUID().toString());
+        itineraries.put(itinerary.getId(), itinerary);
+        return itinerary.getId();
     }
  
     @Path("{id}")
