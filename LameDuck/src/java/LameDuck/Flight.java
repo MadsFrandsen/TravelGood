@@ -20,6 +20,9 @@ public class Flight {
     private String destination;
     private String airline;
 
+    public Flight(){
+        
+    }
     
     public Flight(String airline, String source, int departureDate, int departureTime, String destination, int arrivalDate, int arrivalTime ) {
         nextId++;

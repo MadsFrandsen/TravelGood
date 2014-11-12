@@ -18,14 +18,22 @@ public class FlightOption {
     private static int nextBookingNumber = 0;
     private String airlineReservationService;
     private int price;
+    
+    public FlightOption(){
+        
+    }
 
     public FlightOption(Flight flight, String airlineReservationService) {
         nextBookingNumber++;
         this.bookingNumber = nextBookingNumber;
         this.flight = flight;
         this.airlineReservationService = airlineReservationService;
-        Random rng = new Random();
-        this.price = rng.nextInt(5000);
+        if (flight.getAirline().equals("Disney")){
+            this.price = 1000000;
+        } else {
+            Random rng = new Random();
+            this.price = rng.nextInt(5000);
+        }
     }
 
     /**
