@@ -80,14 +80,29 @@ public class ItineraryResource {
         if(!failedFlightIds.isEmpty() || !failedHotelIds.isEmpty()) {
             throw new CancelException(failedFlightIds, failedHotelIds);
         }
-        
-        itineraries.remove(id);
     }
     
     @Path("{itineraryId}/book")
     @POST
-    public void bookItinerary(@PathParam("itineraryId") String itineraryId) throws BookingException {
-        throw new NotImplementedException();
+    public void bookItinerary(@PathParam("itineraryId") String itineraryId) throws BookingException, UnknownItineraryException, CancelException {
+        Itinerary itinerary = itineraries.get(itineraryId);
+        
+        if(itinerary == null) {
+            throw new UnknownItineraryException(itineraryId);
+        }
+        
+        try {   
+            for(Flight flight : itinerary.getFlights()) {
+                // TODO: Book flight
+            }
+
+            for(Hotel hotel : itinerary.getHotels()) {
+                // TODO: Book hotel
+            }
+        } catch(Exception e) {
+            // If any booking fails, we cancel all bookings
+            cancelItinerary(itineraryId);
+        }
     }
     
     @Path("flights")
