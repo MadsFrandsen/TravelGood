@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" targetNamespace="http://niceView/" xmlns:tns="http://niceView/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:element name="CreditCardFaultMessage" type="tns:CreditCardFaultMessage"/>
-
-  <xs:element name="ReservationNotFoundFault" nillable="true" type="tns:reservationNotFoundFaultBean"/>
+  <xs:element name="NiceViewFault" nillable="true" type="tns:niceViewFaultBean"/>
 
   <xs:element name="bookHotel" nillable="true" type="tns:bookHotel"/>
 
@@ -80,20 +78,7 @@
     <xs:sequence/>
   </xs:complexType>
 
-  <xs:complexType name="reservationNotFoundFaultBean">
-    <xs:sequence>
-      <xs:element name="message" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="CreditCardFaultMessage">
-    <xs:sequence>
-      <xs:element name="faultInfo" type="tns:creditCardFaultType" minOccurs="0"/>
-      <xs:element name="message" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="creditCardFaultType">
+  <xs:complexType name="niceViewFaultBean">
     <xs:sequence>
       <xs:element name="message" type="xs:string" minOccurs="0"/>
     </xs:sequence>

@@ -45,8 +45,8 @@
     </target>
     <target name="wsimport-client-BankService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/BankService"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/BankService" destdir="${build.generated.dir}/jax-wsCache/BankService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/BankService/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://fastmoney.imm.dtu.dk:8080/BankService?wsdl" xnocompile="true" target="2.1">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/BankService/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/BankService" destdir="${build.generated.dir}/jax-wsCache/BankService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/BankService/wsdl/BankService.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="file:/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceView/web/WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl" xnocompile="true" target="2.1">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/BankService/wsdl/BankService.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/BankService"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">

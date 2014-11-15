@@ -12,8 +12,8 @@ import java.util.GregorianCalendar;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.ws.WebFault;
-import javax.xml.ws.WebServiceRef;
 
 /**
  *
@@ -22,9 +22,7 @@ import javax.xml.ws.WebServiceRef;
 @WebService(serviceName = "NiceViewService")
 @WebFault(name="NiceViewFault")
 public class niceViewWebService {
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl")
     private BankService service;
-
     private ArrayList <Reservation> reservations;   //Done-Reservations
     private int bookingNumberCount;
     private ArrayList <Hotel> hotels;   //Hotels available in the service
@@ -38,6 +36,7 @@ public class niceViewWebService {
         bookingNumberCount = 0;
         hotels = new ArrayList <Hotel> ();
         possibleHotels = new ArrayList <Reservation> ();
+        loadData();
     }
     /**
      * Web service operation
@@ -64,7 +63,7 @@ public class niceViewWebService {
      * Web service operation
      */
     @WebMethod(operationName = "bookHotel")
-    public boolean bookHotel(@WebParam(name = "bookingNumber") int bookingNumber, @WebParam(name = "creditCardInfo") dk.dtu.imm.fastmoney.CreditCardInfoType creditCardInfo, @WebParam(name = "account")dk.dtu.imm.fastmoney.AccountType account) throws NiceViewFault {
+    public boolean bookHotel(@WebParam(name = "bookingNumber") int bookingNumber, @WebParam(name = "creditCardInfo") @XmlElement(required=false) dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, @WebParam(name = "account") @XmlElement(required=false)dk.dtu.imm.fastmoney.types.AccountType account) throws NiceViewFault {
 
         boolean booked = false;
         
@@ -83,7 +82,7 @@ public class niceViewWebService {
                 booked = true;
                 }
                 catch (CreditCardFaultMessage er){
-                    throw new NiceViewFault();
+                    throw new NiceViewFault(er.getMessage());
                 }
             }
         }
@@ -106,30 +105,37 @@ public class niceViewWebService {
                     found = true;
                 }
                 catch (CreditCardFaultMessage er){
-                    throw new NiceViewFault();
+                    throw new NiceViewFault(er.getMessage());
                 }
             }
         }
-        if (!found) throw new NiceViewFault();
+        if (!found) throw new NiceViewFault("Booking Number Not Found");
     }
 
     /*
      * BankService Methods
      */
 
-    private boolean chargeCreditCard(int group, dk.dtu.imm.fastmoney.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.AccountType account) throws CreditCardFaultMessage {
+    private boolean chargeCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.chargeCreditCard(group, creditCardInfo, amount, account);
     }
 
-    private boolean refundCreditCard(int group, dk.dtu.imm.fastmoney.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.AccountType account) throws CreditCardFaultMessage {
+    private boolean refundCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.refundCreditCard(group, creditCardInfo, amount, account);
     }
 
-    private boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
+    private boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.validateCreditCard(group, creditCardInfo, amount);
+    }
+    
+    private void loadData (){
+   
+        for (int i=0; i<20;i++){
+            hotels.add(new Hotel("Hotel "+i, "Main Street,"+i, (i % 2 == 0), i*10+10,"http://hotel"+i+".com/web/NiceViewService?wsdl" , "City "+i%5));
+        }
     }
 
 }

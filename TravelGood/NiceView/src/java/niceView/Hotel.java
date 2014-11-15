@@ -87,8 +87,9 @@ public class Hotel {
     public String getHotelReservationService() {
         return hotelReservationService;
     }
-    //@XmlTransient
+    
     public String getCity(){
         return city;
     }
+    
 }

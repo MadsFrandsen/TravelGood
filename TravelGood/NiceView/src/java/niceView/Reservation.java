@@ -4,8 +4,8 @@
  */
 package niceView;
 
-import dk.dtu.imm.fastmoney.AccountType;
-import dk.dtu.imm.fastmoney.CreditCardInfoType;
+import dk.dtu.imm.fastmoney.types.AccountType;
+import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -28,9 +28,9 @@ public class Reservation {
     //@XmlElement
     private int totalPrice;
     @XmlTransient
-    private dk.dtu.imm.fastmoney.CreditCardInfoType creditCardInfo;
+    private dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo;
     @XmlTransient
-    private dk.dtu.imm.fastmoney.AccountType account;
+    private dk.dtu.imm.fastmoney.types.AccountType account;
 
     public Reservation(){
         

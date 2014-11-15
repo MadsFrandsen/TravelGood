@@ -13,4 +13,11 @@ import javax.xml.ws.WebFault;
 @WebFault(name="NiceViewFault")
 public class NiceViewFault extends Exception {
     
+    public NiceViewFault(){
+        
+    }
+    
+    public NiceViewFault (String message){
+        super (message);
+    }
 }
