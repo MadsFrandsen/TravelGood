@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 import ws.travelgood.xml.Itinerary;
 import ws.travelgood.xml.Stay;
 import ws.travelgood.xml.Travel;
-
+import 
 
 /**
  * P1 (planning and booking) Plan a trip by first planning a flight (i.e.
@@ -47,7 +47,7 @@ public class P1 extends T {
 
         
         //Plan first flight
-        travels[0] = getFlights(itinearyID, destinations[0], dates[0], destinations[1]).getTravels().get(0);
+        travels[0] = getFlights(itinearyID, "CPH", dates[0], "BKK").getTravels().get(0);
         addFlight(itinearyID, travels[0].getBookingNumber());
 
 
