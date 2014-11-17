@@ -13,5 +13,12 @@ import javax.xml.ws.WebFault;
 
 @WebFault(name = "LameDuckException" )
 class LameDuckException extends Exception {
+
+    public LameDuckException(){
+        
+    }
     
+    public LameDuckException(String message){
+        super(message);
+    }
 }

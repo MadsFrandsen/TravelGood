@@ -4,6 +4,9 @@
  */
 package LameDuck;
 
+import java.util.GregorianCalendar;
+
+
 /**
  *
  * @author Nygaard
@@ -12,10 +15,8 @@ public class Flight {
     
     private int id;
     private static int nextId = 0;
-    private int departureDate;
-    private int departureTime;
-    private int arrivalDate;
-    private int arrivalTime;
+    private GregorianCalendar departureCalendar;
+    private GregorianCalendar arrivalCalendar;
     private String source;
     private String destination;
     private String airline;
@@ -24,13 +25,25 @@ public class Flight {
         
     }
     
-    public Flight(String airline, String source, int departureDate, int departureTime, String destination, int arrivalDate, int arrivalTime ) {
+    public Flight(String airline, String source, String departureDate, String departureTime, String destination, String arrivalDate, String arrivalTime ) {
         nextId++;
         this.id = nextId;
-        this.departureDate = departureDate;
-        this.departureTime = departureTime;
-        this.arrivalDate = arrivalDate;
-        this.arrivalTime = arrivalTime;
+        
+        /* Convert string date to Gregorian Calendar */
+        String departureDay = departureDate.substring(0, 2);
+        String departureMonth = departureDate.substring(2, 4);
+        String departureYear = departureDate.substring(4, 8);
+        String departureHour = departureTime.substring(0, 2);
+        String departureMinute = departureTime.substring(2, 4);
+        this.departureCalendar = new GregorianCalendar(Integer.parseInt(departureYear), Integer.parseInt(departureMonth)-1, Integer.parseInt(departureDay), Integer.parseInt(departureHour), Integer.parseInt(departureMinute));
+        
+        String arrivalDay = arrivalDate.substring(0, 2);
+        String arrivalMonth = arrivalDate.substring(2, 4);
+        String arrivalYear = arrivalDate.substring(4, 8);
+        String arrivalHour = arrivalTime.substring(0, 2);
+        String arrivalMinute = arrivalTime.substring(2, 4);
+        this.arrivalCalendar = new GregorianCalendar(Integer.parseInt(arrivalYear), Integer.parseInt(arrivalMonth)-1, Integer.parseInt(arrivalDay), Integer.parseInt(arrivalHour), Integer.parseInt(arrivalMinute));
+        
         this.source = source;
         this.destination = destination;
         this.airline = airline;
@@ -46,59 +59,31 @@ public class Flight {
     }
 
     /**
-     * @return the departureDate
-     */
-    public int getDepartureDate() {
-        return departureDate;
-    }
-
-    /**
-     * @param departureDate the departureDate to set
-     */
-    public void setDepartureDate(int departureDate) {
-        this.departureDate = departureDate;
-    }
-
-    /**
      * @return the departureTime
      */
-    public int getDepartureTime() {
-        return departureTime;
+    public GregorianCalendar getDepartureTime() {
+        return departureCalendar;
     }
 
     /**
      * @param departureTime the departureTime to set
      */
-    public void setDepartureTime(int departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    /**
-     * @return the arrivalDate
-     */
-    public int getArrivalDate() {
-        return arrivalDate;
-    }
-
-    /**
-     * @param arrivalDate the arrivalDate to set
-     */
-    public void setArrivalDate(int arrivalDate) {
-        this.arrivalDate = arrivalDate;
+    public void setDepartureTime(GregorianCalendar departureTime) {
+        this.departureCalendar = departureTime;
     }
 
     /**
      * @return the arrivalTime
      */
-    public int getArrivalTime() {
-        return arrivalTime;
+    public GregorianCalendar getArrivalTime() {
+        return arrivalCalendar;
     }
 
     /**
      * @param arrivalTime the arrivalTime to set
      */
-    public void setArrivalTime(int arrivalTime) {
-        this.arrivalTime = arrivalTime;
+    public void setArrivalTime(GregorianCalendar arrivalTime) {
+        this.arrivalCalendar = arrivalTime;
     }
 
     /**
