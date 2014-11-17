@@ -1,2 +1,16 @@
 TravelGoodBPEL/nbproject/private
 TravelGoodBPELApplication/nbproject/private
+/TravelGoodBPEL/build/
+/TravelGoodBPELApplication/build/
+/TravelGoodBPELApplication/src/jbiServiceUnits/
+/TravelGoodBPELApplication/dist/
+/LameDuck/build/
+/LameDuckTest/nbproject/private/
+/TravelGoodTestRest/nbproject/private/
+/TravelGoodTestRest/build/
+/TravelGoodTestRest/dist/
+/TravelGoodRest/nbproject/private/
+/TravelGoodRest/build/
+/LameDuck/nbproject/private/
+/LameDuckTest/build/
+TravelGoodBPELApplication/catalog.xml

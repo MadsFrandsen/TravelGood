@@ -2,7 +2,7 @@
 <definitions name="TravelGood" targetNamespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood"
              xmlns="http://schemas.xmlsoap.org/wsdl/"
              xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" xmlns:ns0="http://xml.netbeans.org/schema/travelGoodBEPL" xmlns:ns1="http://travelgood.ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" xmlns:ns0="http://xml.netbeans.org/schema/travelGoodBEPL" xmlns:ns1="http://travelgood.ws" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
     <types>
         <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood">
             <xsd:import schemaLocation="travelGoodBEPL.xsd" namespace="http://xml.netbeans.org/schema/travelGoodBEPL"/>
@@ -67,6 +67,7 @@
         <part name="success" type="xsd:boolean"/>
     </message>
     <message name="getFlightsRequest">
+        <part name="id" type="ns1:itineraryIdType"/>
         <part name="destination" type="ns0:destinationType"/>
         <part name="time" type="xsd:dateTime"/>
         <part name="departure" type="ns0:destinationType"/>
@@ -75,6 +76,7 @@
         <part name="flightList" type="ns1:flightList"/>
     </message>
     <message name="getHotelsRequest">
+        <part name="id" type="ns1:itineraryIdType"/>
         <part name="start" type="xsd:dateTime"/>
         <part name="end" type="xsd:dateTime"/>
         <part name="city" type="xsd:string"/>
@@ -127,73 +129,73 @@
         <operation name="CreateItinerary">
             <soap:operation/>
             <input name="input1">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </input>
             <output name="output1">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </output>
         </operation>
         <operation name="BookItinerary">
             <soap:operation/>
             <input name="input2">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </input>
             <output name="output2">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </output>
         </operation>
         <operation name="AddFlight">
             <soap:operation/>
             <input name="input3">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </input>
             <output name="output3">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </output>
         </operation>
         <operation name="AddHotelStay">
             <soap:operation/>
             <input name="input4">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </input>
             <output name="output4">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </output>
         </operation>
         <operation name="CancelItinerary">
             <soap:operation/>
             <input name="input5">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </input>
             <output name="output5">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </output>
         </operation>
         <operation name="getFlights">
             <soap:operation/>
             <input name="input6">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </input>
             <output name="output6">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </output>
         </operation>
         <operation name="getHotels">
             <soap:operation/>
             <input name="input7">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </input>
             <output name="output7">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </output>
         </operation>
         <operation name="getItinerary">
             <soap:operation/>
             <input name="input8">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </input>
             <output name="output8">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws"/>
             </output>
         </operation>
     </binding>
@@ -202,4 +204,9 @@
             <soap:address location="http://localhost:${HttpDefaultPort}/service"/>
         </port>
     </service>
+    <vprop:property name="itineraryID" type="ns1:itineraryIdType"/>
+    <vprop:propertyAlias messageType="tns:CreateItineraryResponse" part="id" propertyName="tns:itineraryID" />
+    <vprop:propertyAlias messageType="tns:getFlightsRequest" part="id" propertyName="tns:itineraryID" />
+    <vprop:propertyAlias messageType="tns:getHotelsRequest" part="id" propertyName="tns:itineraryID" />
+    <vprop:propertyAlias messageType="tns:BookItineraryRequest" part="id" propertyName="tns:itineraryID" />
 </definitions>

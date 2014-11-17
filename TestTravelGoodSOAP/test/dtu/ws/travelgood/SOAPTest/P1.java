@@ -63,6 +63,7 @@ public class P1 {
                 
         itenaryId=createItinerary(name);
         
+<<<<<<< HEAD
         //get a list if flights and choose the first
         flightBookingNumbers[0]=getFlights(destination, date1, departure).getFlight().get(0).getBookingNumber();
         // add the flight to itenary
@@ -70,10 +71,20 @@ public class P1 {
         
         //get list of avaviable hotels
         hotelBookingNumbers[0]=getHotels(date1, date2, destination).getHotel().get(0).getBookingNumber();
+=======
+        //get a list if fights and choose the first
+        flightBookingNumber1=getFlights(itenaryId, destination, date1, departure).getFlight().get(0).getBookingNumber();
+        // add the first flight to itenary
+        addFlight(name, flightBookingNumber1);
+        
+        //get list of avaviable hotels
+        hotelBookingNumber1=getHotels(itenaryId, date1, date2, destination).getHotel().get(0).getBookingNumber();
+>>>>>>> fa85f96ab20f36ea4451f661aaf30cbb72388aae
         //book the first hotel
         addHotelStay(name, hotelBookingNumbers[0]);
         
         //plan another flight
+<<<<<<< HEAD
         flightBookingNumbers[1]=getFlights(destination, date2, departure).getFlight().get(0).getBookingNumber();
         addFlight(name, flightBookingNumbers[1]);
         
@@ -83,6 +94,17 @@ public class P1 {
         
         //finally add a hotel
         hotelBookingNumbers[1]=getHotels(date1, date3, destination).getHotel().get(0).getBookingNumber();
+=======
+        flightBookingNumber2=getFlights(itenaryId, destination, date2, departure).getFlight().get(0).getBookingNumber();
+        addFlight(name, flightBookingNumber2);
+        
+        //plan a third flight
+        flightBookingNumber2=getFlights(itenaryId, destination, date3, departure).getFlight().get(0).getBookingNumber();
+        addFlight(name, flightBookingNumber2);
+        
+        //finally add a hotel
+        hotelBookingNumber2=getHotels(itenaryId, date1, date3, destination).getHotel().get(0).getBookingNumber();
+>>>>>>> fa85f96ab20f36ea4451f661aaf30cbb72388aae
         //book the first hotel
         addHotelStay(name, hotelBookingNumbers[1]);
         
@@ -138,21 +160,21 @@ public class P1 {
         return port.createItinerary(name);
     }
 
-    private static FlightList getFlights(java.lang.String destination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departure) {
-        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
-        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
-        return port.getFlights(destination, time, departure);
-    }
-
-    private static HotelList getHotels(javax.xml.datatype.XMLGregorianCalendar start, javax.xml.datatype.XMLGregorianCalendar end, java.lang.String city) {
-        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
-        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
-        return port.getHotels(start, end, city);
-    }
-
     private static ItineraryType getItinerary(java.lang.String id) {
         dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
         dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
         return port.getItinerary(id);
+    }
+
+    private static FlightList getFlights(java.lang.String id, java.lang.String destination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departure) {
+        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
+        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getFlights(id, destination, time, departure);
+    }
+
+    private static HotelList getHotels(java.lang.String id, javax.xml.datatype.XMLGregorianCalendar start, javax.xml.datatype.XMLGregorianCalendar end, java.lang.String city) {
+        dtu.ws.travelgood.client.TravelGoodService service = new dtu.ws.travelgood.client.TravelGoodService();
+        dtu.ws.travelgood.client.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getHotels(id, start, end, city);
     }
 }

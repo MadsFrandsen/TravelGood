@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions name="TravelGood" targetNamespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://travelgood.ws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" xmlns:ns0="http://xml.netbeans.org/schema/travelGoodBEPL" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<definitions name="TravelGood" targetNamespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://travelgood.ws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" xmlns:ns0="http://xml.netbeans.org/schema/travelGoodBEPL" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <types>
     <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood">
-            <xsd:import namespace="http://xml.netbeans.org/schema/travelGoodBEPL" schemaLocation="http://jonas-XPS13:9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelGoodBEPL.xsd"/>
+            <xsd:import namespace="http://xml.netbeans.org/schema/travelGoodBEPL" schemaLocation="http://192.168.0.100:9080/TravelGoodBPELApplication-sun-http-binding/TravelGoodBPEL/travelGoodBEPL.xsd"/>
         </xsd:schema>
     <xsd:schema targetNamespace="http://travelgood.ws" xmlns:ns1="http://xml.netbeans.org/schema/travelGoodBEPL" xmlns:tns1="http://travelgood.ws">
-            <xsd:import namespace="http://xml.netbeans.org/schema/travelGoodBEPL" schemaLocation="http://jonas-XPS13:9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelGoodBEPL.xsd"/>
+            <xsd:import namespace="http://xml.netbeans.org/schema/travelGoodBEPL" schemaLocation="http://192.168.0.100:9080/TravelGoodBPELApplication-sun-http-binding/TravelGoodBPEL/travelGoodBEPL.xsd"/>
             <xsd:complexType name="itineraryType">
                 <xsd:sequence maxOccurs="unbounded" minOccurs="1">
                     <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ns1:flightInformation"/>
@@ -65,6 +65,8 @@
     </part>
   </message>
   <message name="getFlightsRequest">
+    <part name="id" type="ns1:itineraryIdType">
+    </part>
     <part name="destination" type="ns0:destinationType">
     </part>
     <part name="time" type="xsd:dateTime">
@@ -101,6 +103,8 @@
     </part>
   </message>
   <message name="getHotelsRequest">
+    <part name="id" type="ns1:itineraryIdType">
+    </part>
     <part name="start" type="xsd:dateTime">
     </part>
     <part name="end" type="xsd:dateTime">
@@ -163,79 +167,84 @@
     <operation name="CreateItinerary">
       <soap:operation/>
       <input name="input1">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </input>
       <output name="output1">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </output>
     </operation>
     <operation name="BookItinerary">
       <soap:operation/>
       <input name="input2">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </input>
       <output name="output2">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </output>
     </operation>
     <operation name="AddFlight">
       <soap:operation/>
       <input name="input3">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </input>
       <output name="output3">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </output>
     </operation>
     <operation name="AddHotelStay">
       <soap:operation/>
       <input name="input4">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </input>
       <output name="output4">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </output>
     </operation>
     <operation name="CancelItinerary">
       <soap:operation/>
       <input name="input5">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </input>
       <output name="output5">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </output>
     </operation>
     <operation name="getFlights">
       <soap:operation/>
       <input name="input6">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </input>
       <output name="output6">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </output>
     </operation>
     <operation name="getHotels">
       <soap:operation/>
       <input name="input7">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </input>
       <output name="output7">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </output>
     </operation>
     <operation name="getItinerary">
       <soap:operation/>
       <input name="input8">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </input>
       <output name="output8">
-        <soap:body use="literal"/>
+        <soap:body use="literal" namespace="http://travelgood.ws"/>
       </output>
     </operation>
   </binding>
   <service name="TravelGoodService">
     <port name="ItineraryPortTypeBindingPort" binding="tns:ItineraryPortTypeBinding">
-      <soap:address location="http://jonas-XPS13:9080/service"/>
+      <soap:address location="http://192.168.0.100:9080/service"/>
     </port>
   </service>
+    <vprop:property name="itineraryID" type="ns1:itineraryIdType"/>
+    <vprop:propertyAlias messageType="tns:CreateItineraryResponse" part="id" propertyName="tns:itineraryID"/>
+    <vprop:propertyAlias messageType="tns:getFlightsRequest" part="id" propertyName="tns:itineraryID"/>
+    <vprop:propertyAlias messageType="tns:getHotelsRequest" part="id" propertyName="tns:itineraryID"/>
+    <vprop:propertyAlias messageType="tns:BookItineraryRequest" part="id" propertyName="tns:itineraryID"/>
 </definitions>
