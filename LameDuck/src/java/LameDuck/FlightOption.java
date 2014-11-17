@@ -4,7 +4,6 @@
  */
 package LameDuck;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -56,6 +55,8 @@ public class FlightOption {
     public int getBookingNumber() {
         return bookingNumber;
     }
+    
+    
 
     /**
      * @return the airlineReservationService
@@ -83,6 +84,13 @@ public class FlightOption {
      */
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    /**
+     * @param bookingNumber the bookingNumber to set
+     */
+    public void setBookingNumber(int bookingNumber) {
+        this.bookingNumber = bookingNumber;
     }
     
     

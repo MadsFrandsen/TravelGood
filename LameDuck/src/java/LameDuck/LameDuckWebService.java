@@ -16,6 +16,8 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.ws.WebFault;
 import javax.xml.ws.WebServiceRef;
 
@@ -40,29 +42,31 @@ public class LameDuckWebService {
         try {
 
             String flightData = "/Users/Nygaard/Code/GitHub/TravelGood/LameDuck/src/java/LameDuck/flightsdata.csv";
-
             LAME_DUCK_ACCOUNT.setName("LameDuck");
             LAME_DUCK_ACCOUNT.setNumber("50208812");
-
             File f = new File(flightData);
             Scanner in = new Scanner(f);
             String headers = in.nextLine(); // skip first line as it is only headers
             while (in.hasNext()) {
                 String[] flightInfo = in.nextLine().split(";"); // Excel data is seperated by ;
-                System.out.println(flightInfo[2]);
                 String airline = flightInfo[0];
                 String source = flightInfo[1];
-                int departureDate = Integer.parseInt(flightInfo[2]);
-                int departureTime = Integer.parseInt(flightInfo[3]);
+                String departureDate = flightInfo[2];
+                String departureTime = flightInfo[3];
                 String destination = flightInfo[4];
-                int arrivalDate = Integer.parseInt(flightInfo[5]);
-                int arrivalTime = Integer.parseInt(flightInfo[6]);
+                String arrivalDate = flightInfo[5];
+                String arrivalTime = flightInfo[6];
                 Flight flight = new Flight(airline, source, departureDate, departureTime, destination, arrivalDate, arrivalTime);
                 flights.add(flight);
-
             }
+            /*
+             Flight flight = new Flight("SAS", "CPH","24122014","1400","BKK","25122014","0630");
+             flights.add(flight);
+             */
+
+
         } catch (Exception e) {
-            throw new LameDuckException();
+            throw new LameDuckException(e.getMessage());
         }
 
     }
@@ -78,20 +82,27 @@ public class LameDuckWebService {
     @WebMethod(operationName = "getFlights")
     public ArrayList<FlightOption> getFlights(@WebParam(name = "from") String source, @WebParam(name = "to") String destination, @WebParam(name = "date") GregorianCalendar date) throws LameDuckException {
         // Check for valid user input
-        if (source == null || source.isEmpty() || destination == null || destination.isEmpty() || date == null) {
-            throw new LameDuckException();
+        
+        if (source == null || source.isEmpty()) {
+            throw new LameDuckException("Invalid user input: empty source");
+        } else if (destination == null || destination.isEmpty()){
+            throw new LameDuckException("Invalid user input: empty destination");
+        } else if (date == null){
+             throw new LameDuckException("Invalid user input: empty date");
         }
-
-        // Convert date to int
-        int year = date.get(Calendar.YEAR);
-        int month = date.get(Calendar.MONTH);
-        int day = date.get(Calendar.DAY_OF_MONTH);
-        String tempDate = "" + year + month + day;
-        int departureDate = Integer.parseInt(tempDate);
+        
 
         // Search through all the flights
         for (Flight flight : flights) {
-            if (flight.getSource().equals(source) && flight.getDestination().equals(destination) && flight.getDepartureDate() == departureDate) {
+
+            // Extract Year, Month and Day from calendar for comparison
+            GregorianCalendar departureDate = flight.getDepartureTime();
+            int flightYear = departureDate.get(Calendar.YEAR);
+            int flightMonth = departureDate.get(Calendar.MONTH);
+            int flightDay = departureDate.get(Calendar.DAY_OF_MONTH);
+            
+            // Check if source, destination and date matches
+            if (flight.getSource().equals(source) && flight.getDestination().equals(destination) && flightYear == date.get(Calendar.YEAR) && flightMonth == date.get(Calendar.MONTH) && flightDay == date.get(Calendar.DAY_OF_MONTH)) {
                 FlightOption flightOption = new FlightOption(flight, "LameDuck");
                 flightsAvailable.add(flightOption);
             }
@@ -116,7 +127,7 @@ public class LameDuckWebService {
                     booked = chargeCreditCard(0, creditCard, flightOption.getPrice(), LAME_DUCK_ACCOUNT);
 
                 } catch (Exception e) {
-                    throw new LameDuckException();
+                    throw new LameDuckException(e.getMessage());
                 }
 
             }
@@ -142,7 +153,7 @@ public class LameDuckWebService {
             canceled = refundCreditCard(0, creditCard, refund, LAME_DUCK_ACCOUNT);
 
         } catch (Exception e) {
-            throw new LameDuckException();
+            throw new LameDuckException(e.getMessage());
         }
 
 
@@ -165,5 +176,18 @@ public class LameDuckWebService {
     private boolean validateCreditCard(int group, fastmoney.imm.dtu.dk.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
         fastmoney.imm.dtu.dk.BankPortType port = service.getBankPort();
         return port.validateCreditCard(group, creditCardInfo, amount);
+    }
+    
+    public static void main(String[] args){
+        try {
+            LameDuckWebService ws = new LameDuckWebService();
+            GregorianCalendar date = new GregorianCalendar(2014,11,24);
+            ArrayList<FlightOption> flights = ws.getFlights("CPH", "BKK", date);
+            for(FlightOption f : flights){
+                System.out.println(f.getFlight().getSource() + " " + f.getFlight().getDestination() + " " + f.getPrice());
+            }
+        } catch (LameDuckException ex) {
+            Logger.getLogger(LameDuckWebService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
