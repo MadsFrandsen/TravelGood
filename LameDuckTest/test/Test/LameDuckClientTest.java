@@ -5,6 +5,7 @@
 package Test;
 
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
+import dk.dtu.imm.fastmoney.types.ExpirationDateType;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -26,8 +27,17 @@ import static org.junit.Assert.*;
  * @author Nygaard
  */
 public class LameDuckClientTest {
-
-    public LameDuckClientTest() {
+    
+    private CreditCardInfoType cc = new CreditCardInfoType();
+    
+    
+    public LameDuckClientTest() {               
+        cc.setName("Tick Joachim");
+        cc.setNumber("50408824");
+        ExpirationDateType expirationDate = new ExpirationDateType();
+        expirationDate.setMonth(2);
+        expirationDate.setYear(11);
+        cc.setExpirationDate(expirationDate);
     }
 
     @BeforeClass
@@ -63,6 +73,9 @@ public class LameDuckClientTest {
         
         System.out.println(flights.size());
         assertEquals(flights.size(), 3);
+        
+        System.out.println("--------------------");
+        
     }
 
     @Test
@@ -80,19 +93,40 @@ public class LameDuckClientTest {
         System.out.println("Price: " + myFlight.getPrice());
         System.out.println("Booking Flight ...");
         
-        CreditCardInfoType cc = new CreditCardInfoType();
-        System.out.println(cc.getName());
-        boolean booked = bookFlight(bookingNumber, null);
+        boolean booked = bookFlight(bookingNumber, cc);
         
+        assertTrue(booked);
         
-        
-        
-                
+        System.out.println("--------------------");
         
     }
 
     @Test
-    public void testCancelFlight() {
+    public void testCancelFlight() throws DatatypeConfigurationException, LameDuckException_Exception {
+        
+        GregorianCalendar gregDate = new GregorianCalendar(2014,11,24);
+        DatatypeFactory df = DatatypeFactory.newInstance();
+        XMLGregorianCalendar date = df.newXMLGregorianCalendar(gregDate);
+        List<FlightOption> flights = getFlights("CPH", "BKK", date);
+        FlightOption myFlight = flights.get(0);
+        
+        int bookingNumber = myFlight.getBookingNumber();
+        int price = myFlight.getPrice();
+        System.out.println("Booking nr.: " + bookingNumber);
+        System.out.println("Price: " + price);
+        System.out.println("Booking Flight ...");
+        
+        
+        boolean booked = bookFlight(bookingNumber, cc);
+        System.out.println(booked);
+        System.out.println("--------------------");
+        
+        assertTrue(booked);
+        
+        System.out.println("Canceling Flight ...");
+        boolean cancled = cancelFlight(bookingNumber, price, cc);
+        
+        assertTrue(cancled);
     }
 
     private static boolean bookFlight(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCard) throws LameDuckException_Exception {
