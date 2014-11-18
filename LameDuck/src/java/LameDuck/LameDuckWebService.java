@@ -5,9 +5,9 @@
 package LameDuck;
 
 import fastmoney.imm.dtu.dk.AccountType;
-import fastmoney.imm.dtu.dk.BankService;
 import fastmoney.imm.dtu.dk.CreditCardFaultMessage;
 import fastmoney.imm.dtu.dk.CreditCardInfoType;
+import fastmoney.imm.dtu.dk.ExpirationDateType;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,7 +19,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.ws.WebFault;
-import javax.xml.ws.WebServiceRef;
 
 /**
  *
@@ -30,7 +29,6 @@ import javax.xml.ws.WebServiceRef;
 public class LameDuckWebService {
     //@WebServiceRef(wsdlLocation = "WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl")
 
-    private BankService service;
     private final AccountType LAME_DUCK_ACCOUNT = new AccountType();
     private ArrayList<Flight> flights = new ArrayList<Flight>();
     private ArrayList<FlightOption> flightsAvailable = new ArrayList<FlightOption>();
@@ -82,15 +80,15 @@ public class LameDuckWebService {
     @WebMethod(operationName = "getFlights")
     public ArrayList<FlightOption> getFlights(@WebParam(name = "from") String source, @WebParam(name = "to") String destination, @WebParam(name = "date") GregorianCalendar date) throws LameDuckException {
         // Check for valid user input
-        
+
         if (source == null || source.isEmpty()) {
             throw new LameDuckException("Invalid user input: empty source");
-        } else if (destination == null || destination.isEmpty()){
+        } else if (destination == null || destination.isEmpty()) {
             throw new LameDuckException("Invalid user input: empty destination");
-        } else if (date == null){
-             throw new LameDuckException("Invalid user input: empty date");
+        } else if (date == null) {
+            throw new LameDuckException("Invalid user input: empty date");
         }
-        
+
 
         // Search through all the flights
         for (Flight flight : flights) {
@@ -100,7 +98,7 @@ public class LameDuckWebService {
             int flightYear = departureDate.get(Calendar.YEAR);
             int flightMonth = departureDate.get(Calendar.MONTH);
             int flightDay = departureDate.get(Calendar.DAY_OF_MONTH);
-            
+
             // Check if source, destination and date matches
             if (flight.getSource().equals(source) && flight.getDestination().equals(destination) && flightYear == date.get(Calendar.YEAR) && flightMonth == date.get(Calendar.MONTH) && flightDay == date.get(Calendar.DAY_OF_MONTH)) {
                 FlightOption flightOption = new FlightOption(flight, "LameDuck");
@@ -115,16 +113,21 @@ public class LameDuckWebService {
      * @param bookingNumber
      * @param creditCard
      * @return
-     * @throws CreditCardFaultMessage
+     * @throws LameDuckException
      */
     @WebMethod(operationName = "bookFlight")
     public boolean bookFlight(@WebParam(name = "bookingNumber") int bookingNumber, @WebParam(name = "creditCard") CreditCardInfoType creditCard) throws LameDuckException {
         // TODO: actually book the flight that is note somewhere that the flight is booked
         boolean booked = false;
+        if (flightsAvailable.isEmpty()) {
+            throw new LameDuckException("empty flight list");
+        }
+
         for (FlightOption flightOption : flightsAvailable) {
             if (flightOption.getBookingNumber() == bookingNumber) {
                 try {
-                    booked = chargeCreditCard(0, creditCard, flightOption.getPrice(), LAME_DUCK_ACCOUNT);
+
+                    booked = chargeCreditCard(5, creditCard, flightOption.getPrice(), LAME_DUCK_ACCOUNT);
 
                 } catch (Exception e) {
                     throw new LameDuckException(e.getMessage());
@@ -142,15 +145,15 @@ public class LameDuckWebService {
      * @param price
      * @param creditCard
      * @return
-     * @throws CreditCardFaultMessage
+     * @throws LameDuckException
      */
     @WebMethod(operationName = "cancelFlight")
     public boolean cancelFlight(@WebParam(name = "bookingNumber") int bookingNumber, @WebParam(name = "price") int price, @WebParam(name = "creditCard") CreditCardInfoType creditCard) throws LameDuckException {
         boolean canceled = false;
-        int refund = (int) 0.5 * price;
+        int refund = (int) (price/2);
 
         try {
-            canceled = refundCreditCard(0, creditCard, refund, LAME_DUCK_ACCOUNT);
+            canceled = refundCreditCard(5, creditCard, refund, LAME_DUCK_ACCOUNT);
 
         } catch (Exception e) {
             throw new LameDuckException(e.getMessage());
@@ -163,30 +166,51 @@ public class LameDuckWebService {
     /*
      * BankService Methods
      */
-    private boolean chargeCreditCard(int group, fastmoney.imm.dtu.dk.CreditCardInfoType creditCardInfo, int amount, fastmoney.imm.dtu.dk.AccountType account) throws CreditCardFaultMessage {
+    
+    private static boolean chargeCreditCard(int group, fastmoney.imm.dtu.dk.CreditCardInfoType creditCardInfo, int amount, fastmoney.imm.dtu.dk.AccountType account) throws CreditCardFaultMessage {
+        fastmoney.imm.dtu.dk.BankService service = new fastmoney.imm.dtu.dk.BankService();
         fastmoney.imm.dtu.dk.BankPortType port = service.getBankPort();
         return port.chargeCreditCard(group, creditCardInfo, amount, account);
     }
 
-    private boolean refundCreditCard(int group, fastmoney.imm.dtu.dk.CreditCardInfoType creditCardInfo, int amount, fastmoney.imm.dtu.dk.AccountType account) throws CreditCardFaultMessage {
+    private static boolean refundCreditCard(int group, fastmoney.imm.dtu.dk.CreditCardInfoType creditCardInfo, int amount, fastmoney.imm.dtu.dk.AccountType account) throws CreditCardFaultMessage {
+        fastmoney.imm.dtu.dk.BankService service = new fastmoney.imm.dtu.dk.BankService();
         fastmoney.imm.dtu.dk.BankPortType port = service.getBankPort();
         return port.refundCreditCard(group, creditCardInfo, amount, account);
     }
 
-    private boolean validateCreditCard(int group, fastmoney.imm.dtu.dk.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
+    private static boolean validateCreditCard(int group, fastmoney.imm.dtu.dk.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
+        fastmoney.imm.dtu.dk.BankService service = new fastmoney.imm.dtu.dk.BankService();
         fastmoney.imm.dtu.dk.BankPortType port = service.getBankPort();
         return port.validateCreditCard(group, creditCardInfo, amount);
     }
-    
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         try {
             LameDuckWebService ws = new LameDuckWebService();
-            GregorianCalendar date = new GregorianCalendar(2014,11,24);
+            GregorianCalendar date = new GregorianCalendar(2014, 11, 24);
             ArrayList<FlightOption> flights = ws.getFlights("CPH", "BKK", date);
-            for(FlightOption f : flights){
+            for (FlightOption f : flights) {
                 System.out.println(f.getFlight().getSource() + " " + f.getFlight().getDestination() + " " + f.getPrice());
+
             }
-        } catch (LameDuckException ex) {
+            FlightOption myFlight = flights.get(0);
+            int price = myFlight.getPrice();
+            int bookingNumber = myFlight.getBookingNumber();
+            CreditCardInfoType cc = new CreditCardInfoType();
+            cc.setName("Tick Joachim");
+            cc.setNumber("50408824");
+            ExpirationDateType expirationDate = new ExpirationDateType();
+            expirationDate.setMonth(2);
+            expirationDate.setYear(11);
+            cc.setExpirationDate(expirationDate);
+
+            System.out.println(ws.LAME_DUCK_ACCOUNT);
+            boolean booked = chargeCreditCard(5, cc, price, ws.LAME_DUCK_ACCOUNT);
+            //System.out.println(booked);
+            
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             Logger.getLogger(LameDuckWebService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

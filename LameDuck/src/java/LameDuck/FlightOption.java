@@ -31,7 +31,7 @@ public class FlightOption {
             this.price = 1000000;
         } else {
             Random rng = new Random();
-            this.price = rng.nextInt(5000);
+            this.price = rng.nextInt(999);
         }
     }
 
