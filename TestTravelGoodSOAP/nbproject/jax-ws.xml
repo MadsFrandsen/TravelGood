@@ -2,10 +2,10 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services/>
   <clients>
-    <client name="service">
-      <wsdl-url>http://localhost:9080/service?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_9080/service.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">dtu.ws.travelgood.client</package-name>
+    <client name="travelgoodPort">
+      <wsdl-url>http://localhost:9070/travelgoodService/travelgoodPort?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_9070/travelgoodService/travelgoodPort.wsdl</local-wsdl-file>
+      <package-name>ws.travelgood</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -18,7 +18,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:9080/service?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:9070/travelgoodService/travelgoodPort?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -27,10 +27,6 @@
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>dtu.ws.travelgood.client</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>
