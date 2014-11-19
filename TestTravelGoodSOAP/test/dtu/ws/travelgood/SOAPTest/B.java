@@ -31,11 +31,11 @@ public class B extends T {
     @Test
     public void testB() {
         itinearyID = createItinerary(itinearyID);
-        int bookingNumber = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
+        int bookingNumber = getFlights(itinearyID, destinations[0], dates[0], destinations[1]).getTravels().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
-        bookingNumber = getFlights(itinearyID, unbookable[0].source, unbookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
+        bookingNumber = getFlights(itinearyID, unbookableDestinations[0], dates[0], unbookableDestinations[1]).getTravels().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
-        bookingNumber = getFlights(itinearyID, bookable[1].source, bookable[1].departure, bookable[1].destination).getTravels().get(0).getBookingNumber();
+        bookingNumber = getFlights(itinearyID, destinations[1], dates[0], destinations[2]).getTravels().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
         
         travels = (Travel[]) getItinerary(itinearyID).getFlightIbookings().toArray();

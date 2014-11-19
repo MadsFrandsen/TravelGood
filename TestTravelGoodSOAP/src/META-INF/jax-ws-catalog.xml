@@ -5,4 +5,5 @@
     <system systemId="http://192.168.0.100:9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd" uri="wsdl/192.168.0.100_9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd"/>
     <system systemId="http://localhost:9070/travelgoodService/travelgoodPort?wsdl" uri="wsdl/localhost_9070/travelgoodService/travelgoodPort.wsdl"/>
     <system systemId="http://jonas-XPS13:9090/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd" uri="wsdl/jonas-XPS13_9090/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd"/>
+    <system systemId="http://10.16.142.132:9090/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd" uri="wsdl/10.16.142.132_9090/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd"/>
 </catalog>
