@@ -2,4 +2,8 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <nextCatalog catalog="nbproject/private/retriever/catalog.xml"/>
     <system systemId="LameDuck/WEB-INF/wsdl/LameDuckWebService.wsdl" uri="nb-uri:LameDuck#web/WEB-INF/wsdl/LameDuckWebService.wsdl"/>
+    <system systemId="LameDuck/wsdl/LameDuckWebService.wsdl" uri="nb-uri:LameDuck#src/conf/wsdl/LameDuckWebService.wsdl"/>
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?wsdl" uri="src/localhost_8080/LameDuck/LameDuckWebService.wsdl"/>
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?xsd=1" uri="src/localhost_8080/LameDuck/LameDuckWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?xsd=2" uri="src/localhost_8080/LameDuck/LameDuckWebService.xsd_2.xsd"/>
 </catalog>

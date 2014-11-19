@@ -39,24 +39,50 @@ public class LameDuckWebService {
     public LameDuckWebService() throws LameDuckException {
         try {
 
-            String flightData = "/Users/Nygaard/Code/GitHub/TravelGood/LameDuck/src/java/LameDuck/flightsdata.csv";
+//            String flightData = "../flightsdata.csv";
             LAME_DUCK_ACCOUNT.setName("LameDuck");
             LAME_DUCK_ACCOUNT.setNumber("50208812");
-            File f = new File(flightData);
-            Scanner in = new Scanner(f);
-            String headers = in.nextLine(); // skip first line as it is only headers
-            while (in.hasNext()) {
-                String[] flightInfo = in.nextLine().split(";"); // Excel data is seperated by ;
-                String airline = flightInfo[0];
-                String source = flightInfo[1];
-                String departureDate = flightInfo[2];
-                String departureTime = flightInfo[3];
-                String destination = flightInfo[4];
-                String arrivalDate = flightInfo[5];
-                String arrivalTime = flightInfo[6];
-                Flight flight = new Flight(airline, source, departureDate, departureTime, destination, arrivalDate, arrivalTime);
-                flights.add(flight);
-            }
+            
+            flights.add(new Flight("SAS","CPH","24122014","1430","BKK","25122014","0600"));
+            flights.add(new Flight("SAS","CPH","24122014","1630","BKK","25122014","0800"));
+            flights.add(new Flight("SAS","CPH","24122014","1830","BKK","25122014","1000"));
+            flights.add(new Flight("SAS","BKK","31122014","0130","CPH","01012015","0730"));
+            flights.add(new Flight("SAS","BKK","31122015","0230","CPH","01012016","0830"));
+            flights.add(new Flight("SAS","BKK","31122016","0330","CPH","01012017","0930"));
+            flights.add(new Flight("Thai","BKK","27122014","1530","SFO","28122014","0700"));
+            flights.add(new Flight("Thai","BKK","27122015","1700","SFO","28122014","0930"));
+            flights.add(new Flight("Thai","SFO","02022015","1100","BKK","03022015","0800"));
+            flights.add(new Flight("Thai","SFO","02022016","1500","BKK","03022015","1200"));
+            flights.add(new Flight("Lufthansa","FRA","26122014","1200","SFO","26122014","2000"));
+            flights.add(new Flight("Lufthansa","FRA","26122014","1400","SFO","26122014","2200"));
+            flights.add(new Flight("Lufthansa","FRA","26122014","1600","SFO","26122014","2330"));
+            flights.add(new Flight("Lufthansa","SFO","05012015","1200","FRA","05012015","1830"));
+            flights.add(new Flight("Lufthansa","SFO","05012016","1430","FRA","05012016","2000"));
+            flights.add(new Flight("Lufthansa","SFO","05012017","1645","FRA","05012017","2245"));
+            flights.add(new Flight("Air France","CDG","10012015","0930","YVR","10012015","1430"));
+            flights.add(new Flight("Air France","CDG","10012015","1130","YVR","10012015","1630"));
+            flights.add(new Flight("Air France","YVR","15012015","1030","CDG","15012015","1830"));
+            flights.add(new Flight("Air France","YVR","15012015","1330","CDG","15012015","2130"));
+            flights.add(new Flight("KLM","AMS","12122014","1730","DAR","12122014","2300"));
+            flights.add(new Flight("KLM","DAR","15122014","1500","AMS","15122014","2100"));
+            flights.add(new Flight("Disney","Andeby","01012015","1200","Moon","01012015","2300"));
+            
+//            File f = new File(flightData);
+//            Scanner in = new Scanner(f);
+//            String headers = in.nextLine(); // skip first line as it is only headers
+            
+//            while (in.hasNext()) {
+//                String[] flightInfo = in.nextLine().split(";"); // Excel data is seperated by ;
+//                String airline = flightInfo[0];
+//                String source = flightInfo[1];
+//                String departureDate = flightInfo[2];
+//                String departureTime = flightInfo[3];
+//                String destination = flightInfo[4];
+//                String arrivalDate = flightInfo[5];
+//                String arrivalTime = flightInfo[6];
+//                Flight flight = new Flight(airline, source, departureDate, departureTime, destination, arrivalDate, arrivalTime);
+//                flights.add(flight);
+//            }
             /*
              Flight flight = new Flight("SAS", "CPH","24122014","1400","BKK","25122014","0630");
              flights.add(flight);
