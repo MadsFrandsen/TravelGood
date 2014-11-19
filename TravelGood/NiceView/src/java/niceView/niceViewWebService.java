@@ -63,7 +63,7 @@ public class niceViewWebService {
      * Web service operation
      */
     @WebMethod(operationName = "bookHotel")
-    public boolean bookHotel(@WebParam(name = "bookingNumber") int bookingNumber, @WebParam(name = "creditCardInfo") @XmlElement(required=false) dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, @WebParam(name = "account") @XmlElement(required=false)dk.dtu.imm.fastmoney.types.AccountType account) throws NiceViewFault {
+    public boolean bookHotel(@WebParam(name = "bookingNumber") int bookingNumber, @WebParam(name = "creditCardInfo") dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, @WebParam(name = "account") dk.dtu.imm.fastmoney.types.AccountType account) throws NiceViewFault {
 
         boolean booked = false;
         
@@ -71,10 +71,10 @@ public class niceViewWebService {
             if (reservation.getBookingNumber() == bookingNumber){
                 try{
                 if (reservation.isCreditCardGuarantee()){  
-                    validateCreditCard(0, creditCardInfo, reservation.getTotalPrice());
+                    validateCreditCard(5, creditCardInfo, reservation.getTotalPrice());
                     reservation.setAccount(account);
                     reservation.setCreditCardInfo(creditCardInfo);
-                    chargeCreditCard(0,creditCardInfo,reservation.getTotalPrice(),account);
+                    chargeCreditCard(5,creditCardInfo,reservation.getTotalPrice(),account);
                 }
                 
                 reservations.add(reservation);
@@ -100,7 +100,7 @@ public class niceViewWebService {
             if (reservation.getBookingNumber() == bookingNumber){
                 //Cancellation
                 try{
-                    refundCreditCard(0,reservation.getCreditCardInfo(),reservation.getTotalPrice(),reservation.getAccount());
+                    refundCreditCard(5,reservation.getCreditCardInfo(),reservation.getTotalPrice(),reservation.getAccount());
                     reservations.remove(reservation);
                     found = true;
                 }
