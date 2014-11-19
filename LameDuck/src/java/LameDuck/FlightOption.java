@@ -11,23 +11,31 @@ import java.util.Random;
  * @author Nygaard
  */
 public class FlightOption {
-    
+
     private Flight flight;
     private int bookingNumber;
-    private static int nextBookingNumber = 0;
+    private static int nextBookingNumber = 1000;
     private String airlineReservationService;
     private int price;
-    
-    public FlightOption(){
-        
+
+    public FlightOption() {
     }
 
     public FlightOption(Flight flight, String airlineReservationService) {
         nextBookingNumber++;
-        this.bookingNumber = nextBookingNumber;
+        
+        // hardcoded condition so that we can control our unittest.
+        if (flight.getAirline().equals("Mordor")) {
+            this.bookingNumber = 666;
+        } else {
+            this.bookingNumber = nextBookingNumber;
+        }
+        
         this.flight = flight;
         this.airlineReservationService = airlineReservationService;
-        if (flight.getAirline().equals("Disney")){
+        
+        // hardcoded condition so that we can control our unittest.
+        if (flight.getAirline().equals("Disney")) {
             this.price = 1000000;
         } else {
             Random rng = new Random();
@@ -55,8 +63,6 @@ public class FlightOption {
     public int getBookingNumber() {
         return bookingNumber;
     }
-    
-    
 
     /**
      * @return the airlineReservationService
@@ -92,8 +98,4 @@ public class FlightOption {
     public void setBookingNumber(int bookingNumber) {
         this.bookingNumber = bookingNumber;
     }
-    
-    
-    
-    
 }

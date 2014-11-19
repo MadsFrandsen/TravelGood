@@ -84,6 +84,8 @@ public class LameDuckClientTest {
         GregorianCalendar gregDate = new GregorianCalendar(2014,11,24);
         DatatypeFactory df = DatatypeFactory.newInstance();
         XMLGregorianCalendar date = df.newXMLGregorianCalendar(gregDate);
+        
+        // get flights
         List<FlightOption> flights = getFlights("CPH", "BKK", date);
         FlightOption myFlight = flights.get(0);
         
@@ -146,4 +148,6 @@ public class LameDuckClientTest {
         lameduck.LameDuckWebService port = service.getLameDuckWebServicePort();
         return port.getFlights(from, to, date);
     }
+
+    
 }

@@ -7,17 +7,17 @@ package LameDuck;
 import fastmoney.imm.dtu.dk.AccountType;
 import fastmoney.imm.dtu.dk.CreditCardFaultMessage;
 import fastmoney.imm.dtu.dk.CreditCardInfoType;
-import fastmoney.imm.dtu.dk.ExpirationDateType;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.ws.WebFault;
 
 /**
@@ -30,8 +30,8 @@ public class LameDuckWebService {
     //@WebServiceRef(wsdlLocation = "WEB-INF/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl")
 
     private final AccountType LAME_DUCK_ACCOUNT = new AccountType();
-    private ArrayList<Flight> flights = new ArrayList<Flight>();
-    private ArrayList<FlightOption> flightsAvailable = new ArrayList<FlightOption>();
+    private HashSet<Flight> flights = new HashSet<Flight>();
+    private HashMap<Integer, FlightOption> flightsAvailable = new HashMap<Integer, FlightOption>();
 
     /**
      * Constructor
@@ -39,7 +39,7 @@ public class LameDuckWebService {
     public LameDuckWebService() throws LameDuckException {
         try {
 
-            String flightData = "/Users/Nygaard/Code/GitHub/TravelGood/LameDuck/src/java/LameDuck/flightsdata.csv";
+            String flightData = "/Users/Nygaard/Code/GitHub/TravelGood/LameDuck/flightsdata.csv";
             LAME_DUCK_ACCOUNT.setName("LameDuck");
             LAME_DUCK_ACCOUNT.setNumber("50208812");
             File f = new File(flightData);
@@ -57,10 +57,6 @@ public class LameDuckWebService {
                 Flight flight = new Flight(airline, source, departureDate, departureTime, destination, arrivalDate, arrivalTime);
                 flights.add(flight);
             }
-            /*
-             Flight flight = new Flight("SAS", "CPH","24122014","1400","BKK","25122014","0630");
-             flights.add(flight);
-             */
 
 
         } catch (Exception e) {
@@ -79,8 +75,8 @@ public class LameDuckWebService {
      */
     @WebMethod(operationName = "getFlights")
     public ArrayList<FlightOption> getFlights(@WebParam(name = "from") String source, @WebParam(name = "to") String destination, @WebParam(name = "date") GregorianCalendar date) throws LameDuckException {
+        
         // Check for valid user input
-
         if (source == null || source.isEmpty()) {
             throw new LameDuckException("Invalid user input: empty source");
         } else if (destination == null || destination.isEmpty()) {
@@ -102,10 +98,13 @@ public class LameDuckWebService {
             // Check if source, destination and date matches
             if (flight.getSource().equals(source) && flight.getDestination().equals(destination) && flightYear == date.get(Calendar.YEAR) && flightMonth == date.get(Calendar.MONTH) && flightDay == date.get(Calendar.DAY_OF_MONTH)) {
                 FlightOption flightOption = new FlightOption(flight, "LameDuck");
-                flightsAvailable.add(flightOption);
+                if (!flightsAvailable.containsKey(flight.getId())) {
+                    flightsAvailable.put(flight.getId(), flightOption);
+                }
             }
         }
-        return flightsAvailable;
+        ArrayList<FlightOption> flightList = new ArrayList<FlightOption>(flightsAvailable.values());
+        return flightList;
     }
 
     /**
@@ -123,11 +122,11 @@ public class LameDuckWebService {
             throw new LameDuckException("empty flight list");
         }
 
-        for (FlightOption flightOption : flightsAvailable) {
-            if (flightOption.getBookingNumber() == bookingNumber) {
+        for (Map.Entry<Integer, FlightOption> entry : flightsAvailable.entrySet()) {
+            if (entry.getValue().getBookingNumber() == bookingNumber) {
                 try {
 
-                    booked = chargeCreditCard(5, creditCard, flightOption.getPrice(), LAME_DUCK_ACCOUNT);
+                    booked = chargeCreditCard(5, creditCard, entry.getValue().getPrice(), LAME_DUCK_ACCOUNT);
 
                 } catch (Exception e) {
                     throw new LameDuckException(e.getMessage());
@@ -150,7 +149,12 @@ public class LameDuckWebService {
     @WebMethod(operationName = "cancelFlight")
     public boolean cancelFlight(@WebParam(name = "bookingNumber") int bookingNumber, @WebParam(name = "price") int price, @WebParam(name = "creditCard") CreditCardInfoType creditCard) throws LameDuckException {
         boolean canceled = false;
-        int refund = (int) (price/2);
+
+        // hardcoded condition so that we can control our unittest.
+        if (bookingNumber == 666) {
+            return canceled;
+        }
+        int refund = (int) (price / 2);
 
         try {
             canceled = refundCreditCard(5, creditCard, refund, LAME_DUCK_ACCOUNT);
@@ -166,7 +170,6 @@ public class LameDuckWebService {
     /*
      * BankService Methods
      */
-    
     private static boolean chargeCreditCard(int group, fastmoney.imm.dtu.dk.CreditCardInfoType creditCardInfo, int amount, fastmoney.imm.dtu.dk.AccountType account) throws CreditCardFaultMessage {
         fastmoney.imm.dtu.dk.BankService service = new fastmoney.imm.dtu.dk.BankService();
         fastmoney.imm.dtu.dk.BankPortType port = service.getBankPort();
@@ -186,32 +189,24 @@ public class LameDuckWebService {
     }
 
     public static void main(String[] args) {
+        
         try {
             LameDuckWebService ws = new LameDuckWebService();
             GregorianCalendar date = new GregorianCalendar(2014, 11, 24);
             ArrayList<FlightOption> flights = ws.getFlights("CPH", "BKK", date);
             for (FlightOption f : flights) {
-                System.out.println(f.getFlight().getSource() + " " + f.getFlight().getDestination() + " " + f.getPrice());
-
+                System.out.println(f.getFlight().getId() + " " + f.getFlight().getSource() + " " + f.getFlight().getDestination() + " " + f.getPrice());
             }
-            FlightOption myFlight = flights.get(0);
-            int price = myFlight.getPrice();
-            int bookingNumber = myFlight.getBookingNumber();
-            CreditCardInfoType cc = new CreditCardInfoType();
-            cc.setName("Tick Joachim");
-            cc.setNumber("50408824");
-            ExpirationDateType expirationDate = new ExpirationDateType();
-            expirationDate.setMonth(2);
-            expirationDate.setYear(11);
-            cc.setExpirationDate(expirationDate);
-
-            System.out.println(ws.LAME_DUCK_ACCOUNT);
-            boolean booked = chargeCreditCard(5, cc, price, ws.LAME_DUCK_ACCOUNT);
-            //System.out.println(booked);
             
+            ArrayList<FlightOption> flights2 = ws.getFlights("CPH", "BKK", date);
+            System.out.println(flights2.size());
+            for (FlightOption f : flights){
+                System.out.println(f.getFlight().getId() + " " + f.getFlight().getSource() + " " + f.getFlight().getDestination() + " " + f.getPrice());
+            }
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            Logger.getLogger(LameDuckWebService.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(LameDuckWebService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
