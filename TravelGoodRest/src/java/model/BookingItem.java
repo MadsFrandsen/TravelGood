@@ -4,10 +4,23 @@
  */
 package model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class BookingItem {
     
+    @XmlElement
     private BookingStatus bookingStatus;
+    
+    @XmlElement
     private String bookingId;
+    
+    public BookingItem() {}
+    
+    public BookingItem(String bookingId) {
+        this.bookingId = bookingId;
+    }
     
     public enum BookingStatus {
         CONFIRMED,

@@ -57,8 +57,8 @@ public class TestItineraryResource {
         addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
         addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "Paris", "Copenhagen", "3-1-2015");
-        addRandomHotelToItinerary(client, itineraryId, "Copenhagen", "3-1-2015", "8-1-2015");
+        addRandomFlightToItinerary(client, itineraryId, "Paris", "Copenhagen", "03-01-2015");
+        addRandomHotelToItinerary(client, itineraryId, "Copenhagen", "03-01-2015", "08-01-2015");
         Itinerary itinerary = getItinerary(client, itineraryId);
 
         // Assert, that all flights are unconfirmed

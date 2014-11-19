@@ -39,7 +39,7 @@ public class LameDuckWebService {
     public LameDuckWebService() throws LameDuckException {
         try {
 
-            String flightData = "/Users/Nygaard/Code/GitHub/TravelGood/LameDuck/src/java/LameDuck/flightsdata.csv";
+            String flightData = "D:/School/TravelGood/Repo/TravelGood/LameDuck/src/java/LameDuck/flightsdata.csv";
             LAME_DUCK_ACCOUNT.setName("LameDuck");
             LAME_DUCK_ACCOUNT.setNumber("50208812");
             File f = new File(flightData);
