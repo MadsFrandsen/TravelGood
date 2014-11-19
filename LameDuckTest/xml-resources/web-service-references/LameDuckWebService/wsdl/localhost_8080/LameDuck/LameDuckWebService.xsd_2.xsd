@@ -65,6 +65,7 @@
 <xs:element name="arrivalTime" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="departureTime" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="destination" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:int"/>
 <xs:element name="source" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
