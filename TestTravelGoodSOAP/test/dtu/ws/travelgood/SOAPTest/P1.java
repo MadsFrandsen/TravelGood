@@ -43,7 +43,7 @@ public class P1 extends T {
     @Test
     public void testP1()  {
 
-        itinearyID = createItinerary(personNames[0]);
+        itinearyID = createItinerary(person[0].name);
 
         
         //Plan first flight
@@ -75,7 +75,7 @@ public class P1 extends T {
         assertEquals("unconfirmed", getItinerary(itinearyID).getStatus());
 
         //Do booking 
-        bookItinerary(itinearyID, creditCardNumbers[1], personNames[1]);
+        bookItinerary(itinearyID, person[0].number, person[0].name);
 
         //get itinerary
         Itinerary itinerary = getItinerary(itinearyID);

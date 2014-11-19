@@ -30,7 +30,9 @@ public class B extends T {
      */
     @Test
     public void testB() {
-        itinearyID = createItinerary(itinearyID);
+        //Create itinerary
+        itinearyID = createItinerary(person[8].name); // this person has a CC limit on 10.000
+        //Get a flight and book it.
         int bookingNumber = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
         bookingNumber = getFlights(itinearyID, unbookable[0].source, unbookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
@@ -46,7 +48,7 @@ public class B extends T {
         }
         
         //Asser that booking fail
-        assertEquals(false, bookItinerary(itinearyID, creditCardNumbers[0], personNames[0]));
+        assertEquals(false, bookItinerary(itinearyID, person[8].number, person[8].name));
         itineary = getItinerary(itinearyID);
         
         assertEquals(itineary.getFlightIbookings().get(0).getStatus(),"cancelled");
