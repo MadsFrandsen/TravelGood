@@ -15,14 +15,31 @@ import ws.travelgood.xml.Travel;
 import ws.travelgood.xml.TravelOptions;
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Class containing test data and methods for interacting 
+ * with the webservices. All tests enherit from this class.
  */
 /**
  *
  * @author jonas
  */
 public class T {
+
+    FlightOption[] bookable, unbookable, nonCancelable;
+    public DatatypeFactory df;
+    public Travel[] travels, itinearyTravels, bookableTravels;
+    public Stay[] stays, itinearyStays;
+    public String itinearyID;
+    public Itinerary itineary;
+    public Person[] person;
+    HotelOption[] hotelOption;
+
+    public T() throws DatatypeConfigurationException {
+        df = DatatypeFactory.newInstance();
+        loadFlightOptions();
+        loadPersonOptions();
+        loadHotelOptions();
+        bookableTravels = new Travel[6];
+    }
 
     class FlightOption {
 
@@ -44,35 +61,26 @@ public class T {
             return "Person{" + "name=" + name + ", number=" + number + ", expMonth=" + expMonth + ", expYear=" + expYear + '}';
         }
     }
-    FlightOption[] bookable, unbookable, nonCancelable;
-    public DatatypeFactory df;
-    public String[] personNames;
-    public int[] creditCardNumbers;
-    public Travel[] travels, itinearyTravels, bookableTravels;
-    public Stay[] stays, itinearyStays;
-    public String itinearyID;
-    public Itinerary itineary;
-    public Person[] person;
 
-    public T() throws DatatypeConfigurationException {
-        df = DatatypeFactory.newInstance();
-        loadFlightOptions();
+    class HotelOption {
 
-        personNames = new String[3];
-        personNames[0] = "Poul Thomsen";
-        personNames[1] = "Søren Frederiksen";
-        personNames[2] = "Peter Pan";
+        public String name, address, city;
+        public int price;
+        public boolean validatesCreditcards;
+        public XMLGregorianCalendar fromDate, toDate;
 
-        bookableTravels = new Travel[6];
-
-        creditCardNumbers = new int[2];
-        creditCardNumbers[0] = 1121222224;
-        creditCardNumbers[1] = 1121222224;
-
+        public HotelOption() {
+            fromDate = df.newXMLGregorianCalendar("2015-02-01");
+            toDate = df.newXMLGregorianCalendar("2015-02-04");
+        }
     }
 
     private void loadPersonOptions() {
         person = new Person[10];
+        for (int i = 0; i < person.length; i++) {
+            person[i] = new Person();
+
+        }
         person[0].name = "Anne Strandberg";
         person[0].number = 50408816;
         person[0].expMonth = 5;
@@ -125,12 +133,126 @@ public class T {
         person[9].ccLimit = 10000;
     }
 
+    private void loadHotelOptions() {
+        hotelOption = new HotelOption[21];
+        for (int i = 0; i < hotelOption.length; i++) {
+            hotelOption[i] = new HotelOption();
+        }
+        hotelOption[0].name = "Hotel 0";
+        hotelOption[0].address = "Main Street 0";
+        hotelOption[0].validatesCreditcards = true;
+        hotelOption[0].price = 10;
+        hotelOption[0].city = "City 0";
+        hotelOption[1].name = "Hotel 1";
+        hotelOption[1].address = "Main Street 1";
+        hotelOption[1].validatesCreditcards = false;
+        hotelOption[1].price = 1010;
+        hotelOption[1].city = "City 1";
+        hotelOption[2].name = "Hotel 2";
+        hotelOption[2].address = "Main Street 2";
+        hotelOption[2].validatesCreditcards = true;
+        hotelOption[2].price = 2010;
+        hotelOption[2].city = "City 2";
+        hotelOption[3].name = "Hotel 3";
+        hotelOption[3].address = "Main Street 3";
+        hotelOption[3].validatesCreditcards = false;
+        hotelOption[3].price = 3010;
+        hotelOption[3].city = "City 3";
+        hotelOption[4].name = "Hotel 4";
+        hotelOption[4].address = "Main Street 4";
+        hotelOption[4].validatesCreditcards = true;
+        hotelOption[4].price = 4010;
+        hotelOption[4].city = "City 4";
+        hotelOption[5].name = "Hotel 5";
+        hotelOption[5].address = "Main Street 5";
+        hotelOption[5].validatesCreditcards = false;
+        hotelOption[5].price = 5010;
+        hotelOption[5].city = "City 0";
+        hotelOption[6].name = "Hotel 6";
+        hotelOption[6].address = "Main Street 6";
+        hotelOption[6].validatesCreditcards = true;
+        hotelOption[6].price = 6010;
+        hotelOption[6].city = "City 1";
+        hotelOption[7].name = "Hotel 7";
+        hotelOption[7].address = "Main Street 7";
+        hotelOption[7].validatesCreditcards = false;
+        hotelOption[7].price = 7010;
+        hotelOption[7].city = "City 2";
+        hotelOption[8].name = "Hotel 8";
+        hotelOption[8].address = "Main Street 8";
+        hotelOption[8].validatesCreditcards = true;
+        hotelOption[8].price = 8010;
+        hotelOption[8].city = "City 3";
+        hotelOption[9].name = "Hotel 9";
+        hotelOption[9].address = "Main Street 9";
+        hotelOption[9].validatesCreditcards = false;
+        hotelOption[9].price = 9010;
+        hotelOption[9].city = "City 4";
+        hotelOption[10].name = "Hotel 10";
+        hotelOption[10].address = "Main Street 10 ";
+        hotelOption[10].validatesCreditcards = true;
+        hotelOption[10].price = 10010;
+        hotelOption[10].city = "City 0";
+        hotelOption[11].name = "Hotel 11";
+        hotelOption[11].address = "Main Street 11 ";
+        hotelOption[11].validatesCreditcards = false;
+        hotelOption[11].price = 11010;
+        hotelOption[11].city = "City 1";
+        hotelOption[12].name = "Hotel 12";
+        hotelOption[12].address = "Main Street 12 ";
+        hotelOption[12].validatesCreditcards = true;
+        hotelOption[12].price = 12010;
+        hotelOption[12].city = "City 2";
+        hotelOption[13].name = "Hotel 13";
+        hotelOption[13].address = "Main Street 13 ";
+        hotelOption[13].validatesCreditcards = false;
+        hotelOption[13].price = 13010;
+        hotelOption[13].city = "City 3";
+        hotelOption[14].name = "Hotel 14";
+        hotelOption[14].address = "Main Street 14 ";
+        hotelOption[14].validatesCreditcards = true;
+        hotelOption[14].price = 14010;
+        hotelOption[14].city = "City 4";
+        hotelOption[15].name = "Hotel 15";
+        hotelOption[15].address = "Main Street 15 ";
+        hotelOption[15].validatesCreditcards = false;
+        hotelOption[15].price = 15010;
+        hotelOption[15].city = "City 0";
+        hotelOption[16].name = "Hotel 16";
+        hotelOption[16].address = "Main Street 16 ";
+        hotelOption[16].validatesCreditcards = true;
+        hotelOption[16].price = 16010;
+        hotelOption[16].city = "City 1";
+        hotelOption[17].name = "Hotel 17";
+        hotelOption[17].address = "Main Street 17 ";
+        hotelOption[17].validatesCreditcards = false;
+        hotelOption[17].price = 17010;
+        hotelOption[17].city = "City 2";
+        hotelOption[18].name = "Hotel 18";
+        hotelOption[18].address = "Main Street 18 ";
+        hotelOption[18].validatesCreditcards = true;
+        hotelOption[18].price = 18010;
+        hotelOption[18].city = "City 3";
+        hotelOption[19].name = "Hotel 19";
+        hotelOption[19].address = "Main Street 19 ";
+        hotelOption[19].validatesCreditcards = false;
+        hotelOption[19].price = 19010;
+        hotelOption[19].city = "City 4";
+        hotelOption[20].name = "Expensive";
+        hotelOption[20].address = "5th Avenue";
+        hotelOption[20].validatesCreditcards = true;
+        hotelOption[20].price = 1000000;
+        hotelOption[20].city = "NYC";
+
+    }
+
     private void loadFlightOptions() {
         bookable = new FlightOption[1];
         unbookable = new FlightOption[1];
         nonCancelable = new FlightOption[1];
 
-        String flightData = "../LameDuck/src/java/LameDuck/flightsdata.csv";
+
+        String flightData = "../LameDuck/flightsdata.csv";
         ArrayList<FlightOption> bookableList = new ArrayList<>();
         ArrayList<FlightOption> unbookableList = new ArrayList<>();
         ArrayList<FlightOption> nonCancelableList = new ArrayList<>();

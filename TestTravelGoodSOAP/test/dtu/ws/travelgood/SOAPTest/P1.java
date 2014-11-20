@@ -44,15 +44,13 @@ public class P1 extends T {
     public void testP1()  {
 
         itinearyID = createItinerary(person[0].name);
-
         
         //Plan first flight
         travels[0] = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0);
         addFlight(itinearyID, travels[0].getBookingNumber());
 
-
         //Plan a hotol
-        stays[0] = getHotels(itinearyID, dates[0], dates[2], destinations[2]).getStays().get(0);
+        stays[0] = getHotels(itinearyID, hotelOption[0].fromDate, hotelOption[0].toDate, hotelOption[0].city).getStays().get(0);
         addHotel(itinearyID, stays[0].getBookingNumber());
 
         //Plan another flight
@@ -63,9 +61,8 @@ public class P1 extends T {
         travels[2] = getFlights(itinearyID, bookable[2].source, bookable[2].departure, bookable[2].destination).getTravels().get(0);
         addFlight(itinearyID, travels[2].getBookingNumber());
 
-
         //Plan a 2nd hotel
-        stays[1] = getHotels(itinearyID, dates[0], dates[4], destinations[1]).getStays().get(0);
+        stays[1] = getHotels(itinearyID, hotelOption[1].fromDate, hotelOption[1].toDate, hotelOption[1].city).getStays().get(0);
         addHotel(itinearyID, stays[1].getBookingNumber());
 
 

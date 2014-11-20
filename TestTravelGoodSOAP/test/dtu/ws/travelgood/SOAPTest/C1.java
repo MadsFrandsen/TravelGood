@@ -36,7 +36,7 @@ public class C1 extends T {
         bookingNumber = getFlights(itinearyID, bookable[2].source, bookable[2].departure, bookable[2].destination).getTravels().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
         //add a hotel
-        addHotel(itinearyID, getHotels(itinearyID, dates[0], dates[1], destinations[0]).getStays().get(0).getBookingNumber());
+        addHotel(itinearyID, getHotels(itinearyID, hotelOption[0].fromDate, hotelOption[0].toDate, hotelOption[0].city).getStays().get(0).getBookingNumber());
 
         bookItinerary(itinearyID, person[2].number, person[2].name);
         
