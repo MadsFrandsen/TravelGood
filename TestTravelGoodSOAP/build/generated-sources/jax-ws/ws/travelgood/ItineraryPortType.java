@@ -8,10 +8,9 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.datatype.XMLGregorianCalendar;
+import lameduck.GetFlightsResponse;
 import ws.travelgood.xml.AccommodationOptions;
 import ws.travelgood.xml.Itinerary;
-import ws.travelgood.xml.ObjectFactory;
-import ws.travelgood.xml.TravelOptions;
 
 
 /**
@@ -23,7 +22,9 @@ import ws.travelgood.xml.TravelOptions;
 @WebService(name = "itineraryPortType", targetNamespace = "http://travelgood.ws")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
-    ObjectFactory.class
+    dk.dtu.imm.fastmoney.types.ObjectFactory.class,
+    lameduck.ObjectFactory.class,
+    ws.travelgood.xml.ObjectFactory.class
 })
 public interface ItineraryPortType {
 
@@ -107,11 +108,11 @@ public interface ItineraryPortType {
      * @param arrivalDestination
      * @param itineraryID
      * @return
-     *     returns ws.travelgood.xml.TravelOptions
+     *     returns lameduck.GetFlightsResponse
      */
     @WebMethod
     @WebResult(name = "flightList", partName = "flightList")
-    public TravelOptions getFlights(
+    public GetFlightsResponse getFlights(
         @WebParam(name = "itineraryID", partName = "itineraryID")
         String itineraryID,
         @WebParam(name = "arrivalDestination", partName = "arrivalDestination")

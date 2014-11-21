@@ -20,12 +20,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="flightIbookings" type="{http://xml.travelgood.ws}travel" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="hotelbookings" type="{http://xml.travelgood.ws}stay" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="owner" type="{http://xml.travelgood.ws}personName"/>
  *         &lt;element name="status" type="{http://xml.travelgood.ws}bookingStatus"/>
  *         &lt;element name="bookingDate" type="{http://xml.travelgood.ws}bookingDate" minOccurs="0"/>
  *         &lt;element name="ID" type="{http://xml.travelgood.ws}itineraryID"/>
+ *         &lt;element name="flightBookings" type="{http://xml.travelgood.ws}flightBooking" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,16 +36,15 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "itinerary", propOrder = {
-    "flightIbookings",
     "hotelbookings",
     "owner",
     "status",
     "bookingDate",
-    "id"
+    "id",
+    "flightBookings"
 })
 public class Itinerary {
 
-    protected List<Travel> flightIbookings;
     protected List<Stay> hotelbookings;
     @XmlElement(required = true)
     protected String owner;
@@ -54,35 +53,7 @@ public class Itinerary {
     protected XMLGregorianCalendar bookingDate;
     @XmlElement(name = "ID", required = true)
     protected String id;
-
-    /**
-     * Gets the value of the flightIbookings property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the flightIbookings property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getFlightIbookings().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Travel }
-     * 
-     * 
-     */
-    public List<Travel> getFlightIbookings() {
-        if (flightIbookings == null) {
-            flightIbookings = new ArrayList<Travel>();
-        }
-        return this.flightIbookings;
-    }
+    protected List<FlightBooking> flightBookings;
 
     /**
      * Gets the value of the hotelbookings property.
@@ -207,6 +178,35 @@ public class Itinerary {
      */
     public void setID(String value) {
         this.id = value;
+    }
+
+    /**
+     * Gets the value of the flightBookings property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the flightBookings property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getFlightBookings().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link FlightBooking }
+     * 
+     * 
+     */
+    public List<FlightBooking> getFlightBookings() {
+        if (flightBookings == null) {
+            flightBookings = new ArrayList<FlightBooking>();
+        }
+        return this.flightBookings;
     }
 
 }

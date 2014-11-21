@@ -1,24 +1,25 @@
 
-package ws.travelgood.xml;
+package lameduck;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for travelOptions complex type.
+ * <p>Java class for getFlightsResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="travelOptions">
+ * &lt;complexType name="getFlightsResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="travels" type="{http://xml.travelgood.ws}travel" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://LameDuck/}flightOption" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,40 +29,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "travelOptions", propOrder = {
-    "travels"
+@XmlType(name = "getFlightsResponse", propOrder = {
+    "_return"
 })
-public class TravelOptions {
+public class GetFlightsResponse {
 
-    protected List<Travel> travels;
+    @XmlElement(name = "return")
+    protected List<FlightOption> _return;
 
     /**
-     * Gets the value of the travels property.
+     * Gets the value of the return property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the travels property.
+     * This is why there is not a <CODE>set</CODE> method for the return property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getTravels().add(newItem);
+     *    getReturn().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Travel }
+     * {@link FlightOption }
      * 
      * 
      */
-    public List<Travel> getTravels() {
-        if (travels == null) {
-            travels = new ArrayList<Travel>();
+    public List<FlightOption> getReturn() {
+        if (_return == null) {
+            _return = new ArrayList<FlightOption>();
         }
-        return this.travels;
+        return this._return;
     }
 
 }

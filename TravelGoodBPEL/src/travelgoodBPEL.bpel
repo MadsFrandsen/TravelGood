@@ -88,40 +88,8 @@
                             <invoke name="Invoke2" partnerLink="PartnerLink2" operation="getFlights" xmlns:tns="http://LameDuck/" portType="tns:LameDuckWebService" inputVariable="GetFlightsFromLameDuckIn" outputVariable="GetFlightsFromLameDuckOut"/>
                             <assign name="Assign6">
                                 <copy>
-                                    <from>$GetFlightsFromLameDuckOut.parameters/return/flight/destination</from>
-                                    <to>$GetFlightsOut.flightList/ns1:travels/ns1:flight/ns1:toAirport</to>
-                                </copy>
-                                <copy>
-                                    <from>$GetFlightsFromLameDuckOut.parameters/return/flight/source</from>
-                                    <to>$GetFlightsOut.flightList/ns1:travels/ns1:flight/ns1:fromAirport</to>
-                                </copy>
-                                <copy>
-                                    <from>$GetFlightsFromLameDuckOut.parameters/return/price</from>
-                                    <to>$GetFlightsOut.flightList/ns1:travels/ns1:price</to>
-                                </copy>
-                                <copy>
-                                    <from>$GetFlightsFromLameDuckOut.parameters/return/flight/arrivalTime</from>
-                                    <to>$GetFlightsOut.flightList/ns1:travels/ns1:flight/ns1:timeLanding</to>
-                                </copy>
-                                <copy>
-                                    <from>$GetFlightsFromLameDuckOut.parameters/return/flight/departureTime</from>
-                                    <to>$GetFlightsOut.flightList/ns1:travels/ns1:flight/ns1:timeTakeOff</to>
-                                </copy>
-                                <copy>
-                                    <from>$GetFlightsFromLameDuckOut.parameters/return/bookingNumber</from>
-                                    <to>$GetFlightsOut.flightList/ns1:travels/ns1:bookingNumber</to>
-                                </copy>
-                                <copy>
-                                    <from>$GetFlightsFromLameDuckOut.parameters/return/airlineReservationService</from>
-                                    <to>$GetFlightsOut.flightList/ns1:travels/ns1:reservationService</to>
-                                </copy>
-                                <copy>
-                                    <from>'unconfirmed'</from>
-                                    <to>$GetFlightsOut.flightList/ns1:travels/ns1:status</to>
-                                </copy>
-                                <copy>
-                                    <from>$GetFlightsFromLameDuckOut.parameters/return/flight/airline</from>
-                                    <to>$GetFlightsOut.flightList/ns1:travels/ns1:flight/ns1:carrier</to>
+                                    <from variable="GetFlightsFromLameDuckOut" part="parameters"/>
+                                    <to variable="GetFlightsOut" part="flightList"/>
                                 </copy>
                             </assign>
                             <reply name="Reply2" partnerLink="PartnerLink1" operation="getFlights" portType="ns0:itineraryPortType" variable="GetFlightsOut"/>

@@ -1,9 +1,10 @@
 package dtu.ws.travelgood.SOAPTest;
 
 import javax.xml.datatype.DatatypeConfigurationException;
+import lameduck.FlightOption;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import ws.travelgood.xml.Travel;
+import ws.travelgood.xml.FlightBooking;
 
 /**
  * C1 (cancel booking) Create an itinerary with three bookings (mixed flights
@@ -28,26 +29,26 @@ public class C1 extends T {
     @Test
     public void testC1() {
         itinearyID = createItinerary(itinearyID);
-        int bookingNumber = getFlights(itinearyID, destinations[0], dates[0], destinations[1]).getTravels().get(0).getBookingNumber();
+        int bookingNumber = getFlights(itinearyID, destinations[0], dates[0], destinations[1]).getReturn().get(0).getBookingNumber(); // .getTravels().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
-        bookingNumber = getFlights(itinearyID, destinations[1], dates[1], destinations[0]).getTravels().get(0).getBookingNumber();
+        bookingNumber = getFlights(itinearyID, destinations[1], dates[1], destinations[0]).getReturn().get(0).getBookingNumber(); // .getTravels().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
         addHotel(itinearyID, getHotels(itinearyID, dates[0], dates[1], destinations[0]).getStays().get(0).getBookingNumber());
 
 
-        travels = (Travel[]) getItinerary(itinearyID).getFlightIbookings().toArray();
+        itineraryTravels = (FlightBooking[]) getItinerary(itinearyID).getFlightBookings().toArray();
 
         for (int i = 0; i < travels.length; i++) {
-            assertEquals("confirmed", travels[i].getStatus());
+            assertEquals("confirmed", itineraryTravels[i].getStatus());
         }
         assertEquals("confirmed", getItinerary(itinearyID).getHotelbookings().get(0).getStatus());
 
         cancelItinerary(itinearyID);
 
-        travels = (Travel[]) getItinerary(itinearyID).getFlightIbookings().toArray();
+        itineraryTravels = (FlightBooking[]) getItinerary(itinearyID).getFlightBookings().toArray();
 
         for (int i = 0; i < travels.length; i++) {
-            assertEquals("cancelled", travels[i].getStatus());
+            assertEquals("cancelled", itineraryTravels[i].getStatus());
         }
         assertEquals("cancelled", getItinerary(itinearyID).getHotelbookings().get(0).getStatus());
         

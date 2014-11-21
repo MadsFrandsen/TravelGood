@@ -13,12 +13,12 @@
         </service-engine-service-unit>
         <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="TravelGoodBPELApp-sun-http-binding" unit-name="sun-http-binding">
             <ports>
-                <port x="67" y="114">
+                <port state="deleted" x="67" y="114">
                     <link xlink:href="../jbiServiceUnits/META-INF/TravelGoodBPEL/src/_references/_projects/LameDuck/src/conf/wsdl/LameDuckWebService.wsdl#xpointer(/definitions/service[@name='LameDuckWebService']/port[@name='LameDuckWebServicePort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint1"/>
                     <provides endpoint="endpoint1"/>
                 </port>
-                <port x="67" y="37">
+                <port state="deleted" x="67" y="37">
                     <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/travelgood.wsdl#xpointer(/definitions/service[@name='travelgoodService']/port[@name='itineraryPortTypeBindingPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint2"/>
                     <provides endpoint="endpoint2"/>

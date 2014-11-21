@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="Srens-MacBook-Air-2.local" name="dtu.ws.travelgood.SOAPTest.P1" tests="1" time="1.747" timestamp="2014-11-19T13:30:57">
+<testsuite errors="1" failures="0" hostname="Srens-MacBook-Air-2.local" name="dtu.ws.travelgood.SOAPTest.P1" tests="1" time="0.887" timestamp="2014-11-19T21:04:35">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -64,7 +64,7 @@
     <property name="copylibs.rebase" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner dtu.ws.travelgood.SOAPTest.P1 filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/test/results/TEST-dtu.ws.travelgood.SOAPTest.P1.xml crashfile=/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/junitvmwatcher1658259905440399107.properties propsfile=/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/junit4207192560401485390.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner dtu.ws.travelgood.SOAPTest.P1 filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/test/results/TEST-dtu.ws.travelgood.SOAPTest.P1.xml crashfile=/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/junitvmwatcher3450664583460217913.properties propsfile=/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/junit2406818631530877251.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="build.sysclasspath" value="ignore" />
     <property name="ap.supported.internal" value="true" />
@@ -109,7 +109,7 @@
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="/" />
     <property name="libs.Java-EE-GlassFish-v3-Prelude.maven-pom" value="" />
-    <property name="javac.includesfile.binary" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/null26241938" />
+    <property name="javac.includesfile.binary" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/null1445664516" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/modules/ext/junit-4.10.jar" />
@@ -419,18 +419,11 @@
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/javaee-doc-api.jar" />
   </properties>
-  <testcase classname="dtu.ws.travelgood.SOAPTest.P1" name="testP1" time="1.646">
-    <error message="BPCOR-6133: A fault was not handled in the scope; Fault Name is {http://docs.oasis-open.org/wsbpel/2.0/process/executable}selectionFailure; Fault Data is &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;lt;jbi:message xmlns:sxeh=&amp;quot;http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling&amp;quot; type=&amp;quot;sxeh:faultMessage&amp;quot; version=&amp;quot;1.0&amp;quot; xmlns:jbi=&amp;quot;http://java.sun.com/xml/ns/jbi/wsdl-11-wrapper&amp;quot;&amp;gt;&amp;lt;jbi:part&amp;gt;BPCOR-6174: Selection Failure occurred in BPEL({http://enterprise.netbeans.org/bpel/BpelModule1/bpelModule1}bpelModule1) at line 91&amp;lt;/jbi:part&amp;gt;&amp;lt;/jbi:message&amp;gt;. Sending errors for the pending requests in the current scope before propagating the fault to the enclosing scope&#xa;BPCOR-6129: Line Number is 67&#xa;BPCOR-6130: Activity Name is getFlightsScope" type="javax.xml.ws.soap.SOAPFaultException">javax.xml.ws.soap.SOAPFaultException: BPCOR-6133: A fault was not handled in the scope; Fault Name is {http://docs.oasis-open.org/wsbpel/2.0/process/executable}selectionFailure; Fault Data is &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;lt;jbi:message xmlns:sxeh=&amp;quot;http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling&amp;quot; type=&amp;quot;sxeh:faultMessage&amp;quot; version=&amp;quot;1.0&amp;quot; xmlns:jbi=&amp;quot;http://java.sun.com/xml/ns/jbi/wsdl-11-wrapper&amp;quot;&amp;gt;&amp;lt;jbi:part&amp;gt;BPCOR-6174: Selection Failure occurred in BPEL({http://enterprise.netbeans.org/bpel/BpelModule1/bpelModule1}bpelModule1) at line 91&amp;lt;/jbi:part&amp;gt;&amp;lt;/jbi:message&amp;gt;. Sending errors for the pending requests in the current scope before propagating the fault to the enclosing scope
-BPCOR-6129: Line Number is 67
-BPCOR-6130: Activity Name is getFlightsScope
-	at com.sun.xml.internal.ws.fault.SOAP11Fault.getProtocolException(SOAP11Fault.java:178)
-	at com.sun.xml.internal.ws.fault.SOAPFaultBuilder.createException(SOAPFaultBuilder.java:125)
-	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:108)
-	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:78)
-	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:135)
-	at com.sun.proxy.$Proxy19.getFlights(Unknown Source)
-	at dtu.ws.travelgood.SOAPTest.T.getFlights(T.java:98)
-	at dtu.ws.travelgood.SOAPTest.P1.testP1(P1.java:50)
+  <testcase classname="dtu.ws.travelgood.SOAPTest.P1" name="testP1" time="0.779">
+    <error message="Index: 0, Size: 0" type="java.lang.IndexOutOfBoundsException">java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:635)
+	at java.util.ArrayList.get(ArrayList.java:411)
+	at dtu.ws.travelgood.SOAPTest.P1.testP1(P1.java:52)
 </error>
   </testcase>
   <system-out><![CDATA[]]></system-out>

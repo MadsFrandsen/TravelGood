@@ -3,11 +3,12 @@ package dtu.ws.travelgood.SOAPTest;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import lameduck.FlightOption;
+import lameduck.GetFlightsResponse;
 import ws.travelgood.xml.AccommodationOptions;
+import ws.travelgood.xml.FlightBooking;
 import ws.travelgood.xml.Itinerary;
 import ws.travelgood.xml.Stay;
-import ws.travelgood.xml.Travel;
-import ws.travelgood.xml.TravelOptions;
 
 /*
  * To change this template, choose Tools | Templates
@@ -23,7 +24,8 @@ public class T {
     public String[] personNames, destinations, unbookableDestinations;
     public XMLGregorianCalendar[] dates;
     public int[] creditCardNumbers;
-    public Travel[] travels, itinearyTravels;
+    public FlightOption[] travels;
+    public FlightBooking[] itineraryTravels;
     public Stay[] stays, itinearyStays;
     public String itinearyID;
     public Itinerary itineary; 
@@ -92,7 +94,7 @@ public class T {
         return port.getItinerary(itineraryID);
     }
 
-    public TravelOptions getFlights(java.lang.String itineraryID, java.lang.String arrivalDestination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departureDestination) {
+    public GetFlightsResponse getFlights(java.lang.String itineraryID, java.lang.String arrivalDestination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departureDestination) {
         ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
         ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
         return port.getFlights(itineraryID, arrivalDestination, time, departureDestination);

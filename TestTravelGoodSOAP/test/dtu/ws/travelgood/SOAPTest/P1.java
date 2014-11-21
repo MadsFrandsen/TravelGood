@@ -2,11 +2,13 @@ package dtu.ws.travelgood.SOAPTest;
 
 import java.util.Arrays;
 import javax.xml.datatype.DatatypeConfigurationException;
+import lameduck.FlightOption;
+import lameduck.GetFlightsResponse;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import ws.travelgood.xml.FlightBooking;
 import ws.travelgood.xml.Itinerary;
 import ws.travelgood.xml.Stay;
-import ws.travelgood.xml.Travel;
 
 
 /**
@@ -28,8 +30,8 @@ public class P1 extends T {
     public P1() throws DatatypeConfigurationException {
       
 
-        travels = new Travel[3];
-        itinearyTravels = new Travel[3];
+        travels = new FlightOption[3];
+        itineraryTravels = new FlightBooking[3];
 
         stays = new Stay[2];
         itinearyStays = new Stay[2];
@@ -47,7 +49,7 @@ public class P1 extends T {
 
         
         //Plan first flight
-        travels[0] = getFlights(itinearyID, destinations[0], dates[0], destinations[1]).getTravels().get(0);
+        travels[0] = getFlights(itinearyID, destinations[0], dates[0], destinations[1]).getReturn().get(0); // .getTravels().get(0);
         addFlight(itinearyID, travels[0].getBookingNumber());
 
 
@@ -56,11 +58,11 @@ public class P1 extends T {
         addHotel(itinearyID, stays[0].getBookingNumber());
 
         //Plan another flight
-        travels[1] = getFlights(itinearyID, destinations[2], dates[0], destinations[1]).getTravels().get(0);
+        travels[1] = getFlights(itinearyID, destinations[2], dates[0], destinations[1]).getReturn().get(1); // .getTravels().get(0);
         addFlight(itinearyID, travels[1].getBookingNumber());
 
         //Plan a third flight
-        travels[2] = getFlights(itinearyID, destinations[0], dates[4], destinations[0]).getTravels().get(0);
+        travels[2] = getFlights(itinearyID, destinations[0], dates[4], destinations[0]).getReturn().get(0); //.getTravels().get(0);
         addFlight(itinearyID, travels[2].getBookingNumber());
 
 
@@ -82,21 +84,23 @@ public class P1 extends T {
         assertEquals("confirmed", itinerary.getStatus());
 
         // compare travel information
-        itinearyTravels = (Travel[]) itinerary.getFlightIbookings().toArray();
+        itineraryTravels = (FlightBooking[]) itinerary.getFlightBookings().toArray(); // .getFlightIbookings().toArray();
         itinearyStays = (Stay[]) itinerary.getHotelbookings().toArray();
 
         Arrays.sort(stays);
         Arrays.sort(itinearyStays);
         Arrays.sort(travels);
-        Arrays.sort(itinearyTravels);
+        Arrays.sort(itineraryTravels);
         
-        assertEquals(itinearyTravels.length,travels.length);
+        assertEquals(itineraryTravels.length,travels.length);
         
-        for (int i = 0; i < itinearyTravels.length; i++) {
-            assertEquals(itinearyTravels[i].getBookingNumber(),travels[i].getBookingNumber());
-            assertEquals(itinearyTravels[i].getFlight(),travels[i].getFlight());
-            assertEquals(itinearyTravels[i].getReservationService(),travels[i].getReservationService());
-            assertEquals(itinearyTravels[i].getStatus(),"confirmed");
+        for (int i = 0; i < itineraryTravels.length; i++) {
+            assertEquals(itineraryTravels[i].getFlight().getBookingNumber(), travels[i].getBookingNumber());
+//            assertEquals(itineraryTravels[i].getBookingNumber(),travels[i].getBookingNumber());
+            assertEquals(itineraryTravels[i].getFlight(),travels[i].getFlight());
+            assertEquals(itineraryTravels[i].getFlight().getAirlineReservationService(), travels[i].getAirlineReservationService());
+//            assertEquals(itineraryTravels[i].getReservationService(),travels[i].getReservationService());
+            assertEquals(itineraryTravels[i].getStatus(),"confirmed");
             
         }
         
