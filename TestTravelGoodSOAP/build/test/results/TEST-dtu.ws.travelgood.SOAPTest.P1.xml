@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="Srens-MacBook-Air-2.local" name="dtu.ws.travelgood.SOAPTest.P1" tests="1" time="0.705" timestamp="2014-11-23T18:09:04">
+<testsuite errors="1" failures="0" hostname="Srens-MacBook-Air-2.local" name="dtu.ws.travelgood.SOAPTest.P1" tests="1" time="1.05" timestamp="2014-11-23T19:07:56">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -65,7 +65,7 @@
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner dtu.ws.travelgood.SOAPTest.P1 filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/test/results/TEST-dtu.ws.travelgood.SOAPTest.P1.xml crashfile=/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/junitvmwatcher1724093775823592075.properties propsfile=/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/junit6011454382867989005.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner dtu.ws.travelgood.SOAPTest.P1 filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/test/results/TEST-dtu.ws.travelgood.SOAPTest.P1.xml crashfile=/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/junitvmwatcher8694950661993365379.properties propsfile=/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/junit8857788127487839919.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="build.sysclasspath" value="ignore" />
     <property name="ap.supported.internal" value="true" />
@@ -111,7 +111,7 @@
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="/" />
     <property name="libs.Java-EE-GlassFish-v3-Prelude.maven-pom" value="" />
-    <property name="javac.includesfile.binary" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/null1438789417" />
+    <property name="javac.includesfile.binary" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/null837482060" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/modules/ext/junit-4.10.jar" />
@@ -429,11 +429,18 @@
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/javaee-doc-api.jar" />
   </properties>
-  <testcase classname="dtu.ws.travelgood.SOAPTest.P1" name="testP1" time="0.58">
-    <error message="Index: 0, Size: 0" type="java.lang.IndexOutOfBoundsException">java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
-	at java.util.ArrayList.rangeCheck(ArrayList.java:635)
-	at java.util.ArrayList.get(ArrayList.java:411)
-	at dtu.ws.travelgood.SOAPTest.P1.testP1(P1.java:52)
+  <testcase classname="dtu.ws.travelgood.SOAPTest.P1" name="testP1" time="0.925">
+    <error message="BPCOR-6134: Sending errors for the pending requests in the current scope, since the scope has completed&#xa;BPCOR-6129: Line Number is 128&#xa;BPCOR-6130: Activity Name is addFlightScope" type="javax.xml.ws.soap.SOAPFaultException">javax.xml.ws.soap.SOAPFaultException: BPCOR-6134: Sending errors for the pending requests in the current scope, since the scope has completed
+BPCOR-6129: Line Number is 128
+BPCOR-6130: Activity Name is addFlightScope
+	at com.sun.xml.internal.ws.fault.SOAP11Fault.getProtocolException(SOAP11Fault.java:178)
+	at com.sun.xml.internal.ws.fault.SOAPFaultBuilder.createException(SOAPFaultBuilder.java:125)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:108)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:78)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:135)
+	at com.sun.proxy.$Proxy20.addFlight(Unknown Source)
+	at dtu.ws.travelgood.SOAPTest.T.addFlight(T.java:324)
+	at dtu.ws.travelgood.SOAPTest.P1.testP1(P1.java:53)
 </error>
   </testcase>
   <system-out><![CDATA[]]></system-out>

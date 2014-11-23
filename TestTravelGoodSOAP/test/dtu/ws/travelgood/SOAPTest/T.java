@@ -283,19 +283,23 @@ public class T {
 
                 /* Convert string date to Gregorian Calendar */
                 String departureDay = departureDate.substring(0, 2);
-                String departureMonth = departureDate.substring(2, 4);
+                // Months are zero-indexed
+                int departureMonth = Integer.parseInt(departureDate.substring(2, 4)) - 1;
                 String departureYear = departureDate.substring(4, 8);
                 String departureHour = departureTime.substring(0, 2);
                 String departureMinute = departureTime.substring(2, 4);
-                GregorianCalendar departure = new GregorianCalendar(Integer.parseInt(departureYear), Integer.parseInt(departureMonth), Integer.parseInt(departureDay), Integer.parseInt(departureHour), Integer.parseInt(departureMinute));
+                GregorianCalendar departure = new GregorianCalendar(Integer.parseInt(departureYear), departureMonth, Integer.parseInt(departureDay), Integer.parseInt(departureHour), Integer.parseInt(departureMinute));
                 fo.departure = df.newXMLGregorianCalendar(departure);
 
                 String arrivalDay = departureDate.substring(0, 2);
-                String arrivalMonth = departureDate.substring(2, 4);
+                // Months are zero-indexed
+                int arrivalMonth = Integer.parseInt(departureDate.substring(2, 4)) - 1;
                 String arrivalYear = departureDate.substring(4, 8);
                 String arrivalHour = arrivalDate.substring(0, 2);
                 String arrivalMinute = arrivalDate.substring(2, 4);
-                GregorianCalendar arrival = new GregorianCalendar(Integer.parseInt(arrivalYear), Integer.parseInt(arrivalMonth), Integer.parseInt(arrivalDay), Integer.parseInt(arrivalHour), Integer.parseInt(arrivalMinute));
+                
+                
+                GregorianCalendar arrival = new GregorianCalendar(Integer.parseInt(arrivalYear), arrivalMonth, Integer.parseInt(arrivalDay), Integer.parseInt(arrivalHour), Integer.parseInt(arrivalMinute));
                 fo.arrival = df.newXMLGregorianCalendar(arrival);
                 //System.out.println(fo);
                 if ("Disney".equals(fo.airline)) {
