@@ -8,6 +8,8 @@ import java.util.Scanner;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import lameduck.FlightOption;
+import lameduck.GetFlightsResponse;
 import ws.travelgood.xml.AccommodationOptions;
 import ws.travelgood.xml.Itinerary;
 import ws.travelgood.xml.Stay;
@@ -24,9 +26,11 @@ import ws.travelgood.xml.TravelOptions;
  */
 public class T {
 
-    FlightOption[] bookable, unbookable, nonCancelable;
+    FlightOptionPrivate[] bookable, unbookable, nonCancelable;
     public DatatypeFactory df;
-    public Travel[] travels, itinearyTravels, bookableTravels;
+    public FlightOption[] travels;
+//    public Travel[] travels, itinearyTravels, bookableTravels;
+    public Travel[] itinearyTravels, bookableTravels;
     public Stay[] stays, itinearyStays;
     public String itinearyID;
     public Itinerary itineary;
@@ -41,7 +45,7 @@ public class T {
         bookableTravels = new Travel[6];
     }
 
-    class FlightOption {
+    class FlightOptionPrivate {
 
         @Override
         public String toString() {
@@ -247,25 +251,26 @@ public class T {
     }
 
     private void loadFlightOptions() {
-        bookable = new FlightOption[1];
-        unbookable = new FlightOption[1];
-        nonCancelable = new FlightOption[1];
+        bookable = new FlightOptionPrivate[1];
+        unbookable = new FlightOptionPrivate[1];
+        nonCancelable = new FlightOptionPrivate[1];
 
 
         String flightData = "../LameDuck/flightsdata.csv";
-        ArrayList<FlightOption> bookableList = new ArrayList<>();
-        ArrayList<FlightOption> unbookableList = new ArrayList<>();
-        ArrayList<FlightOption> nonCancelableList = new ArrayList<>();
+        ArrayList<FlightOptionPrivate> bookableList = new ArrayList<>();
+        ArrayList<FlightOptionPrivate> unbookableList = new ArrayList<>();
+        ArrayList<FlightOptionPrivate> nonCancelableList = new ArrayList<>();
 
         try {
             File f = new File(flightData);
 
             Scanner in = new Scanner(f);
             String headers = in.nextLine(); // skip first line as it is only headers
-            FlightOption fo = new FlightOption();
+            FlightOptionPrivate fo = new FlightOptionPrivate();
 
             DatatypeFactory df = DatatypeFactory.newInstance();
             while (in.hasNext()) {
+                fo = new FlightOptionPrivate();
                 String[] flightInfo = in.nextLine().split(";"); // Excel data is seperated by ;
 
                 fo.airline = flightInfo[0];
@@ -349,15 +354,21 @@ public class T {
         return port.getItinerary(itineraryID);
     }
 
-    public TravelOptions getFlights(java.lang.String itineraryID, java.lang.String arrivalDestination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departureDestination) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
-        return port.getFlights(itineraryID, arrivalDestination, time, departureDestination);
-    }
+//    public TravelOptions getFlights(java.lang.String itineraryID, java.lang.String arrivalDestination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departureDestination) {
+//        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
+//        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+//        return port.getFlights(itineraryID, arrivalDestination, time, departureDestination);
+//    }
 
     public AccommodationOptions getHotels(java.lang.String itineraryID, javax.xml.datatype.XMLGregorianCalendar start, javax.xml.datatype.XMLGregorianCalendar end, java.lang.String city) {
         ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
         ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
         return port.getHotels(itineraryID, start, end, city);
+    }
+
+    public GetFlightsResponse getFlights(java.lang.String itineraryID, java.lang.String source, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String destination) {
+        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getFlights(itineraryID, source, time, destination);
     }
 }

@@ -77,6 +77,22 @@ public class LameDuckClientTest {
         System.out.println("--------------------");
         
     }
+    
+    @Test
+    public void testGetFlightFromAndebyToMoon() throws DatatypeConfigurationException, LameDuckException_Exception {
+        GregorianCalendar gregDate = new GregorianCalendar(2015,1,1);
+        
+        DatatypeFactory df = DatatypeFactory.newInstance();
+        XMLGregorianCalendar date = df.newXMLGregorianCalendar(gregDate);
+        System.out.println(date.getDay() + "." + date.getMonth() + "." + date.getYear() + " " + date.getHour() + ":" + date.getMinute());
+        
+        List<FlightOption> flights = getFlights("Andeby", "Moon", date);
+        
+        System.out.println(flights.size());
+        assertEquals(flights.size(), 1);
+        
+        System.out.println("--------------------");
+    }
 
     @Test
     public void testBookFlight() throws DatatypeConfigurationException, LameDuckException_Exception {
