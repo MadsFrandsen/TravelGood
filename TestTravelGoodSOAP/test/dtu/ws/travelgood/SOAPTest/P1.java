@@ -47,9 +47,10 @@ public class P1 extends T {
 
         itinearyID = createItinerary(personNames[0]);
 
-        
         //Plan first flight
-        travels[0] = getFlights(itinearyID, destinations[0], dates[0], destinations[1]).getReturn().get(0); // .getTravels().get(0);
+//        travels[0] = getFlights(itinearyID, destinations[0], dates[0], destinations[1]).getReturn().get(0); // .getTravels().get(0);
+        GetFlightsResponse resp = getFlights(itinearyID, destinations[0], dates[0], destinations[1]);
+         travels[0] = resp.getReturn().get(0); // .getTravels().get(0);
         addFlight(itinearyID, travels[0].getBookingNumber());
 
 

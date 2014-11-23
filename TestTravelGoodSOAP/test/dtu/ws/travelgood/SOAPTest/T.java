@@ -30,6 +30,8 @@ public class T {
     public String itinearyID;
     public Itinerary itineary; 
 
+    
+    
     public T() throws DatatypeConfigurationException {
         df = DatatypeFactory.newInstance();
         personNames = new String[3];
