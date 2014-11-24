@@ -5,4 +5,6 @@
     <system systemId="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment" uri="TravelGoodBPEL/src/_references/_relative/nbproject/private/retriever/www.oracle.com/us/sun/index.htm"/>
     <system systemId="http://travelgood.ws" uri="TravelGoodBPEL/src/_references/_relative/nbproject/private/retriever/travelgood.ws"/>
     <system systemId="http://schemas.xmlsoap.org/wsdl/soap/" uri="TravelGoodBPEL/src/_references/_relative/nbproject/private/retriever/schemas.xmlsoap.org/wsdl/soap/index.xsd"/>
+    <system systemId="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/XPathFunctions" uri="TravelGoodBPEL/src/_references/_relative/nbproject/private/retriever/www.oracle.com/us/sun/index.htm"/>
+    <system systemId="http://xml.travelgood.ws" uri="TravelGoodBPEL/src/_references/_relative/nbproject/private/retriever/xml.travelgood.ws"/>
 </catalog>

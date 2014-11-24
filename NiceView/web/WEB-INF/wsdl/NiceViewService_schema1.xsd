@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://niceView/" xmlns:tns="http://niceView/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="NiceViewFault" nillable="true" type="tns:niceViewFaultBean"/>
+
+  <xs:element name="bookHotel" nillable="true" type="tns:bookHotel"/>
+
+  <xs:element name="bookHotelResponse" nillable="true" type="tns:bookHotelResponse"/>
+
+  <xs:element name="cancelHotel" nillable="true" type="tns:cancelHotel"/>
+
+  <xs:element name="cancelHotelResponse" nillable="true" type="tns:cancelHotelResponse"/>
+
+  <xs:element name="getHotels" nillable="true" type="tns:getHotels"/>
+
+  <xs:element name="getHotelsResponse" nillable="true" type="tns:getHotelsResponse"/>
+
+  <xs:complexType name="getHotels">
+    <xs:sequence>
+      <xs:element name="arrival" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="city" type="xs:string" minOccurs="0"/>
+      <xs:element name="departure" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getHotelsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:reservation" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservation">
+    <xs:sequence>
+      <xs:element name="bookingNumber" type="xs:int"/>
+      <xs:element name="hotelInfo" type="tns:hotel" minOccurs="0"/>
+      <xs:element name="totalPrice" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="accountType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="number" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creditCardInfoType">
+    <xs:sequence>
+      <xs:element name="expirationDate" type="tns:expirationDateType" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="number" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="expirationDateType">
+    <xs:sequence>
+      <xs:element name="month" type="xs:int"/>
+      <xs:element name="year" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hotel">
+    <xs:sequence>
+      <xs:element name="address" type="xs:string" minOccurs="0"/>
+      <xs:element name="creditCardGuarantee" type="xs:boolean"/>
+      <xs:element name="hotelReservationService" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cancelHotel">
+    <xs:sequence>
+      <xs:element name="bookingNumber" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cancelHotelResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="niceViewFaultBean">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bookHotel">
+    <xs:sequence>
+      <xs:element name="account" type="tns:accountType" minOccurs="0"/>
+      <xs:element name="bookingNumber" type="xs:int"/>
+      <xs:element name="creditCardInfo" type="tns:creditCardInfoType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bookHotelResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
