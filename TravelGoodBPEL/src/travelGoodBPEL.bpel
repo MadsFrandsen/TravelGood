@@ -1,77 +1,200 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <process
-    name="travelGoodBPEL"
-    targetNamespace="http://enterprise.netbeans.org/bpel/TravelGoodBPEL/travelGoodBPEL"
-    xmlns:tns="http://enterprise.netbeans.org/bpel/TravelGoodBPEL/travelGoodBPEL"
+    name="bpelModule1"
+    targetNamespace="http://enterprise.netbeans.org/bpel/BpelModule1/bpelModule1"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/BpelModule1/bpelModule1"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
     xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
-    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood">
-    <import namespace="http://enterprise.netbeans.org/bpel/TravelGoodWrapper" location="TravelGoodWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
-    <import namespace="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" location="TravelGood.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="http://travelgood.ws" xmlns:ns1="http://xml.travelgood.ws" xmlns:sxxf="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/XPathFunctions">
+    <import namespace="http://travelgood.ws" location="travelgood.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://xml.travelgood.ws" location="travelgoodBPEL.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/LameDuckWebServiceWrapper" location="LameDuckWebServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+<!--    <import namespace="http://LameDuck/" location="LameDuck/wsdl/LameDuckWebService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>-->
+    <import namespace="http://LameDuck/" location="http://localhost:8080/LameDuck/LameDuckWebService?wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/NiceViewServiceWrapper" location="NiceViewServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://niceView/" location="http://localhost:8080/NiceView/NiceViewService?wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <partnerLinks>
-        <partnerLink name="PartnerLink1" xmlns:tns="http://enterprise.netbeans.org/bpel/TravelGoodWrapper" partnerLinkType="tns:ItineraryLinkType" myRole="ItineraryRole"/>
+        <partnerLink name="PartnerLink2" xmlns:tns="http://enterprise.netbeans.org/bpel/LameDuckWebServiceWrapper" partnerLinkType="tns:LameDuckWebServiceLinkType" partnerRole="LameDuckWebServiceRole"/>
+        <partnerLink name="PartnerLink3" xmlns:tns="http://enterprise.netbeans.org/bpel/NiceViewServiceWrapper" partnerLinkType="tns:niceViewWebServiceLinkType" partnerRole="niceViewWebServiceRole"/>
+        <partnerLink name="PartnerLink1" xmlns:tns="http://travelgood.ws" partnerLinkType="tns:travelgood" myRole="itineraryPortTypeRole"/>
     </partnerLinks>
     <variables>
-        <variable name="GetFlightsOut" messageType="ns0:getFlightsResponse"/>
-        <variable name="GetFlightsIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" messageType="tns:getFlightsRequest"/>
-        <variable name="CreateItineraryOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" messageType="tns:CreateItineraryResponse"/>
-        <variable name="CreateItineraryIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" messageType="tns:CreateItineraryRequest"/>
+        
+        <variable name="itinerary" type="ns1:itinerary"/>
+        <variable name="CreateItineraryOut" xmlns:tns="http://travelgood.ws" messageType="tns:createItineraryResponse"/>
+        <variable name="CreateItineraryIn" xmlns:tns="http://travelgood.ws" messageType="tns:createItineraryRequest"/>
     </variables>
     <correlationSets>
-        <correlationSet name="ItineraryCorrelation" properties="ns0:itineraryID"/>
+        <correlationSet name="itineraryCorrelation" properties="ns0:ItineraryID"/>
     </correlationSets>
     <sequence>
-        <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="CreateItinerary" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" portType="tns:ItineraryPortType" variable="CreateItineraryIn"></receive>
-        <assign name="Assign1">
+        <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="createItinerary" xmlns:tns="http://travelgood.ws" portType="tns:itineraryPortType" variable="CreateItineraryIn"/>
+        <assign name="Assign5">
             <copy>
-                <from>number($CreateItineraryIn.name)</from>
-                <to variable="CreateItineraryOut" part="id"/>
+                <from>sxxf:getGUID()</from>
+                <to>$itinerary/ns1:ID</to>
+            </copy>
+            <copy>
+                <from>'unconfirmed'</from>
+                <to>$itinerary/ns1:status</to>
+            </copy>
+            <copy>
+                <from variable="CreateItineraryIn" part="personName"/>
+                <to>$itinerary/ns1:owner</to>
             </copy>
         </assign>
-        <reply name="Reply1" partnerLink="PartnerLink1" operation="CreateItinerary" xmlns:tns="http://j2ee.netbeans.org/wsdl/TravelGoodBEPL/src/TravelGood" portType="tns:ItineraryPortType" variable="CreateItineraryOut">
+        <assign name="Assign4">
+            <copy>
+                <from>$itinerary/ns1:ID</from>
+                <to variable="CreateItineraryOut" part="itineraryID"/>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="PartnerLink1" operation="createItinerary" xmlns:tns="http://travelgood.ws" portType="tns:itineraryPortType" variable="CreateItineraryOut">
             <correlations>
-                <correlation set="ItineraryCorrelation" initiate="yes"/>
+                <correlation set="itineraryCorrelation" initiate="yes"/>
             </correlations>
         </reply>
-        <scope name="Scope2">
+        <scope name="Scope1">
             <variables>
-                <variable name="BookItineraryOut" messageType="ns0:BookItineraryResponse"/>
-                <variable name="BookItineraryIn" messageType="ns0:BookItineraryRequest"/>
+                <variable name="BookItineraryIn" messageType="ns0:bookItineraryRequest"/>
             </variables>
             <eventHandlers>
-                <onEvent partnerLink="PartnerLink1" operation="getFlights" portType="ns0:ItineraryPortType">
+                <onEvent partnerLink="PartnerLink1" operation="getFlights" portType="ns0:itineraryPortType" variable="GetFlightsIn" messageType="ns0:getFlightsRequest">
                     <correlations>
-                        <correlation set="ItineraryCorrelation" initiate="no"/>
+                        <correlation set="itineraryCorrelation" initiate="no"/>
                     </correlations>
-                    <scope name="Scope3">
-                        <sequence name="Sequence2">
-                            <reply name="Reply2" partnerLink="PartnerLink1" operation="getFlights" portType="ns0:ItineraryPortType" variable="GetFlightsOut"/>
+                    <scope name="getFlightsScope">
+                        <variables>
+                            <variable name="GetFlightsOut" messageType="ns0:getFlightsResponse"/>
+                            <variable name="GetFlightsFromLameDuckOut" xmlns:tns="http://LameDuck/" messageType="tns:getFlightsResponse"/>
+                            <variable name="GetFlightsFromLameDuckIn" xmlns:tns="http://LameDuck/" messageType="tns:getFlights"/>
+                        </variables>
+                        <sequence name="Sequence4">
+                            <assign name="Assign7">
+                                <copy>
+                                    <from variable="GetFlightsIn" part="time"/>
+                                    <to>$GetFlightsFromLameDuckIn.parameters/date</to>
+                                </copy>
+                                <copy>
+                                    <from variable="GetFlightsIn" part="source"/>
+                                    <to>$GetFlightsFromLameDuckIn.parameters/from</to>
+                                </copy>
+                                <copy>
+                                    <from variable="GetFlightsIn" part="destination"/>
+                                    <to>$GetFlightsFromLameDuckIn.parameters/to</to>
+                                </copy>
+                            </assign>
+                            <invoke name="Invoke2" partnerLink="PartnerLink2" operation="getFlights" xmlns:tns="http://LameDuck/" portType="tns:LameDuckWebService" inputVariable="GetFlightsFromLameDuckIn" outputVariable="GetFlightsFromLameDuckOut"/>
+                            <assign name="Assign6">
+                                <copy>
+                                    <from variable="GetFlightsFromLameDuckOut" part="parameters"/>
+                                    <to variable="GetFlightsOut" part="flightList"/>
+                                </copy>
+                            </assign>
+                            <reply name="Reply2" partnerLink="PartnerLink1" operation="getFlights" portType="ns0:itineraryPortType" variable="GetFlightsOut"/>
                         </sequence>
                     </scope>
                 </onEvent>
-                <onEvent partnerLink="PartnerLink1" operation="getHotels" portType="ns0:ItineraryPortType">
+                <onEvent partnerLink="PartnerLink1" operation="getHotels" portType="ns0:itineraryPortType" variable="GetHotelsIn" messageType="ns0:getHotelsRequest">
                     <correlations>
-                        <correlation set="ItineraryCorrelation" initiate="no"/>
+                        <correlation set="itineraryCorrelation" initiate="no"/>
                     </correlations>
-                    <scope name="Scope4">
+                    <scope name="getHotelsScope">
                         <variables>
+                            <variable name="NiceViewGetHolsOut" xmlns:tns="http://niceView/" messageType="tns:getHotelsResponse"/>
+                            <variable name="NiceViewGetHotelsIn" xmlns:tns="http://niceView/" messageType="tns:getHotels"/>
                             <variable name="GetHotelsOut" messageType="ns0:getHotelsResponse"/>
+                            <variable name="NiceViewBookHotelOut" xmlns:tns="http://niceView/" messageType="tns:bookHotelResponse"/>
+                            <variable name="NiceViewBookHotelIn" xmlns:tns="http://niceView/" messageType="tns:bookHotel"/>
                         </variables>
-                        <reply name="Reply4" partnerLink="PartnerLink1" operation="getHotels" portType="ns0:ItineraryPortType" variable="GetHotelsOut"/>
+                        <sequence name="Sequence5">
+                            <assign name="Assign8">
+                                <copy>
+                                    <from variable="GetHotelsIn" part="city"/>
+                                    <to>$NiceViewGetHotelsIn.parameters/city</to>
+                                </copy>
+                                <copy>
+                                    <from variable="GetHotelsIn" part="start"/>
+                                    <to>$NiceViewGetHotelsIn.parameters/departure</to>
+                                </copy>
+                                <copy>
+                                    <from variable="GetHotelsIn" part="end"/>
+                                    <to>$NiceViewGetHotelsIn.parameters/arrival</to>
+                                </copy>
+                            </assign>
+                            <invoke name="Invoke3" partnerLink="PartnerLink3" operation="getHotels" xmlns:tns="http://niceView/" portType="tns:niceViewWebService" inputVariable="NiceViewGetHotelsIn" outputVariable="NiceViewGetHolsOut"/>
+                            <assign name="Assign9"/>
+                            <reply name="Reply3" partnerLink="PartnerLink1" operation="getHotels" portType="ns0:itineraryPortType" variable="GetHotelsOut"/>
+                        </sequence>
+                    </scope>
+                </onEvent>
+                <onEvent partnerLink="PartnerLink1" operation="getItinerary" portType="ns0:itineraryPortType">
+                    <correlations>
+                        <correlation set="itineraryCorrelation" initiate="no"/>
+                    </correlations>
+                    <scope name="getItineraryScope">
+                        <variables>
+                            <variable name="GetItineraryOut" messageType="ns0:getItineraryResponse"/>
+                        </variables>
+                        <sequence name="Sequence3">
+                            <empty name="Empty11"/>
+                        </sequence>
                     </scope>
                 </onEvent>
             </eventHandlers>
             <sequence name="Sequence1">
-                <receive name="Receive2" partnerLink="PartnerLink1" operation="BookItinerary" createInstance="no" portType="ns0:ItineraryPortType" variable="BookItineraryIn">
-                    <correlations>
-                        <correlation set="ItineraryCorrelation" initiate="no"/>
-                    </correlations>
-                </receive>
-                <reply name="Reply3" partnerLink="PartnerLink1" operation="BookItinerary" portType="ns0:ItineraryPortType" variable="BookItineraryOut"/>
+                <scope name="Scope6">
+                    <eventHandlers>
+                        <onEvent partnerLink="PartnerLink1" operation="addFlight" portType="ns0:itineraryPortType" variable="addFlightIn" messageType="ns0:addFlightRequest">
+                            <correlations>
+                                <correlation set="itineraryCorrelation" initiate="no"/>
+                            </correlations>
+                            <scope name="addFlightScope">
+                                <sequence name="Sequence2">
+                                    <empty name="Empty9"/>
+                                </sequence>
+                            </scope>
+                        </onEvent>
+                        <onEvent partnerLink="PartnerLink1" operation="addHotel" portType="ns0:itineraryPortType">
+                            <correlations>
+                                <correlation set="itineraryCorrelation" initiate="no"/>
+                            </correlations>
+                            <scope name="addHotelScope">
+                                <empty name="Empty10"/>
+                            </scope>
+                        </onEvent>
+                    </eventHandlers>
+                    <pick name="Pick1">
+                        <onMessage partnerLink="PartnerLink1" operation="bookItinerary" portType="ns0:itineraryPortType" variable="BookItineraryIn">
+                            <correlations>
+                                <correlation set="itineraryCorrelation" initiate="no"/>
+                            </correlations>
+                                <empty name="Empty1"/>
+                        </onMessage>
+                            <onMessage partnerLink="PartnerLink1" operation="cancelItinerary" portType="ns0:itineraryPortType">
+                            <correlations>
+                                <correlation set="itineraryCorrelation" initiate="no"/>
+                            </correlations>
+                                <exit name="Exit1"/>
+                        </onMessage>
+                    </pick>
+                </scope>
+                <pick name="Pick2">
+                    <onMessage partnerLink="PartnerLink1" operation="cancelItinerary" portType="ns0:itineraryPortType">
+                        <correlations>
+                            <correlation set="itineraryCorrelation" initiate="no"/>
+                        </correlations>
+                        <empty name="Empty8"/>
+                    </onMessage>
+                    <onAlarm>
+                        <for>'P0Y0M0DT0H0M0S'</for>
+                        <exit name="Exit2"/>
+                    </onAlarm>
+                </pick>
             </sequence>
         </scope>
     </sequence>

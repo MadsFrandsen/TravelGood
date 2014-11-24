@@ -4,6 +4,7 @@
  */
 package Test;
 
+import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 import dk.dtu.imm.fastmoney.types.ExpirationDateType;
 import java.util.ArrayList;
@@ -61,6 +62,22 @@ public class LameDuckClientTest {
     // @Test
     // public void hello() {}
 
+    @Test
+    public void testGetFlightFromAndebyToMoon() throws DatatypeConfigurationException, LameDuckException_Exception {
+        GregorianCalendar gregDate = new GregorianCalendar(2015,0,1);
+        
+        DatatypeFactory df = DatatypeFactory.newInstance();
+        XMLGregorianCalendar date = df.newXMLGregorianCalendar(gregDate);
+        System.out.println(date.getDay() + "." + date.getMonth() + "." + date.getYear() + " " + date.getHour() + ":" + date.getMinute());
+        
+        List<FlightOption> flights = getFlights("Andeby", "Moon", date);
+        
+        System.out.println(flights.size());
+        assertEquals(1, flights.size());
+        
+        System.out.println("--------------------");
+    }
+    
     @Test
     public void testGetFlight() throws DatatypeConfigurationException, LameDuckException_Exception {
         GregorianCalendar gregDate = new GregorianCalendar(2014,11,24);

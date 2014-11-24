@@ -30,7 +30,8 @@ public class P2 extends T {
     public void testP2() {
         itinearyID = createItinerary(person[0].name);
        
-        int bookingNumber = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
+//        int bookingNumber = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
+        int bookingNumber = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getReturn().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
         bookItinerary(itinearyID, person[0].number, person[0].name);
         cancelItinerary(itinearyID);

@@ -3,7 +3,7 @@ package dtu.ws.travelgood.SOAPTest;
 import javax.xml.datatype.DatatypeConfigurationException;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import ws.travelgood.xml.Travel;
+import ws.travelgood.xml.FlightBooking;
 
 /**
  * B (booking fails) Plan an itinerary with three bookings (mixed flights and
@@ -33,17 +33,20 @@ public class B extends T {
         //Create itinerary
         itinearyID = createItinerary(person[8].name); // this person has a CC limit on 10.000
         //Get a flight and book it.
-        int bookingNumber = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
+//        int bookingNumber = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
+        int bookingNumber = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getReturn().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
-        bookingNumber = getFlights(itinearyID, unbookable[0].source, unbookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
+//        bookingNumber = getFlights(itinearyID, unbookable[0].source, unbookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
+        bookingNumber = getFlights(itinearyID, unbookable[0].source, unbookable[0].departure, bookable[0].destination).getReturn().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
-        bookingNumber = getFlights(itinearyID, bookable[1].source, bookable[1].departure, bookable[1].destination).getTravels().get(0).getBookingNumber();
+//        bookingNumber = getFlights(itinearyID, bookable[1].source, bookable[1].departure, bookable[1].destination).getTravels().get(0).getBookingNumber();
+        bookingNumber = getFlights(itinearyID, bookable[1].source, bookable[1].departure, bookable[1].destination).getReturn().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
         
-        travels = (Travel[]) getItinerary(itinearyID).getFlightIbookings().toArray();
+        itinearyTravels = (FlightBooking[]) getItinerary(itinearyID).getFlightBookings().toArray();
 
-        for (int i = 0; i < travels.length; i++) {
-            assertEquals("unconfirmed", travels[i].getStatus());
+        for (int i = 0; i < itinearyTravels.length; i++) {
+            assertEquals("unconfirmed", itinearyTravels[i].getStatus());
 
         }
         
@@ -51,9 +54,9 @@ public class B extends T {
         assertEquals(false, bookItinerary(itinearyID, person[8].number, person[8].name));
         itineary = getItinerary(itinearyID);
         
-        assertEquals(itineary.getFlightIbookings().get(0).getStatus(),"cancelled");
-        assertEquals(itineary.getFlightIbookings().get(1).getStatus(),"unconfirmed");
-        assertEquals(itineary.getFlightIbookings().get(2).getStatus(),"unconfirmed");
+        assertEquals(itineary.getFlightBookings().get(0).getStatus(),"cancelled");
+        assertEquals(itineary.getFlightBookings().get(1).getStatus(),"unconfirmed");
+        assertEquals(itineary.getFlightBookings().get(2).getStatus(),"unconfirmed");
         
         
         

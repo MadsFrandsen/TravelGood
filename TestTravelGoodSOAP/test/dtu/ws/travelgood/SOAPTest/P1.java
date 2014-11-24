@@ -2,11 +2,13 @@ package dtu.ws.travelgood.SOAPTest;
 
 import java.util.Arrays;
 import javax.xml.datatype.DatatypeConfigurationException;
+import lameduck.FlightOption;
+import lameduck.GetFlightsResponse;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import ws.travelgood.xml.FlightBooking;
 import ws.travelgood.xml.Itinerary;
 import ws.travelgood.xml.Stay;
-import ws.travelgood.xml.Travel;
 
 
 /**
@@ -28,8 +30,8 @@ public class P1 extends T {
     public P1() throws DatatypeConfigurationException {
       
 
-        travels = new Travel[3];
-        itinearyTravels = new Travel[3];
+        travels = new FlightOption[3];
+        itinearyTravels = new FlightBooking[3];
 
         stays = new Stay[2];
         itinearyStays = new Stay[2];
@@ -46,7 +48,8 @@ public class P1 extends T {
         itinearyID = createItinerary(person[0].name);
         
         //Plan first flight
-        travels[0] = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0);
+//        travels[0] = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0);
+        travels[0] = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getReturn().get(0);
         addFlight(itinearyID, travels[0].getBookingNumber());
 
         //Plan a hotol
@@ -54,11 +57,13 @@ public class P1 extends T {
         addHotel(itinearyID, stays[0].getBookingNumber());
 
         //Plan another flight
-        travels[1] = getFlights(itinearyID,bookable[1].source, bookable[1].departure, bookable[1].destination).getTravels().get(0);
+//        travels[1] = getFlights(itinearyID,bookable[1].source, bookable[1].departure, bookable[1].destination).getTravels().get(0);
+        travels[1] = getFlights(itinearyID,bookable[1].source, bookable[1].departure, bookable[1].destination).getReturn().get(0);
         addFlight(itinearyID, travels[1].getBookingNumber());
 
         //Plan a third flight
-        travels[2] = getFlights(itinearyID, bookable[2].source, bookable[2].departure, bookable[2].destination).getTravels().get(0);
+//        travels[2] = getFlights(itinearyID, bookable[2].source, bookable[2].departure, bookable[2].destination).getTravels().get(0);
+        travels[2] = getFlights(itinearyID, bookable[2].source, bookable[2].departure, bookable[2].destination).getReturn().get(0);
         addFlight(itinearyID, travels[2].getBookingNumber());
 
         //Plan a 2nd hotel
@@ -79,7 +84,7 @@ public class P1 extends T {
         assertEquals("confirmed", itinerary.getStatus());
 
         // compare travel information
-        itinearyTravels = (Travel[]) itinerary.getFlightIbookings().toArray();
+        itinearyTravels = (FlightBooking[]) itinerary.getFlightBookings().toArray();
         itinearyStays = (Stay[]) itinerary.getHotelbookings().toArray();
 
         Arrays.sort(stays);
@@ -90,9 +95,9 @@ public class P1 extends T {
         assertEquals(itinearyTravels.length,travels.length);
         
         for (int i = 0; i < itinearyTravels.length; i++) {
-            assertEquals(itinearyTravels[i].getBookingNumber(),travels[i].getBookingNumber());
+            assertEquals(itinearyTravels[i].getFlight().getBookingNumber(),travels[i].getBookingNumber());
             assertEquals(itinearyTravels[i].getFlight(),travels[i].getFlight());
-            assertEquals(itinearyTravels[i].getReservationService(),travels[i].getReservationService());
+            assertEquals(itinearyTravels[i].getFlight().getAirlineReservationService(), travels[i].getAirlineReservationService());
             assertEquals(itinearyTravels[i].getStatus(),"confirmed");
             
         }
