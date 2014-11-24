@@ -116,7 +116,7 @@ public class LameDuckWebService {
      */
     @WebMethod(operationName = "bookFlight")
     public boolean bookFlight(@WebParam(name = "bookingNumber") int bookingNumber, @WebParam(name = "creditCard") CreditCardInfoType creditCard) throws LameDuckException {
-        // TODO: actually book the flight that is note somewhere that the flight is booked
+        
         boolean booked = false;
         if (flightsAvailable.isEmpty()) {
             throw new LameDuckException("empty flight list");

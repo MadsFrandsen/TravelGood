@@ -12,7 +12,6 @@ import java.util.GregorianCalendar;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.ws.WebFault;
 
 /**
@@ -136,6 +135,7 @@ public class niceViewWebService {
         for (int i=0; i<20;i++){
             hotels.add(new Hotel("Hotel "+i, "Main Street,"+i, (i % 2 == 0), i*10+10,"http://hotel"+i+".com/web/NiceViewService?wsdl" , "City "+i%5));
         }
+        hotels.add(new Hotel("Expensive", "5th Avenue", true, 1000000, "http://hotel666.com/web/NiceViewService?wsdl", "NYC"));
     }
 
 }

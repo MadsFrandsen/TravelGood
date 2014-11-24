@@ -60,20 +60,7 @@
 
   <xs:complexType name="getFlightsResponse">
     <xs:sequence>
-      <xs:element name="return">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="key" minOccurs="0" type="xs:int"/>
-                  <xs:element name="value" minOccurs="0" type="tns:flightOption"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
+      <xs:element name="return" type="tns:flightOption" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
