@@ -5,7 +5,7 @@
             xmlns:tns="http://xml.travelgood.ws"
             elementFormDefault="qualified" xmlns:ns0="http://LameDuck/">
     <xsd:import schemaLocation="http://localhost:8080/LameDuck/LameDuckWebService?xsd=2" namespace="http://LameDuck/"/>
-
+    
     <xsd:complexType name="stay">
         <xsd:sequence>
             <xsd:element name="name" type="xsd:string"></xsd:element>

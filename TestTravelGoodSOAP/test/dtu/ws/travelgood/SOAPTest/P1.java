@@ -6,9 +6,9 @@ import lameduck.FlightOption;
 import lameduck.GetFlightsResponse;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import ws.travelgood.xml.FlightBooking;
 import ws.travelgood.xml.Itinerary;
 import ws.travelgood.xml.Stay;
-import ws.travelgood.xml.Travel;
 
 
 /**
@@ -31,7 +31,7 @@ public class P1 extends T {
       
 
         travels = new FlightOption[3];
-        itinearyTravels = new Travel[3];
+        itinearyTravels = new FlightBooking[3];
 
         stays = new Stay[2];
         itinearyStays = new Stay[2];
@@ -84,7 +84,7 @@ public class P1 extends T {
         assertEquals("confirmed", itinerary.getStatus());
 
         // compare travel information
-        itinearyTravels = (Travel[]) itinerary.getFlightBookings().toArray();
+        itinearyTravels = (FlightBooking[]) itinerary.getFlightBookings().toArray();
         itinearyStays = (Stay[]) itinerary.getHotelbookings().toArray();
 
         Arrays.sort(stays);
@@ -95,9 +95,9 @@ public class P1 extends T {
         assertEquals(itinearyTravels.length,travels.length);
         
         for (int i = 0; i < itinearyTravels.length; i++) {
-            assertEquals(itinearyTravels[i].getBookingNumber(),travels[i].getBookingNumber());
+            assertEquals(itinearyTravels[i].getFlight().getBookingNumber(),travels[i].getBookingNumber());
             assertEquals(itinearyTravels[i].getFlight(),travels[i].getFlight());
-            assertEquals(itinearyTravels[i].getReservationService(),travels[i].getAirlineReservationService());
+            assertEquals(itinearyTravels[i].getFlight().getAirlineReservationService(), travels[i].getAirlineReservationService());
             assertEquals(itinearyTravels[i].getStatus(),"confirmed");
             
         }

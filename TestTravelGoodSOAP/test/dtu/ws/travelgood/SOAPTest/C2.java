@@ -3,7 +3,7 @@ package dtu.ws.travelgood.SOAPTest;
 import javax.xml.datatype.DatatypeConfigurationException;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import ws.travelgood.xml.Travel;
+import ws.travelgood.xml.FlightBooking;
 
 /**
  * C2 (cancelling fails) Create an itinerary with three bookings and book it.
@@ -46,7 +46,7 @@ public class C2 extends T {
         bookItinerary(itinearyID, person[2].number, person[2].name);
         
         //Check taht status is conformied for each entry
-        itinearyTravels = (Travel[]) getItinerary(itinearyID).getFlightBookings().toArray();
+        itinearyTravels = (FlightBooking[]) getItinerary(itinearyID).getFlightBookings().toArray();
         for (int i = 0; i < itinearyTravels.length; i++) {
             assertEquals("confirmed", itinearyTravels[i].getStatus());
         }
@@ -56,7 +56,7 @@ public class C2 extends T {
         cancelItinerary(itinearyID);
 
         //Check status of bookings
-        itinearyTravels = (Travel[]) getItinerary(itinearyID).getFlightBookings().toArray();
+        itinearyTravels = (FlightBooking[]) getItinerary(itinearyID).getFlightBookings().toArray();
 
             assertEquals("cancelled", itinearyTravels[0].getStatus());
             assertEquals("confirmed", itinearyTravels[1].getStatus());

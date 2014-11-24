@@ -3,7 +3,7 @@ package dtu.ws.travelgood.SOAPTest;
 import javax.xml.datatype.DatatypeConfigurationException;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import ws.travelgood.xml.Travel;
+import ws.travelgood.xml.FlightBooking;
 
 /**
  * B (booking fails) Plan an itinerary with three bookings (mixed flights and
@@ -43,7 +43,7 @@ public class B extends T {
         bookingNumber = getFlights(itinearyID, bookable[1].source, bookable[1].departure, bookable[1].destination).getReturn().get(0).getBookingNumber();
         addFlight(itinearyID, bookingNumber);
         
-        itinearyTravels = (Travel[]) getItinerary(itinearyID).getFlightBookings().toArray();
+        itinearyTravels = (FlightBooking[]) getItinerary(itinearyID).getFlightBookings().toArray();
 
         for (int i = 0; i < itinearyTravels.length; i++) {
             assertEquals("unconfirmed", itinearyTravels[i].getStatus());

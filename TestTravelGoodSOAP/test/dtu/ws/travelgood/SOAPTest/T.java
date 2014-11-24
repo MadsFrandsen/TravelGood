@@ -10,11 +10,11 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import lameduck.FlightOption;
 import lameduck.GetFlightsResponse;
+import ws.travelgood.TravelgoodService;
 import ws.travelgood.xml.AccommodationOptions;
+import ws.travelgood.xml.FlightBooking;
 import ws.travelgood.xml.Itinerary;
 import ws.travelgood.xml.Stay;
-import ws.travelgood.xml.Travel;
-import ws.travelgood.xml.TravelOptions;
 
 /*
  * Class containing test data and methods for interacting 
@@ -30,7 +30,7 @@ public class T {
     public DatatypeFactory df;
     public FlightOption[] travels;
 //    public Travel[] travels, itinearyTravels, bookableTravels;
-    public Travel[] itinearyTravels, bookableTravels;
+    public FlightBooking[] itinearyTravels, bookableTravels;
     public Stay[] stays, itinearyStays;
     public String itinearyID;
     public Itinerary itineary;
@@ -42,7 +42,7 @@ public class T {
         loadFlightOptions();
         loadPersonOptions();
         loadHotelOptions();
-        bookableTravels = new Travel[6];
+        bookableTravels = new FlightBooking[6];
     }
 
     class FlightOptionPrivate {
