@@ -15,11 +15,13 @@ public class FinalReservation {
     private int bookingNumber;
     private int totalPrice;
     private CreditCardInfoType creditCardInfo;
+    private boolean isCreditCardGuarantee;
 
-    public FinalReservation(int bookingNumber, int totalPrice, CreditCardInfoType creditCardInfo) {
+    public FinalReservation(int bookingNumber, int totalPrice, CreditCardInfoType creditCardInfo, boolean isCreditCardGuarantee) {
         this.bookingNumber = bookingNumber;
         this.totalPrice = totalPrice;
         this.creditCardInfo = creditCardInfo;
+        this.isCreditCardGuarantee = isCreditCardGuarantee;     
     }
 
     public int getBookingNumber() {
@@ -44,6 +46,14 @@ public class FinalReservation {
 
     public void setCreditCardInfo(CreditCardInfoType creditCardInfo) {
         this.creditCardInfo = creditCardInfo;
+    }
+
+    public boolean isIsCreditCardGuarantee() {
+        return isCreditCardGuarantee;
+    }
+
+    public void setIsCreditCardGuarantee(boolean isCreditCardGuarantee) {
+        this.isCreditCardGuarantee = isCreditCardGuarantee;
     }
     
     

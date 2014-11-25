@@ -79,7 +79,24 @@ public class NiceViewJUnitTest {
     }
     
     @Test
-    public void bookHotelTest (){
+    public void CreditCardNotGuaranteeHotelTest (){
+        try {
+            dk.dtu.imm.fastmoney.types.CreditCardInfoType cc = 
+                    new dk.dtu.imm.fastmoney.types.CreditCardInfoType();
+            
+            boolean output = bookHotel(4,null);
+            assertTrue(output);
+            System.out.println("Reserved");
+            cancelHotel(4);
+            System.out.println("Cancelled");
+        } catch (NiceViewFault_Exception ex) {
+            Logger.getLogger(NiceViewJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    @Test
+    public void CreditCardGuaranteeHotelTest (){
         try {
             dk.dtu.imm.fastmoney.types.CreditCardInfoType cc = 
                     new dk.dtu.imm.fastmoney.types.CreditCardInfoType();
@@ -94,21 +111,12 @@ public class NiceViewJUnitTest {
             boolean output = bookHotel(3,cc);
             assertTrue(output);
             System.out.println("Reserved");
+            cancelHotel(3);
+            System.out.println("Cancelled");
         } catch (NiceViewFault_Exception ex) {
             Logger.getLogger(NiceViewJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
         }
-    }
-    
-    @Test
-    public void cancelHotelTest (){
-    try {
-        cancelHotel(3);
-        System.out.println("Cancelled");
-    } catch (NiceViewFault_Exception ex) {
-        Logger.getLogger(NiceViewJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
-        System.out.println(ex.getMessage());
-    }
     }
     
 

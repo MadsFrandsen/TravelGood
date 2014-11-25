@@ -7,7 +7,6 @@ package niceView;
 import dk.dtu.imm.fastmoney.BankService;
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
 import dk.dtu.imm.fastmoney.types.AccountType;
-import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -82,7 +81,7 @@ public class niceViewWebService {
                     if (validateCreditCard(5, creditCardInfo, reservation.getTotalPrice()))
                         chargeCreditCard(5,creditCardInfo,reservation.getTotalPrice(),NICE_VIEW_ACCOUNT);
                 }
-                FinalReservation fReservation = new FinalReservation(reservation.getBookingNumber(), reservation.getTotalPrice(), creditCardInfo);
+                FinalReservation fReservation = new FinalReservation(reservation.getBookingNumber(), reservation.getTotalPrice(), creditCardInfo, reservation.isCreditCardGuarantee());
                 reservations.add(fReservation);
                 it.remove();
                 booked = true;
@@ -102,12 +101,14 @@ public class niceViewWebService {
     public void cancelHotel(@WebParam(name = "bookingNumber") int bookingNumber) throws NiceViewFault{
         
         boolean found = false;
-        for (FinalReservation reservation : reservations){
+        for (Iterator <FinalReservation> it = reservations.iterator(); it.hasNext();){
+            FinalReservation reservation = it.next();
             if (reservation.getBookingNumber() == bookingNumber){
                 //Cancellation
                 try{
-                    refundCreditCard(5,reservation.getCreditCardInfo(),reservation.getTotalPrice(),NICE_VIEW_ACCOUNT);
-                    reservations.remove(reservation);
+                    if (reservation.isIsCreditCardGuarantee())
+                        refundCreditCard(5,reservation.getCreditCardInfo(),reservation.getTotalPrice(),NICE_VIEW_ACCOUNT);
+                    it.remove();
                     found = true;
                 }
                 catch (CreditCardFaultMessage er){
@@ -117,11 +118,18 @@ public class niceViewWebService {
         }
         if (!found) throw new NiceViewFault("Booking Number Not Found");
     }
-
+     
+    private void loadData (){
+   
+        for (int i=0; i<20;i++){
+            hotels.add(new Hotel("Hotel "+i, "Main Street,"+i, (i % 2 == 0), i*10+10,"http://hotel"+i+".com/web/NiceViewService?wsdl" , "City "+i%5));
+        }
+    }
+    
     /*
      * BankService Methods
      */
-
+    
     private boolean chargeCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.chargeCreditCard(group, creditCardInfo, amount, account);
@@ -135,13 +143,6 @@ public class niceViewWebService {
     private boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.validateCreditCard(group, creditCardInfo, amount);
-    }
-    
-    private void loadData (){
-   
-        for (int i=0; i<20;i++){
-            hotels.add(new Hotel("Hotel "+i, "Main Street,"+i, (i % 2 == 0), i*10+10,"http://hotel"+i+".com/web/NiceViewService?wsdl" , "City "+i%5));
-        }
     }
 
 }
