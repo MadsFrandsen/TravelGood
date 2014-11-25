@@ -120,10 +120,28 @@ public class niceViewWebService {
     }
      
     private void loadData (){
-   
-        for (int i=0; i<20;i++){
-            hotels.add(new Hotel("Hotel "+i, "Main Street,"+i, (i % 2 == 0), i*10+10,"http://hotel"+i+".com/web/NiceViewService?wsdl" , "City "+i%5));
-        }
+        
+        hotels.add(new Hotel("Paragon Inn", "22 Moo. 15, Tambun Rachatheva, Bangplee, Soi Latk",true, 243,"http://www.theparagoninn.com/ReservationService?wsdl", "Bangkok" ));
+        hotels.add(new Hotel("Suphan Lake Hometel", "106/999 Klongsongtonnun Latkrabang",false, 108,"http://www.suphanlakehometel.com/ReservationService?wsdl", "Bangkok" ));
+        hotels.add(new Hotel("Grand Inn Come Hotel", "99 Moo 6 Kingkaew Rd., Rachathewa, Samutprakan",true, 292,"http://www.grandinncome-hotel.com/ReservationService?wsdl", "Bangkok" ));
+
+        hotels.add(new Hotel("Millwood Inn & Suites", "1375 El Camino RealMillbrae, CA 94030",true, 1035,"http://www.millwoodinn.com/ReservationService?wsdl", "San Francisco" ));
+        hotels.add(new Hotel("Regency Inn", "411 San Bruno Ave E San Bruno, CA 94066",false, 743,"http://www.regencyinnsfo.com/ReservationService?wsdl", "San Francisco" ));
+        hotels.add(new Hotel("The Opal", "1050 Van Ness Ave",true, 2604,"http://www.theopalsf.com/ReservationService?wsdl", "San Francisco" ));
+
+        hotels.add(new Hotel("Dormero Hotel Frankfurt", "Lissabonner Straße 2",true, 662,"http://www.dormero.de/ReservationService?wsdl", "Frankfurt" ));
+        hotels.add(new Hotel("Ramada Frankfurt Messe", "Oeserstraße 180",false, 435,"http://www.h-hotels.com/ReservationService?wsdl", "Frankfurt" ));
+        
+        hotels.add(new Hotel("Le Montclair Montmartre", "62 Rue Ramey",true, 490,"http://www.montclair-hostel.com/ReservationService?wsdl", "Paris" ));
+        hotels.add(new Hotel("Hôtel Verlain", "97 Rue Saint-Maur",false, 705,"http://www.verlain.fr/ReservationService?wsdl", "Paris" ));
+           
+        hotels.add(new Hotel("Sheraton Vancouver Airport Hotel", "7551 Westminster Highway",true, 902,"http://www.sheratonvancouverairport.com/ReservationService?wsdl", "Vancouver" ));
+        hotels.add(new Hotel("Holiday Inn Express & Suites Riverport Richmond", "10688 Number 6 Rd Richmond, BC V6W 1B1",false, 554,"http://www.ihg.com/ReservationService?wsdl", "Vancouver" ));
+          
+        hotels.add(new Hotel("InterContinental Amstel Amsterdam", "Professor Tulpplein 1",true, 3005,"http://www.ihg.com/ReservationService?wsdl", "Amsterdam" ));
+        
+        hotels.add(new Hotel("Southern Sun Dar Es Salaam", "Garden Ave",false, 302,"http://www.tsogosunhotels.com/ReservationService?wsdl", "Dar es Salaam" ));
+          
     }
     
     /*

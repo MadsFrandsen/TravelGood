@@ -60,7 +60,7 @@ public class NiceViewJUnitTest {
         DatatypeFactory datatypeFactory = DatatypeFactory.newInstance();
         dateArrival = datatypeFactory.newXMLGregorianCalendar(arrival);
         dateDeparture = datatypeFactory.newXMLGregorianCalendar(departure);
-        List<Reservation> hotels = getHotels("City 0", dateArrival, dateDeparture);
+        List<Reservation> hotels = getHotels("Bangkok", dateArrival, dateDeparture);
         for (Reservation hotel : hotels){
             System.out.println(hotel.getName());
             System.out.println("=============");
@@ -84,10 +84,10 @@ public class NiceViewJUnitTest {
             dk.dtu.imm.fastmoney.types.CreditCardInfoType cc = 
                     new dk.dtu.imm.fastmoney.types.CreditCardInfoType();
             
-            boolean output = bookHotel(4,null);
+            boolean output = bookHotel(2,null);
             assertTrue(output);
             System.out.println("Reserved");
-            cancelHotel(4);
+            cancelHotel(2);
             System.out.println("Cancelled");
         } catch (NiceViewFault_Exception ex) {
             Logger.getLogger(NiceViewJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,17 +101,17 @@ public class NiceViewJUnitTest {
             dk.dtu.imm.fastmoney.types.CreditCardInfoType cc = 
                     new dk.dtu.imm.fastmoney.types.CreditCardInfoType();
   
-            cc.setName("Tick Joachim");
-            cc.setNumber("50408824");
+            cc.setName("Thor-Jensen Claus");
+            cc.setNumber("50408825");
             ExpirationDateType expirationDate = new ExpirationDateType();
-            expirationDate.setMonth(2);
-            expirationDate.setYear(11);
+            expirationDate.setMonth(5);
+            expirationDate.setYear(9);
             cc.setExpirationDate(expirationDate);
             
-            boolean output = bookHotel(3,cc);
+            boolean output = bookHotel(1,cc);
             assertTrue(output);
             System.out.println("Reserved");
-            cancelHotel(3);
+            cancelHotel(1);
             System.out.println("Cancelled");
         } catch (NiceViewFault_Exception ex) {
             Logger.getLogger(NiceViewJUnitTest.class.getName()).log(Level.SEVERE, null, ex);

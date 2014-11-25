@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="Prometeo" name="Tests.NiceViewJUnitTest" tests="3" time="0.964" timestamp="2014-11-25T15:38:24">
+<testsuite errors="1" failures="0" hostname="Prometeo" name="Tests.NiceViewJUnitTest" tests="3" time="0.652" timestamp="2014-11-25T17:39:38">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -11,7 +11,7 @@
     <property name="ant.core.lib" value="/home/planaspa/openesb-2.3.1/netbeans/java/ant/lib/ant.jar" />
     <property name="javadoc.windowtitle" value="" />
     <property name="libs.jsp-compilation.javadoc" value="" />
-    <property name="user.dir" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest" />
+    <property name="user.dir" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest" />
     <property name="libs.javaee-api-7.0.src" value="" />
     <property name="libs.hibernate-persistence.javadoc" value="" />
     <property name="java.vm.version" value="24.65-b04" />
@@ -58,7 +58,7 @@
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Tests.NiceViewJUnitTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/build/test/results/TEST-Tests.NiceViewJUnitTest.xml crashfile=/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/build/junitvmwatcher8393149169010009444.properties propsfile=/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/build/junit396098906767039968.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Tests.NiceViewJUnitTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/test/results/TEST-Tests.NiceViewJUnitTest.xml crashfile=/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/junitvmwatcher4820641092598115426.properties propsfile=/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/junit1985836122228786380.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="build.sysclasspath" value="ignore" />
     <property name="ap.supported.internal" value="true" />
@@ -98,8 +98,8 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="/" />
-    <property name="wsdl-NiceViewService" value="/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/xml-resources/web-service-references/NiceViewService/wsdl/localhost_8080/NiceView/NiceViewService.wsdl" />
-    <property name="javac.includesfile.binary" value="/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/null1420136055" />
+    <property name="wsdl-NiceViewService" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/xml-resources/web-service-references/NiceViewService/wsdl/localhost_8080/NiceView/NiceViewService.wsdl" />
+    <property name="javac.includesfile.binary" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/null1964992345" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:/home/planaspa/openesb-2.3.1/netbeans/platform/modules/ext/junit-4.10.jar" />
@@ -112,7 +112,7 @@
     <property name="libs.junit.classpath" value="/home/planaspa/openesb-2.3.1/netbeans/java/modules/ext/junit-3.8.2.jar" />
     <property name="libs.jaxb.javadoc" value="/home/planaspa/openesb-2.3.1/netbeans/ide/docs/jaxb-api-doc.zip" />
     <property name="libs.struts.classpath" value="/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/antlr-2.7.2.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/bsf-2.3.0.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/commons-beanutils-1.8.0.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/commons-chain-1.2.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/commons-digester-1.8.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/commons-fileupload-1.1.1.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/commons-io-1.1.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/commons-logging-1.0.4.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/commons-validator-1.3.1.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/jstl-1.0.2.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/oro-2.0.8.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/standard-1.0.6.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/struts-core-1.3.10.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/struts-el-1.3.10.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/struts-extras-1.3.10.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/struts-faces-1.3.10.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/struts-mailreader-dao-1.3.10.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/struts-scripting-1.3.10.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/struts-taglib-1.3.10.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/struts/struts-tiles-1.3.10.jar" />
-    <property name="javac.includes.binary" value="/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/build/test/classes/Tests/NiceViewJUnitTest.class" />
+    <property name="javac.includes.binary" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/test/classes/Tests/NiceViewJUnitTest.class" />
     <property name="ant.home" value="/home/planaspa/openesb-2.3.1/netbeans/java/ant" />
     <property name="libs.junit_4.src" value="/home/planaspa/openesb-2.3.1/netbeans/java/docs/junit-4.10-sources.jar" />
     <property name="libs.testng.classpath" value="/home/planaspa/openesb-2.3.1/netbeans/platform/modules/ext/testng-6.5.1-dist.jar" />
@@ -126,7 +126,7 @@
     <property name="java.util.logging.config.class" value="org.netbeans.core.startup.TopLogging" />
     <property name="libs.PostgreSQLDriver.src" value="" />
     <property name="sun.arch.data.model" value="64" />
-    <property name="basedir" value="/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest" />
+    <property name="basedir" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest" />
     <property name="libs.jpa20-persistence.maven-pom" value="" />
     <property name="jar.compress" value="false" />
     <property name="libs.javaee-web-api-7.0.classpath" value="/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/javaee-web-api-7.0.jar" />
@@ -171,7 +171,7 @@
     <property name="libs.JWSAntTasks.classpath" value="/home/planaspa/openesb-2.3.1/netbeans/java/ant/extra/org-netbeans-modules-javawebstart-anttasks.jar" />
     <property name="libs.spring-framework300.src" value="" />
     <property name="libs.PojoSELib.src" value="/home/planaspa/openesb-2.3.1/netbeans/soa/modules/ext/sun-pojo-engine-api-src.jar" />
-    <property name="empty.dir" value="/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/build/empty" />
+    <property name="empty.dir" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/empty" />
     <property name="version-output" value="java version &quot;1.7" />
     <property name="test.binarytestincludes" value="" />
     <property name="javadoc.preview" value="true" />
@@ -211,11 +211,11 @@
     <property name="javac.processorpath" value="" />
     <property name="libs.spring-webmvc.classpath" value="/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/spring/spring-webmvc-2.5.6.SEC03.jar" />
     <property name="javac.compilerargs" value="" />
-    <property name="ant.file" value="/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/build.xml" />
+    <property name="ant.file" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build.xml" />
     <property name="libs.beans-binding.maven-pom" value="" />
     <property name="libs.jsf12.classpath" value="/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/jsf-1_2/commons-beanutils.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/jsf-1_2/commons-collections.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/jsf-1_2/commons-digester.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/jsf-1_2/commons-logging.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/jsf-1_2/jsf-api.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/jsf-1_2/jsf-impl.jar" />
     <property name="libs.Encoder-HL7.src" value="" />
-    <property name="ant.file.NiceViewTest" value="/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/build.xml" />
+    <property name="ant.file.NiceViewTest" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build.xml" />
     <property name="libs.restapi.maven-pom" value="" />
     <property name="libs.beans-binding.src" value="" />
     <property name="java.vm.specification.vendor" value="Oracle Corporation" />
@@ -288,7 +288,7 @@
     <property name="libs.testng.maven-pom" value="" />
     <property name="libs.jaxb.src" value="" />
     <property name="libs.Encoder-HL7.maven-pom" value="" />
-    <property name="work.dir" value="/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest" />
+    <property name="work.dir" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest" />
     <property name="libs.jaxb.classpath" value="/home/planaspa/openesb-2.3.1/netbeans/ide/modules/ext/jaxb/jaxb-impl.jar:/home/planaspa/openesb-2.3.1/netbeans/ide/modules/ext/jaxb/jaxb-xjc.jar:/home/planaspa/openesb-2.3.1/netbeans/ide/modules/ext/jaxb/jaxb1-impl.jar:/home/planaspa/openesb-2.3.1/netbeans/ide/modules/ext/jaxb/activation.jar:/home/planaspa/openesb-2.3.1/netbeans/ide/modules/ext/jaxb/api/jaxb-api.jar:/home/planaspa/openesb-2.3.1/netbeans/ide/modules/ext/jaxb/api/jsr173_1.0_api.jar" />
     <property name="do.depend" value="false" />
     <property name="dist.javadoc.dir" value="dist/javadoc" />
@@ -309,7 +309,7 @@
     <property name="libs.spring-framework.maven-pom" value="" />
     <property name="sun.boot.class.path" value="/home/planaspa/openesb-2.3.1/netbeans/java/modules/ext/jaxws22/api/jaxws-api.jar:/home/planaspa/openesb-2.3.1/netbeans/ide/modules/ext/jaxb/jaxb-impl.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rhino.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jfr.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/classes" />
     <property name="javac.target" value="1.7" />
-    <property name="built-jar.properties" value="/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/build/built-jar.properties" />
+    <property name="built-jar.properties" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/built-jar.properties" />
     <property name="build.test.classes.dir" value="build/test/classes" />
     <property name="libs.Encoder-Framework.maven-pom" value="" />
     <property name="src.dir" value="src" />
@@ -352,7 +352,7 @@
     <property name="excludes" value="" />
     <property name="libs.restlib.maven-pom" value="" />
     <property name="libs.metro.classpath" value="/home/planaspa/openesb-2.3.1/netbeans/ide/modules/ext/jaxb/activation.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/metro/webservices-api.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/metro/webservices-extra-api.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/metro/webservices-extra.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/metro/webservices-rt.jar:/home/planaspa/openesb-2.3.1/netbeans/enterprise/modules/ext/metro/webservices-tools.jar" />
-    <property name="java.class.path" value="/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/build/classes:/home/planaspa/openesb-2.3.1/netbeans/platform/modules/ext/junit-4.10.jar:/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/build/test/classes:/home/planaspa/openesb-2.3.1/netbeans/java/ant/lib/ant-launcher.jar:/home/planaspa/openesb-2.3.1/netbeans/java/ant/lib/ant.jar:/home/planaspa/openesb-2.3.1/netbeans/java/ant/lib/ant-junit.jar:/home/planaspa/openesb-2.3.1/netbeans/java/ant/lib/ant-junit4.jar" />
+    <property name="java.class.path" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/classes:/home/planaspa/openesb-2.3.1/netbeans/platform/modules/ext/junit-4.10.jar:/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/test/classes:/home/planaspa/openesb-2.3.1/netbeans/java/ant/lib/ant-launcher.jar:/home/planaspa/openesb-2.3.1/netbeans/java/ant/lib/ant.jar:/home/planaspa/openesb-2.3.1/netbeans/java/ant/lib/ant-junit.jar:/home/planaspa/openesb-2.3.1/netbeans/java/ant/lib/ant-junit4.jar" />
     <property name="do.mkdist" value="true" />
     <property name="libs.absolutelayout.src" value="" />
     <property name="libs.jpa20-persistence.classpath" value="/home/planaspa/openesb-2.3.1/netbeans/java/modules/ext/eclipselink/javax.persistence_2.1.0.v201304241213.jar" />
@@ -361,7 +361,7 @@
     <property name="libs.javaee-api-7.0.maven-pom" value="" />
     <property name="main.class.available" value="true" />
     <property name="sun.awt.enableExtraMouseButtons" value="true" />
-    <property name="ant.file.NiceViewTest-impl" value="/home/planaspa/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/TravelGood/TravelGood/NiceViewTest/nbproject/build-impl.xml" />
+    <property name="ant.file.NiceViewTest-impl" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/nbproject/build-impl.xml" />
     <property name="sun.desktop" value="gnome" />
     <property name="libs.PojoSELib.maven-pom" value="" />
     <property name="compile.on.save.unsupported.jaxws" value="true" />
@@ -401,9 +401,9 @@
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="/home/planaspa/openesb-2.3.1/netbeans/enterprise/docs/javaee-doc-api.jar" />
   </properties>
-  <testcase classname="Tests.NiceViewJUnitTest" name="getHotelsTest" time="0.732" />
-  <testcase classname="Tests.NiceViewJUnitTest" name="CreditCardNotGuaranteeHotelTest" time="0.081" />
-  <testcase classname="Tests.NiceViewJUnitTest" name="CreditCardGuaranteeHotelTest" time="0.082">
+  <testcase classname="Tests.NiceViewJUnitTest" name="getHotelsTest" time="0.396" />
+  <testcase classname="Tests.NiceViewJUnitTest" name="CreditCardNotGuaranteeHotelTest" time="0.075" />
+  <testcase classname="Tests.NiceViewJUnitTest" name="CreditCardGuaranteeHotelTest" time="0.114">
     <error type="java.lang.ExceptionInInitializerError">java.lang.ExceptionInInitializerError
 	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:107)
 	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:78)
@@ -419,34 +419,27 @@ Caused by: java.lang.ClassCastException: com.sun.xml.bind.v2.runtime.JAXBContext
 	at com.sun.xml.internal.ws.fault.SOAPFaultBuilder.&lt;clinit&gt;(SOAPFaultBuilder.java:555)
 </error>
   </testcase>
-  <system-out><![CDATA[Hotel 0
+  <system-out><![CDATA[Paragon Inn
 =============
 Booking number = 1
-Total price = 20
-Address = Main Street,0
-Hotel Reservation service = http://hotel0.com/web/NiceViewService?wsdl
+Total price = 486
+Address = 22 Moo. 15, Tambun Rachatheva, Bangplee, Soi Latk
+Hotel Reservation service = http://www.theparagoninn.com/ReservationService?wsdl
 CreditCardGuarantee = true
-Hotel 5
+Suphan Lake Hometel
 =============
 Booking number = 2
-Total price = 120
-Address = Main Street,5
-Hotel Reservation service = http://hotel5.com/web/NiceViewService?wsdl
+Total price = 216
+Address = 106/999 Klongsongtonnun Latkrabang
+Hotel Reservation service = http://www.suphanlakehometel.com/ReservationService?wsdl
 CreditCardGuarantee = false
-Hotel 10
+Grand Inn Come Hotel
 =============
 Booking number = 3
-Total price = 220
-Address = Main Street,10
-Hotel Reservation service = http://hotel10.com/web/NiceViewService?wsdl
+Total price = 584
+Address = 99 Moo 6 Kingkaew Rd., Rachathewa, Samutprakan
+Hotel Reservation service = http://www.grandinncome-hotel.com/ReservationService?wsdl
 CreditCardGuarantee = true
-Hotel 15
-=============
-Booking number = 4
-Total price = 320
-Address = Main Street,15
-Hotel Reservation service = http://hotel15.com/web/NiceViewService?wsdl
-CreditCardGuarantee = false
 Reserved
 Cancelled
 ]]></system-out>
