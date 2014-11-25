@@ -4,6 +4,7 @@
  */
 package Tests;
 
+import dk.dtu.imm.fastmoney.types.ExpirationDateType;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
@@ -61,13 +62,13 @@ public class NiceViewJUnitTest {
         dateDeparture = datatypeFactory.newXMLGregorianCalendar(departure);
         List<Reservation> hotels = getHotels("City 0", dateArrival, dateDeparture);
         for (Reservation hotel : hotels){
-            System.out.println(hotel.getHotelInfo().getName());
+            System.out.println(hotel.getName());
             System.out.println("=============");
             System.out.printf("Booking number = %d%n", hotel.getBookingNumber());
             System.out.printf("Total price = %d%n", hotel.getTotalPrice());
-            System.out.printf("Address = %s%n", hotel.getHotelInfo().getAddress());
-            System.out.printf("Hotel Reservation service = %s%n", hotel.getHotelInfo().getHotelReservationService());
-            System.out.printf("CreditCardGuarantee = %b%n", hotel.getHotelInfo().isCreditCardGuarantee());
+            System.out.printf("Address = %s%n", hotel.getAddress());
+            System.out.printf("Hotel Reservation service = %s%n", hotel.getHotelReservationService());
+            System.out.printf("CreditCardGuarantee = %b%n", hotel.isCreditCardGuarantee());
 
         }
         }
@@ -80,17 +81,34 @@ public class NiceViewJUnitTest {
     @Test
     public void bookHotelTest (){
         try {
-            dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo = 
+            dk.dtu.imm.fastmoney.types.CreditCardInfoType cc = 
                     new dk.dtu.imm.fastmoney.types.CreditCardInfoType();
-            dk.dtu.imm.fastmoney.types.AccountType account =
-                    new dk.dtu.imm.fastmoney.types.AccountType();
-            boolean output = bookHotel(4,creditCardInfo,account);
+  
+            cc.setName("Tick Joachim");
+            cc.setNumber("50408824");
+            ExpirationDateType expirationDate = new ExpirationDateType();
+            expirationDate.setMonth(2);
+            expirationDate.setYear(11);
+            cc.setExpirationDate(expirationDate);
+            
+            boolean output = bookHotel(3,cc);
             assertTrue(output);
             System.out.println("Reserved");
         } catch (NiceViewFault_Exception ex) {
             Logger.getLogger(NiceViewJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
         }
+    }
+    
+    @Test
+    public void cancelHotelTest (){
+    try {
+        cancelHotel(3);
+        System.out.println("Cancelled");
+    } catch (NiceViewFault_Exception ex) {
+        Logger.getLogger(NiceViewJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        System.out.println(ex.getMessage());
+    }
     }
     
 
@@ -106,10 +124,10 @@ public class NiceViewJUnitTest {
         return port.getHotels(city, arrival, departure);
     }
 
-    private static boolean bookHotel(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, dk.dtu.imm.fastmoney.types.AccountType account) throws NiceViewFault_Exception {
+    private static boolean bookHotel(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws NiceViewFault_Exception {
         niceview.NiceViewService service = new niceview.NiceViewService();
         niceview.NiceViewWebService port = service.getNiceViewWebServicePort();
-        return port.bookHotel(bookingNumber, creditCardInfo, account);
+        return port.bookHotel(bookingNumber, creditCardInfo);
     }
     
 }
