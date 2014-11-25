@@ -1,5 +1,6 @@
 package dtu.ws.travelgood.SOAPTest;
 
+import javax.xml.datatype.DatatypeConfigurationException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -10,12 +11,16 @@ import static org.junit.Assert.*;
  * @author Jonas Karlsson (S143341)
  * @return
  */
-public class P2 {
+public class P2 extends T {
 
+ 
     /**
      *
      */
-    public P2() {
+    
+    public P2() throws DatatypeConfigurationException  {
+       
+
     }
 
     /**
@@ -23,5 +28,15 @@ public class P2 {
      */
     @Test
     public void testP2() {
+        itinearyID = createItinerary(person[0].name);
+       
+//        int bookingNumber = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
+        int bookingNumber = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getReturn().get(0).getBookingNumber();
+        addFlight(itinearyID, bookingNumber);
+        bookItinerary(itinearyID, person[0].number, person[0].name);
+        cancelItinerary(itinearyID);
+        assertEquals("canceled", getItinerary(itinearyID).getStatus());
     }
+
+    
 }

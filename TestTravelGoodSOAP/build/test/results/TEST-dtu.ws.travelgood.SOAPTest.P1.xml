@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="Srens-MacBook-Air-2.local" name="dtu.ws.travelgood.SOAPTest.P1" tests="1" time="0.0" timestamp="2014-11-01T16:55:47">
+<testsuite errors="1" failures="0" hostname="Srens-MacBook-Air-2.local" name="dtu.ws.travelgood.SOAPTest.P1" tests="1" time="1.05" timestamp="2014-11-23T19:07:56">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -10,9 +10,9 @@
     <property name="libs.junit.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/docs/junit-3.8.2-api.zip" />
     <property name="javac.includes" value="dtu/ws/travelgood/SOAPTest/P1.java" />
     <property name="ant.core.lib" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant.jar" />
-    <property name="javadoc.windowtitle" value="TravelGood" />
+    <property name="javadoc.windowtitle" value="" />
     <property name="libs.jsp-compilation.javadoc" value="" />
-    <property name="user.dir" value="/" />
+    <property name="user.dir" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP" />
     <property name="com.apple.mrj.application.apple.menu.about.name" value="OpenESB IDE" />
     <property name="libs.javaee-api-7.0.src" value="" />
     <property name="libs.hibernate-persistence.javadoc" value="" />
@@ -44,7 +44,6 @@
     <property name="netbeans.derby.system.home" value="/Users/srnjcbsn/OpenESB-v2.3.1/glassfish/databases" />
     <property name="libs.javac-api.javadoc" value="" />
     <property name="os.name" value="Mac OS X" />
-    <property name="test.class" value="dtu.ws.travelgood.SOAPTest.P1" />
     <property name="libs.beans-binding.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/beansbinding-1.2.1.jar" />
     <property name="libs.javaee-endorsed-api-7.0.maven-pom" value="" />
     <property name="ap.proc.none.internal" value="" />
@@ -63,9 +62,10 @@
     <property name="libs.jsf12.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/javaee-doc-api.jar" />
     <property name="libs.Comet-GlassFish-v3.javadoc" value="" />
     <property name="copylibs.rebase" value="true" />
+    <property name="manifest.available+main.class" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.netbeans.Main --userdir /Users/srnjcbsn/Library/Application Support/OpenESB_IDE/2.3.1 --branding soa" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner dtu.ws.travelgood.SOAPTest.P1 filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/test/results/TEST-dtu.ws.travelgood.SOAPTest.P1.xml crashfile=/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/junitvmwatcher8694950661993365379.properties propsfile=/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/junit8857788127487839919.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="build.sysclasspath" value="ignore" />
     <property name="ap.supported.internal" value="true" />
@@ -74,7 +74,6 @@
     <property name="includes" value="**" />
     <property name="user.country" value="US" />
     <property name="manifest.file" value="manifest.mf" />
-    <property name="wsdl-service" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/xml-resources/web-service-references/service/wsdl/localhost_9080/service.wsdl" />
     <property name="libs.jstl11.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/javaee-doc-api.jar" />
     <property name="javadoc.encoding" value="UTF-8" />
     <property name="javac.classpath" value="" />
@@ -90,6 +89,7 @@
     <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/endorsed" />
     <property name="user.language.format" value="da" />
     <property name="libs.Comet-GlassFish-v3.maven-pom" value="" />
+    <property name="test.includes" value="dtu/ws/travelgood/SOAPTest/P1.java" />
     <property name="netbeans.dynamic.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/core/core.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/core/org-openide-filesystems.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/core/locale/core_ja.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/core/locale/core_pt_BR.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/core/locale/core_ru.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/core/locale/core_zh_CN.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/core/locale/org-openide-filesystems_ja.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/core/locale/org-openide-filesystems_pt_BR.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/core/locale/org-openide-filesystems_ru.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/core/locale/org-openide-filesystems_zh_CN.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../soa/core/locale/core_soa.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../nb/core/org-netbeans-upgrader.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../nb/core/locale/core_nb.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../nb/core/locale/org-netbeans-upgrader_ja.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../nb/core/locale/org-netbeans-upgrader_pt_BR.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../nb/core/locale/org-netbeans-upgrader_ru.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../nb/core/locale/org-netbeans-upgrader_zh_CN.jar" />
     <property name="java.vm.specification.version" value="1.7" />
     <property name="libs.primefaces.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/primefaces/primefaces-3.5.jar" />
@@ -111,7 +111,7 @@
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="/" />
     <property name="libs.Java-EE-GlassFish-v3-Prelude.maven-pom" value="" />
-    <property name="javac.includesfile.binary" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/null696547888" />
+    <property name="javac.includesfile.binary" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/null837482060" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/modules/ext/junit-4.10.jar" />
@@ -124,6 +124,7 @@
     <property name="libs.junit.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/junit-3.8.2.jar" />
     <property name="libs.jaxb.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/ide/docs/jaxb-api-doc.zip" />
     <property name="libs.struts.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/antlr-2.7.2.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/bsf-2.3.0.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/commons-beanutils-1.8.0.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/commons-chain-1.2.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/commons-digester-1.8.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/commons-fileupload-1.1.1.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/commons-io-1.1.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/commons-logging-1.0.4.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/commons-validator-1.3.1.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/jstl-1.0.2.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/oro-2.0.8.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/standard-1.0.6.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/struts-core-1.3.10.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/struts-el-1.3.10.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/struts-extras-1.3.10.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/struts-faces-1.3.10.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/struts-mailreader-dao-1.3.10.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/struts-scripting-1.3.10.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/struts-taglib-1.3.10.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/struts/struts-tiles-1.3.10.jar" />
+    <property name="org.openide.awt.SwingBrowserImpl.do-not-block-awt" value="false" />
     <property name="javac.includes.binary" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/test/classes/dtu/ws/travelgood/SOAPTest/P1.class" />
     <property name="ant.home" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant" />
     <property name="libs.junit_4.src" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/docs/junit-4.10-sources.jar" />
@@ -131,7 +132,7 @@
     <property name="libs.absolutelayout.maven-pom" value="" />
     <property name="ant.java.version" value="1.7" />
     <property name="java.library.path" value="/Users/srnjcbsn/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:." />
-    <property name="javadoc.author" value="true" />
+    <property name="javadoc.author" value="false" />
     <property name="libs.metro.maven-pom" value="" />
     <property name="manifest.available+main.class-mkdist.available" value="true" />
     <property name="libs.Encoder-HL7.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/soa/modules/ext/hl7.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/soa/modules/ext/hl7encoder-xsdextension.jar" />
@@ -163,7 +164,7 @@
     <property name="libs.primefaces.javadoc" value="" />
     <property name="libs.spring-framework300.maven-pom" value="" />
     <property name="run.test.classpath" value=":build/classes:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/modules/ext/junit-4.10.jar:build/test/classes" />
-    <property name="ant.project.invoked-targets" value="debug-test" />
+    <property name="ant.project.invoked-targets" value="test-single" />
     <property name="libs.Encoder-Framework.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/soa/modules/ext/encoderframework.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/soa/modules/ext/encoderfrmwk-xsdextension.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/soa/modules/ext/xbean.jar" />
     <property name="test.binaryexcludes" value="" />
     <property name="libs.swing-layout.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/docs/swing-layout-1.0.4-doc.zip" />
@@ -173,7 +174,6 @@
     <property name="libs.PostgreSQLDriver.maven-pom" value="" />
     <property name="java.class.version" value="51.0" />
     <property name="libs.JAVADB_DRIVER_LABEL.classpath" value="/Users/srnjcbsn/GlassFish_Server/javadb/lib/derby.jar:/Users/srnjcbsn/GlassFish_Server/javadb/lib/derbyclient.jar:/Users/srnjcbsn/GlassFish_Server/javadb/lib/derbynet.jar" />
-    <property name="jpda.address" value="localhost:55392" />
     <property name="libs.javaee-endorsed-api-6.0.src" value="" />
     <property name="netbeans.system_http_proxy" value="DIRECT" />
     <property name="libs.eclipselink.javadoc" value="" />
@@ -188,11 +188,12 @@
     <property name="libs.JWSAntTasks.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/extra/org-netbeans-modules-javawebstart-anttasks.jar" />
     <property name="libs.spring-framework300.src" value="" />
     <property name="libs.PojoSELib.src" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/soa/modules/ext/sun-pojo-engine-api-src.jar" />
+    <property name="wsdl-travelgoodPort" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/xml-resources/web-service-references/travelgoodPort/wsdl/localhost_9070/travelgoodService/travelgoodPort.wsdl" />
     <property name="empty.dir" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/empty" />
     <property name="version-output" value="java version &quot;1.7" />
     <property name="test.binarytestincludes" value="" />
     <property name="javadoc.preview" value="true" />
-    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16|localhost" />
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
     <property name="libs.jpa20-persistence.javadoc" value="" />
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre" />
     <property name="libs.jsp-compilation.src" value="" />
@@ -207,6 +208,7 @@
     <property name="libs.JAX-WS-ENDORSED.maven-pom" value="" />
     <property name="libs.MySQLDriver.maven-pom" value="" />
     <property name="libs.JAX-WS-ENDORSED.src" value="" />
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
     <property name="libs.junit_4.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/docs/junit-4.10-javadoc.jar" />
     <property name="libs.spring-webmvc.javadoc" value="" />
     <property name="libs.EclipseLink-GlassFish-v3.maven-pom" value="" />
@@ -282,8 +284,10 @@
     <property name="libs.spring-framework300.javadoc" value="" />
     <property name="libs.hibernate-persistence.maven-pom" value="" />
     <property name="libs.absolutelayout.javadoc" value="" />
+    <property name="guice.disable.misplaced.annotation.check" value="true" />
     <property name="java.specification.name" value="Java Platform API Specification" />
     <property name="libs.Encoder-COCO.maven-pom" value="" />
+    <property name="do.archive+main.class.available" value="true" />
     <property name="ide.module.install.dir" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/ide/modules" />
     <property name="java.specification.vendor" value="Oracle Corporation" />
     <property name="libs.javac-api.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/nb-javac-api.jar" />
@@ -297,8 +301,8 @@
     <property name="libs.eclipselinkmodelgen.maven-pom" value="" />
     <property name="libs.jsp-compilation-syscp.javadoc" value="" />
     <property name="libs.junit.maven-pom" value="" />
-    <property name="libs.eclipselinkmodelgen.javadoc" value="" />
     <property name="libs.javaee-endorsed-api-7.0.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee7-endorsed/javax.annotation-api.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee7-endorsed/javax.xml.soap-api.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee7-endorsed/jaxb-api-osgi.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee7-endorsed/jaxws-api.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/javaee7-endorsed/jsr181-api.jar" />
+    <property name="libs.eclipselinkmodelgen.javadoc" value="" />
     <property name="libs.metro.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/metro-1.4-doc.zip" />
     <property name="libs.struts.maven-pom" value="" />
     <property name="netbeans.home+have.tests" value="true" />
@@ -316,8 +320,8 @@
     <property name="libs.restlib.src" value="" />
     <property name="javac.source" value="1.7" />
     <property name="build.generated.dir" value="build/generated" />
-    <property name="line.separator" value="&#xa;" />
     <property name="libs.hibernate-persistence.src" value="" />
+    <property name="line.separator" value="&#xa;" />
     <property name="java.specification.version" value="1.7" />
     <property name="java.vm.info" value="mixed mode" />
     <property name="libs.jaxws21.maven-pom" value="" />
@@ -326,7 +330,7 @@
     <property name="junit.forkmode" value="perTest" />
     <property name="user.country.format" value="DK" />
     <property name="libs.spring-framework.maven-pom" value="" />
-    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/classes" />
+    <property name="sun.boot.class.path" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/jaxws22/api/jaxws-api.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/classes" />
     <property name="javac.target" value="1.7" />
     <property name="built-jar.properties" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/built-jar.properties" />
     <property name="build.test.classes.dir" value="build/test/classes" />
@@ -344,6 +348,7 @@
     <property name="libs.primefaces.src" value="" />
     <property name="libs.JAX-WS-ENDORSED.javadoc" value="" />
     <property name="dist.dir" value="dist" />
+    <property name="do.archive+manifest.available+main.class" value="true" />
     <property name="testng.debug.mode" value="" />
     <property name="javac.fork" value="false" />
     <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob" />
@@ -356,13 +361,14 @@
     <property name="java.runtime.version" value="1.7.0_71-b14" />
     <property name="libs.ejb3-persistence.javadoc" value="" />
     <property name="jna.platform.library.path" value="/usr/lib:/usr/lib" />
+    <property name="manifest.available+main.class+mkdist.available" value="true" />
     <property name="default.javac.target" value="1.7" />
     <property name="libs.junit_4.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/modules/ext/junit-4.10.jar" />
-    <property name="user.timezone" value="Europe/Copenhagen" />
+    <property name="user.timezone" value="" />
     <property name="nb.junit.single" value="false" />
     <property name="do.jar" value="true" />
-    <property name="libs.javaee-endorsed-api-6.0.maven-pom" value="" />
     <property name="libs.JAVADB_DRIVER_LABEL.javadoc" value="" />
+    <property name="libs.javaee-endorsed-api-6.0.maven-pom" value="" />
     <property name="netbeans.dirs" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../soa:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../apisupport:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../enterprise:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../ergonomics:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../harness:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../ide:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../java:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../nb:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../profiler:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../webcommon:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/MacOS/../Resources/netbeans/bin/../websvccommon:" />
     <property name="libs.jsf20.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/javaee-doc-api.jar" />
     <property name="java.ext.dirs" value="/Users/srnjcbsn/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java" />
@@ -370,26 +376,27 @@
     <property name="endorsed.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/jaxws22/api/jaxws-api.jar" />
     <property name="libs.absolutelayout.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/AbsoluteLayout.jar" />
     <property name="excludes" value="" />
-    <property name="libs.restlib.maven-pom" value="" />
     <property name="libs.metro.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/ide/modules/ext/jaxb/activation.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/metro/webservices-api.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/metro/webservices-extra-api.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/metro/webservices-extra.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/metro/webservices-rt.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/metro/webservices-tools.jar" />
-    <property name="java.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/lib/ant-javafx.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/lib/dt.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/lib/javafx-doclet.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/lib/javafx-mx.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/lib/jconsole.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/lib/sa-jdi.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/lib/tools.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-antlr.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-apache-bcel.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-apache-bsf.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-apache-log4j.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-apache-oro.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-apache-regexp.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-apache-resolver.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-apache-xalan2.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-commons-logging.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-commons-net.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-jai.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-javamail.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-jdepend.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-jmf.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-jsch.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-junit.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-junit4.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-launcher.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-netrexx.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-swing.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-testutil.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/ide/modules/com-jcraft-jsch.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/ide/modules/com-jcraft-jzlib.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/ide/modules/ext/commons-net-3.1.jar" />
+    <property name="libs.restlib.maven-pom" value="" />
     <property name="apple.laf.useScreenMenuBar" value="true" />
+    <property name="java.class.path" value="/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/classes:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/platform/modules/ext/junit-4.10.jar:/Users/srnjcbsn/TravelGood/TestTravelGoodSOAP/build/test/classes:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-launcher.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-junit.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-junit4.jar" />
     <property name="do.mkdist" value="true" />
     <property name="libs.absolutelayout.src" value="" />
     <property name="libs.jpa20-persistence.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/eclipselink/javax.persistence_2.1.0.v201304241213.jar" />
     <property name="ant.file.type.TestTravelGoodSOAP" value="file" />
-    <property name="os.version" value="10.10" />
+    <property name="os.version" value="10.10.1" />
     <property name="application.args" value="" />
     <property name="libs.EclipseLink-GlassFish-v3.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/javaee-doc-api.jar" />
     <property name="libs.javaee-api-7.0.maven-pom" value="" />
+    <property name="main.class.available" value="true" />
     <property name="sun.awt.enableExtraMouseButtons" value="true" />
     <property name="libs.PojoSELib.maven-pom" value="" />
     <property name="compile.on.save.unsupported.jaxws" value="true" />
     <property name="libs.Comet-GlassFish-v3.src" value="" />
     <property name="libs.restlib.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/jersey-1.13-javadoc.zip:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/jersey-apache-client-1.13-javadoc.zip:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/jersey-atom-abdera-1.13-javadoc.zip:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/jersey-guice-1.13-javadoc.zip:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/jersey-multipart-1.13-javadoc.zip:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/jersey-simple-server-1.13-javadoc.zip:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/jersey-spring-1.13-javadoc.zip:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/oauth-client-1.13-javadoc.zip:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/oauth-server-1.13-javadoc.zip:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/oauth-signature-1.13-javadoc.zip" />
     <property name="libs.JAXB-ENDORSED.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/ide/modules/ext/jaxb/api/jaxb-api.jar" />
-    <property name="libs.eclipselink.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/eclipselink/eclipselink.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/eclipselink/javax.persistence_2.1.0.v201304241213.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/eclipselink/org.eclipse.persistence.jpa.jpql_2.5.0.v20130507-3faac2b.jar" />
     <property name="libs.javaee-api-7.0.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/javaee-doc-api.jar" />
+    <property name="libs.eclipselink.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/eclipselink/eclipselink.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/eclipselink/javax.persistence_2.1.0.v201304241213.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/modules/ext/eclipselink/org.eclipse.persistence.jpa.jpql_2.5.0.v20130507-3faac2b.jar" />
     <property name="libs.beans-binding.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/docs/beansbinding-1.2.1-doc.zip" />
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
@@ -409,22 +416,33 @@
     <property name="libs.Encoder-Custom.src" value="" />
     <property name="libs.junit.src" value="" />
     <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
-    <property name="main.class" value="" />
-    <property name="libs.CopyLibs.src" value="" />
+    <property name="main.class" value="data.Data.java" />
     <property name="build.dir" value="build" />
+    <property name="libs.CopyLibs.src" value="" />
     <property name="libs.jsp-compilation.classpath" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/servlet3.1-jsp2.3-api.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/glassfish-jspparser-4.0.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/jsf-2_2/javax.faces.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/modules/ext/jstl.jar:/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/java/ant/lib/ant-launcher.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.8.4 compiled on May 22 2012" />
-    <property name="file.encoding" value="UTF-8" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
+    <property name="file.encoding" value="UTF-8" />
     <property name="jdkBug6558476" value="false" />
     <property name="javadoc.nonavbar" value="false" />
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="/Users/srnjcbsn/OpenESB-v2.3.1/netbeans.app/Contents/Resources/netbeans/enterprise/docs/javaee-doc-api.jar" />
   </properties>
-  <testcase classname="dtu.ws.travelgood.SOAPTest.P1" name="testP1" time="0.003">
-    <error message="Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
-	at org.netbeans.core.execution.RunClassThread.run(RunClassThread.java:153)
+  <testcase classname="dtu.ws.travelgood.SOAPTest.P1" name="testP1" time="0.925">
+    <error message="BPCOR-6134: Sending errors for the pending requests in the current scope, since the scope has completed&#xa;BPCOR-6129: Line Number is 128&#xa;BPCOR-6130: Activity Name is addFlightScope" type="javax.xml.ws.soap.SOAPFaultException">javax.xml.ws.soap.SOAPFaultException: BPCOR-6134: Sending errors for the pending requests in the current scope, since the scope has completed
+BPCOR-6129: Line Number is 128
+BPCOR-6130: Activity Name is addFlightScope
+	at com.sun.xml.internal.ws.fault.SOAP11Fault.getProtocolException(SOAP11Fault.java:178)
+	at com.sun.xml.internal.ws.fault.SOAPFaultBuilder.createException(SOAPFaultBuilder.java:125)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:108)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:78)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:135)
+	at com.sun.proxy.$Proxy20.addFlight(Unknown Source)
+	at dtu.ws.travelgood.SOAPTest.T.addFlight(T.java:324)
+	at dtu.ws.travelgood.SOAPTest.P1.testP1(P1.java:53)
 </error>
   </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
 </testsuite>

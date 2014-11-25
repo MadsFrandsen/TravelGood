@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="LameDuck/WEB-INF/wsdl/LameDuckWebService.wsdl" uri="src/_references/_projects/LameDuck/web/WEB-INF/wsdl/LameDuckWebService.wsdl"/>
+    <system systemId="LameDuckWebService_schema1.xsd" uri="src/_references/_projects/LameDuck/web/WEB-INF/wsdl/LameDuckWebService_schema1.xsd"/>
+    <system systemId="LameDuck/wsdl/LameDuckWebService.wsdl" uri="src/_references/_projects/LameDuck/src/conf/wsdl/LameDuckWebService.wsdl"/>
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?wsdl" uri="../localhost_8080/LameDuck/LameDuckWebService.wsdl"/>
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?xsd=1" uri="../localhost_8080/LameDuck/LameDuckWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?xsd=2" uri="../localhost_8080/LameDuck/LameDuckWebService.xsd_2.xsd"/>
+    <system systemId="http://xml.travelgood.ws" uri="src/_references/_relative/nbproject/private/retriever/xml.travelgood.ws"/>
+</catalog>

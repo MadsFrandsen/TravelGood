@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns0="http://enterprise.netbeans.org/bpel/BpelModule1/bpelModule1" xmlns:ns1="http://LameDuck/" xmlns:ns2="http://travelgood.ws" xmlns:ns3="http://www.sun.com/jbi/descriptor/service-unit" version="1.0">
+    <services binding-component="false">
+        <provides endpoint-name="itineraryPortTypeRole_myRole" interface-name="ns2:itineraryPortType" service-name="ns0:PartnerLink1">
+            <ns3:display-name>PartnerLink1</ns3:display-name>
+            <ns3:process-name>bpelModule1</ns3:process-name>
+            <ns3:file-path>travelgoodBPEL.bpel</ns3:file-path>
+        </provides>
+        <consumes endpoint-name="LameDuckWebServiceRole_partnerRole" interface-name="ns1:LameDuckWebService" service-name="ns0:PartnerLink2">
+            <ns3:display-name>PartnerLink2</ns3:display-name>
+            <ns3:process-name>bpelModule1</ns3:process-name>
+            <ns3:file-path>travelgoodBPEL.bpel</ns3:file-path>
+        </consumes>
+    </services>
+</jbi>

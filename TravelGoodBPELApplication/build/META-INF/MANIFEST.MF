@@ -1,0 +1,4 @@
+Bundle-Name: TravelGoodBPELApplication
+Bundle-SymbolicName: TravelGoodBPELApplication
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.0.0

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://jonas-XPS13:9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelGoodBEPL.xsd" uri="xml-resources/web-service-references/service/wsdl/jonas-XPS13_9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelGoodBEPL.xsd"/>
-    <system systemId="http://localhost:9080/service?wsdl" uri="xml-resources/web-service-references/service/wsdl/localhost_9080/service.wsdl"/>
-    <system systemId="http://192.168.0.100:9080/TravelGoodBPELApplication-sun-http-binding/TravelGoodBPEL/travelGoodBEPL.xsd" uri="xml-resources/web-service-references/service/wsdl/192.168.0.100_9080/TravelGoodBPELApplication-sun-http-binding/TravelGoodBPEL/travelGoodBEPL.xsd"/>
+    <system systemId="http://10.16.162.111:9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd" uri="xml-resources/web-service-references/travelgoodPort/wsdl/10.16.162.111_9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd"/>
+    <system systemId="http://localhost:9080/travelgoodService/travelgoodPort?wsdl" uri="xml-resources/web-service-references/travelgoodPort/wsdl/localhost_9080/travelgoodService/travelgoodPort.wsdl"/>
+    <system systemId="http://192.168.0.100:9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd" uri="xml-resources/web-service-references/travelgoodPort/wsdl/192.168.0.100_9080/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd"/>
+    <system systemId="http://jonas-XPS13:9090/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd" uri="xml-resources/web-service-references/travelgoodPort/wsdl/jonas-XPS13_9090/TravelGoodBPELApp-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd"/>
+    <system systemId="http://localhost:9070/travelgoodService/travelgoodPort?wsdl" uri="xml-resources/web-service-references/travelgoodPort/wsdl/localhost_9070/travelgoodService/travelgoodPort.wsdl"/>
+    <system systemId="http://192.168.0.100:9070/TravelGoodBPELApplication-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd" uri="xml-resources/web-service-references/travelgoodPort/wsdl/192.168.0.100_9070/TravelGoodBPELApplication-sun-http-binding/TravelGoodBPEL/travelgoodBPEL.xsd"/>
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?xsd=2" uri="xml-resources/web-service-references/travelgoodPort/wsdl/localhost_8080/LameDuck/LameDuckWebService.xsd_2.xsd"/>
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?xsd=1" uri="xml-resources/web-service-references/travelgoodPort/wsdl/localhost_8080/LameDuck/LameDuckWebService.xsd_1.xsd"/>
 </catalog>
