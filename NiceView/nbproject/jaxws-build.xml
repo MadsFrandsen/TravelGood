@@ -45,7 +45,7 @@
     </target>
     <target name="wsimport-client-BankService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/BankService"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/BankService" destdir="${build.generated.dir}/jax-wsCache/BankService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/BankService/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://fastmoney.imm.dtu.dk:8080/BankService?wsdl" xnocompile="true" package="dk.dtu.imm.fastmoney" target="2.1">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/BankService" destdir="${build.generated.dir}/jax-wsCache/BankService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/BankService/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://fastmoney.imm.dtu.dk:8080/BankService?wsdl" xnocompile="true" target="2.1">
             <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/BankService/wsdl/fastmoney.imm.dtu.dk_8080/BankService.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/BankService"/>
         </wsimport>

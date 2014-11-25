@@ -4,14 +4,9 @@
  */
 package niceView;
 
-import dk.dtu.imm.fastmoney.AccountType;
-import dk.dtu.imm.fastmoney.CreditCardInfoType;
-import dk.dtu.imm.fastmoney.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -19,46 +14,41 @@ import javax.xml.bind.annotation.XmlType;
  * @author planaspa
  */
 @XmlRootElement
-@XmlType(propOrder = {"hotelInfo", "bookingNumber", "totalPrice"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Reservation {
-   // @XmlElement
-    private Hotel hotelInfo;
-    //@XmlElement
+   
     private int bookingNumber;
-    //@XmlElement
     private int totalPrice;
-    @XmlTransient
-    private dk.dtu.imm.fastmoney.CreditCardInfoType creditCardInfo;
-    @XmlTransient
-    private dk.dtu.imm.fastmoney.AccountType account;
-
+    private String name;
+    private String address;
+    private boolean creditCardGuarantee;
+    private String hotelReservationService;
+  
     public Reservation(){
         
     }
-    
-    public Reservation(Hotel hotelInfo, int bookingNumber, int totalPrice) {
-        this.hotelInfo = hotelInfo;
+
+    public Reservation(int bookingNumber, int totalPrice, String name, String address, boolean creditCardGuarantee, String hotelReservationService) {
         this.bookingNumber = bookingNumber;
         this.totalPrice = totalPrice;
-        this.creditCardInfo = null;
-        this.account = null;
+        this.name = name;
+        this.address = address;
+        this.creditCardGuarantee = creditCardGuarantee;
+        this.hotelReservationService = hotelReservationService;
     }
 
-    public Hotel getHotelInfo() {
-        return hotelInfo;
-    }
+
 
     public String getName() {
-        return hotelInfo.getName();
+        return name;
     }
 
     public String getAddress() {
-        return hotelInfo.getAddress();
+        return address;
     }
 
     public boolean isCreditCardGuarantee() {
-        return hotelInfo.isCreditCardGuarantee();
+        return creditCardGuarantee;
     }
 
     public int getBookingNumber() {
@@ -68,10 +58,19 @@ public class Reservation {
     public int getTotalPrice() {
         return totalPrice;
     }
- 
-    public void setHotelInfo(Hotel hotelInfo) {
-        this.hotelInfo = hotelInfo;
+
+    public void setName(String name) {
+        this.name = name;
     }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCreditCardGuarantee(boolean creditCardGuarantee) {
+        this.creditCardGuarantee = creditCardGuarantee;
+    }
+ 
 
     public void setBookingNumber(int bookingNumber) {
         this.bookingNumber = bookingNumber;
@@ -81,20 +80,12 @@ public class Reservation {
         this.totalPrice = totalPrice;
     }
     
-    public CreditCardInfoType getCreditCardInfo() {
-        return creditCardInfo;
+    public String getHotelReservationService() {
+        return hotelReservationService;
     }
 
-    public void setCreditCardInfo(CreditCardInfoType creditCardInfo) {
-        this.creditCardInfo = creditCardInfo;
-    }
-    
-    public AccountType getAccount() {
-        return account;
+    public void setHotelReservationService(String hotelReservationService) {
+        this.hotelReservationService = hotelReservationService;
     }
 
-    public void setAccount(AccountType account) {
-        this.account = account;
-    }  
-    
 }

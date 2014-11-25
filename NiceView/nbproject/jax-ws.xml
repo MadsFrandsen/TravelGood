@@ -9,7 +9,7 @@
     <client name="BankService">
       <wsdl-url>http://fastmoney.imm.dtu.dk:8080/BankService?wsdl</wsdl-url>
       <local-wsdl-file>fastmoney.imm.dtu.dk_8080/BankService.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">dk.dtu.imm.fastmoney</package-name>
+      <package-name>dk.dtu.imm.fastmoney</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -27,10 +27,6 @@
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>dk.dtu.imm.fastmoney</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>target</wsimport-option-name>
