@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author planaspa
+ * 
  */
 public class NiceViewJUnitTest {
     

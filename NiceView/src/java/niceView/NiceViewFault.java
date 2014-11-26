@@ -8,7 +8,7 @@ import javax.xml.ws.WebFault;
 
 /**
  *
- * @author planaspa
+ * 
  */
 @WebFault(name="NiceViewFault")
 public class NiceViewFault extends Exception {

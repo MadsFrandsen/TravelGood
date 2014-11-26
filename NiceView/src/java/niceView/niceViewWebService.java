@@ -7,23 +7,16 @@ package niceView;
 import dk.dtu.imm.fastmoney.BankService;
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
 import dk.dtu.imm.fastmoney.types.AccountType;
-import dk.dtu.imm.fastmoney.types.ExpirationDateType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.ws.WebFault;
 
-/**
- *
- * @author planaspa
- */
 @WebService(serviceName = "NiceViewService")
 @WebFault(name="NiceViewFault")
 public class niceViewWebService {
