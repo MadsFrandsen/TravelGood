@@ -6,7 +6,7 @@ package niceView;
 
 /**
  *
- * @author planaspa
+ * 
  */
 public class ReservationNotFoundFault extends Exception {
     

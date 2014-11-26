@@ -9,6 +9,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import niceview.NiceViewFault_Exception;
@@ -22,7 +23,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author planaspa
+ * 
  */
 public class NiceViewJUnitTest {
     
@@ -81,23 +82,56 @@ public class NiceViewJUnitTest {
     @Test
     public void CreditCardNotGuaranteeHotelTest (){
         try {
-            dk.dtu.imm.fastmoney.types.CreditCardInfoType cc = 
-                    new dk.dtu.imm.fastmoney.types.CreditCardInfoType();
-            
-            boolean output = bookHotel(2,null);
-            assertTrue(output);
-            System.out.println("Reserved");
-            cancelHotel(2);
-            System.out.println("Cancelled");
+            XMLGregorianCalendar dateArrival = null;
+            XMLGregorianCalendar dateDeparture = null;
+            GregorianCalendar arrival = new GregorianCalendar(2014,12,12);
+            GregorianCalendar departure = new GregorianCalendar(2014,12,14) {};
+            DatatypeFactory datatypeFactory = DatatypeFactory.newInstance();
+            dateArrival = datatypeFactory.newXMLGregorianCalendar(arrival);
+            dateDeparture = datatypeFactory.newXMLGregorianCalendar(departure);
+            List<Reservation> hotels = getHotels("Bangkok", dateArrival, dateDeparture);
+            Reservation fhotel = null;
+            for (Reservation hotel : hotels){
+                if (!hotel.isCreditCardGuarantee())
+                    fhotel = hotel;
+            }
+            if (fhotel != null){
+                boolean output = bookHotel(fhotel.getBookingNumber(),null);
+                assertTrue(output);
+                System.out.println("Reserved");
+                cancelHotel(fhotel.getBookingNumber());
+                System.out.println("Cancelled");
+            }
+            else {
+                System.out.println("There is not hotel with such features");
+                assertTrue (false);
+            }
         } catch (NiceViewFault_Exception ex) {
             Logger.getLogger(NiceViewJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
+        } catch (DatatypeConfigurationException ex) {
+            Logger.getLogger(NiceViewJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     @Test
     public void CreditCardGuaranteeHotelTest (){
         try {
+            XMLGregorianCalendar dateArrival = null;
+            XMLGregorianCalendar dateDeparture = null;
+            GregorianCalendar arrival = new GregorianCalendar(2014,12,12);
+            GregorianCalendar departure = new GregorianCalendar(2014,12,14) {};
+            DatatypeFactory datatypeFactory = DatatypeFactory.newInstance();
+            dateArrival = datatypeFactory.newXMLGregorianCalendar(arrival);
+            dateDeparture = datatypeFactory.newXMLGregorianCalendar(departure);
+            List<Reservation> hotels = getHotels("Bangkok", dateArrival, dateDeparture);
+            Reservation fhotel = null;
+            for (Reservation hotel : hotels){
+                if (!hotel.isCreditCardGuarantee())
+                    fhotel = hotel;
+            }
+            
+            
             dk.dtu.imm.fastmoney.types.CreditCardInfoType cc = 
                     new dk.dtu.imm.fastmoney.types.CreditCardInfoType();
   
@@ -107,15 +141,22 @@ public class NiceViewJUnitTest {
             expirationDate.setMonth(5);
             expirationDate.setYear(9);
             cc.setExpirationDate(expirationDate);
-            
-            boolean output = bookHotel(1,cc);
+            if (fhotel != null){
+            boolean output = bookHotel(fhotel.getBookingNumber(),cc);
             assertTrue(output);
             System.out.println("Reserved");
-            cancelHotel(1);
+            cancelHotel(fhotel.getBookingNumber());
             System.out.println("Cancelled");
+            }
+            else {
+                System.out.println("There is not hotel with such features");
+                assertTrue (false);
+            }
         } catch (NiceViewFault_Exception ex) {
             Logger.getLogger(NiceViewJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
+        } catch (DatatypeConfigurationException ex) {
+            Logger.getLogger(NiceViewJUnitTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

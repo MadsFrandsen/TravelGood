@@ -17,10 +17,6 @@ import javax.jws.WebParam;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.ws.WebFault;
 
-/**
- *
- * @author planaspa
- */
 @WebService(serviceName = "NiceViewService")
 @WebFault(name="NiceViewFault")
 public class niceViewWebService {
@@ -148,19 +144,40 @@ public class niceViewWebService {
      * BankService Methods
      */
     
-    private boolean chargeCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
+    private static boolean chargeCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
+        dk.dtu.imm.fastmoney.BankService service = new dk.dtu.imm.fastmoney.BankService();
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.chargeCreditCard(group, creditCardInfo, amount, account);
     }
 
-    private boolean refundCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
+    private static boolean refundCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount, dk.dtu.imm.fastmoney.types.AccountType account) throws CreditCardFaultMessage {
+        dk.dtu.imm.fastmoney.BankService service = new dk.dtu.imm.fastmoney.BankService();
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.refundCreditCard(group, creditCardInfo, amount, account);
     }
 
-    private boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
+    private static boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
+        dk.dtu.imm.fastmoney.BankService service = new dk.dtu.imm.fastmoney.BankService();
         dk.dtu.imm.fastmoney.BankPortType port = service.getBankPort();
         return port.validateCreditCard(group, creditCardInfo, amount);
     }
 
+    
+   /* public static void main (String [] args){
+            dk.dtu.imm.fastmoney.types.CreditCardInfoType cc = 
+                new dk.dtu.imm.fastmoney.types.CreditCardInfoType();
+  
+            cc.setName("Thor-Jensen Claus");
+            cc.setNumber("50408825");
+            ExpirationDateType expirationDate = new ExpirationDateType();
+            expirationDate.setMonth(5);
+            expirationDate.setYear(9);
+            cc.setExpirationDate(expirationDate);
+        try {            
+            validateCreditCard(5, cc, 200);
+        } catch (CreditCardFaultMessage ex) {
+            Logger.getLogger(niceViewWebService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }*/
+    
 }

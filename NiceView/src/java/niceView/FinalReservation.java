@@ -8,7 +8,7 @@ import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 
 /**
  *
- * @author planaspa
+ * 
  */
 public class FinalReservation {
     
