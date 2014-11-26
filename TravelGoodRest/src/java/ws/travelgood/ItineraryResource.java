@@ -33,6 +33,7 @@ import javax.xml.datatype.DatatypeFactory;
 import lameduck.FlightOption;
 import lameduck.LameDuckException_Exception;
 import model.BookingItem;
+import model.BookingItem.BookingStatus;
 import model.Flight;
 import model.Hotel;
 import model.Itinerary;
@@ -65,25 +66,15 @@ public class ItineraryResource {
 
     @Path("{itineraryId}")
     @DELETE
-    public void cancelItineraryBooking(@PathParam("itineraryId") String itineraryId,
-            String creditCardNumber,
-            String creditCardOwnerName,
-            int creditCardExpMonth,
-            int creditCardExpYear) throws CancelException {
-        
-        CreditCardInfoType cc = new CreditCardInfoType();
-        cc.setName(creditCardOwnerName);
-        cc.setNumber(creditCardNumber);
-        ExpirationDateType expirationDate = new ExpirationDateType();
-        expirationDate.setMonth(creditCardExpMonth);
-        expirationDate.setYear(creditCardExpYear);
-        cc.setExpirationDate(expirationDate);
+    public void cancelItineraryBooking(@PathParam("itineraryId") String itineraryId) throws CancelException {
+        Itinerary itinerary = itineraries.get(itineraryId);
         
         boolean failing = false;
-        for (Flight flight : itineraries.get(itineraryId).getFlights()) {
+        for (Flight flight : itinerary.getFlights()) {
             if(flight.getBookingStatus() == BookingItem.BookingStatus.CONFIRMED) {
                 try {    
-                    cancelFlightLameDuck(Integer.parseInt(flight.getBookingId()), flight.getPrice(), cc);
+                    cancelFlightLameDuck(Integer.parseInt(flight.getBookingId()), flight.getPrice(), itinerary.getCreditCard());
+                    flight.setBookingStatus(BookingStatus.CANCELLED);
                 } catch (LameDuckException_Exception ex) {
                     failing = true;
                 }
@@ -102,10 +93,10 @@ public class ItineraryResource {
     @Path("{itineraryId}/book")
     @POST
     public void bookItinerary(@PathParam("itineraryId") String itineraryId,
-            String creditCardNumber,
-            String creditCardOwnerName,
-            int creditCardExpMonth,
-            int creditCardExpYear) throws BookingException {
+            @FormParam("creditCardNumber") String creditCardNumber,
+            @FormParam("creditCardOwnerName") String creditCardOwnerName,
+            @FormParam("creditCardExpMonth") int creditCardExpMonth,
+            @FormParam("creditCardExpYear") int creditCardExpYear) throws BookingException {
 
         CreditCardInfoType cc = new CreditCardInfoType();
         cc.setName(creditCardOwnerName);
@@ -115,11 +106,16 @@ public class ItineraryResource {
         expirationDate.setYear(creditCardExpYear);
         cc.setExpirationDate(expirationDate);
         
+        Itinerary itinerary = itineraries.get(itineraryId);
+        itinerary.setCreditCard(cc);
+        
         boolean failing = false;
         Exception failingException = null;
-        for (Flight flight : itineraries.get(itineraryId).getFlights()) {
+        for (Flight flight : itinerary.getFlights()) {
+            int bookingNumber = Integer.parseInt(flight.getBookingId());
             try {
-                bookFlightLameDuck(Integer.parseInt(flight.getBookingId()), cc);
+                bookFlightLameDuck(bookingNumber, cc);
+                flight.setBookingStatus(BookingStatus.CONFIRMED);
             } catch (LameDuckException_Exception ex) {
                 failing = true;
                 failingException = ex;
@@ -135,14 +131,11 @@ public class ItineraryResource {
         
         if(failing) {
             try {
-                cancelItineraryBooking(itineraryId, cc.getNumber(), 
-                        cc.getName(), 
-                        cc.getExpirationDate().getMonth(), 
-                        cc.getExpirationDate().getYear()); 
+                cancelItineraryBooking(itineraryId); 
             } catch (CancelException ex) {
                 // Cancelling failed, a booking exception will already be thrown.
             }
-            throw (BookingException) new BookingException().initCause(failingException);
+            throw new BookingException();
         }
     }
 
@@ -190,7 +183,7 @@ public class ItineraryResource {
 
     @Path("{itineraryId}/hotels/{hotelId}")
     @PUT
-    public void addHotel(String hotelId, @PathParam("itineraryId") String itineraryId) {
+    public void addHotel(@PathParam("hotelId") String hotelId, @PathParam("itineraryId") String itineraryId) {
         throw new NotImplementedException();
     }
 

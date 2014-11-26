@@ -58,9 +58,9 @@ public class TestItineraryResource {
 
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "27-12-2014");
+        //addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "27-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "BKK", "SFO", "27-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "SFO", "27-12-2014", "02-02-2015");
+        //addRandomHotelToItinerary(client, itineraryId, "SFO", "27-12-2014", "02-02-2015");
         addRandomFlightToItinerary(client, itineraryId, "SFO", "BKK", "02-02-2015");
         Itinerary itinerary = getItinerary(client, itineraryId);
 
@@ -94,8 +94,8 @@ public class TestItineraryResource {
 
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "31-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "BKK", "CPH", "31-12-2014");
+        //addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "31-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "Andeby", "Moon", "01-01-2015");
 
         Itinerary itinerary = getItinerary(client, itineraryId);
 
@@ -126,7 +126,7 @@ public class TestItineraryResource {
 
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "31-12-2014");
+        //addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "31-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "BKK", "CPH", "31-12-2014");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
@@ -161,7 +161,7 @@ public class TestItineraryResource {
 
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "31-12-2014");
+        //addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "31-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "BKK", "CPH", "31-12-2014");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
@@ -189,10 +189,15 @@ public class TestItineraryResource {
     }
 
     private void bookItinerary(Client client, String itineraryId) throws BookingException {
+        Form form = new Form();
+        form.add("creditCardOwnerName", "Tick Joachim");
+        form.add("creditCardNumber", "50408824");
+        form.add("creditCardExpMonth", "2");
+        form.add("creditCardExpYear", "11");
         WebResource resourceBookItinerary = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId
                 + "/book");
-        resourceBookItinerary.post();
+        resourceBookItinerary.post(form);
     }
 
     private void cancelItinerary(Client client, String itineraryId) throws CancelException {
@@ -248,7 +253,7 @@ public class TestItineraryResource {
     }
 
     private Hotel[] getHotels(Client client, String itineraryId, String location, String arrivalDate, String departureDate) {
-        WebResource resourceFlights = client.resource("http://localhost:8080/TravelGoodRest/webresources/hotels/"
+        WebResource resourceFlights = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/hotels/"
                 + "?location=" + location
                 + "&arrivalDate=" + arrivalDate
                 + "&departureDate=" + departureDate);

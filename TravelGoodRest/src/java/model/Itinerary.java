@@ -4,10 +4,12 @@
  */
 package model;
 
+import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,12 +27,24 @@ public class Itinerary {
     @XmlElement
     private List<Hotel> hotels = new ArrayList<Hotel>();
     
+    @XmlTransient
+    private CreditCardInfoType creditCard;
+    
     public Itinerary() {
         
     }
     
     public Itinerary(String id) {
         this.id = id;
+    }
+    
+    @XmlTransient
+    public void setCreditCard(CreditCardInfoType creditCard) {
+        this.creditCard = creditCard;
+    }
+    
+    public CreditCardInfoType getCreditCard() {
+        return creditCard;
     }
     
     public List<Flight> getFlights() {

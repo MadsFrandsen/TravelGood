@@ -4,14 +4,17 @@
  */
 package model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 public class BookingItem {
     
     @XmlElement
-    private BookingStatus bookingStatus;
+    private BookingStatus bookingStatus = BookingStatus.UNCONFIRMED;
     
     @XmlElement
     private String bookingId;
@@ -26,6 +29,11 @@ public class BookingItem {
         CONFIRMED,
         UNCONFIRMED,
         CANCELLED
+    }
+    
+    @XmlTransient
+    public void setBookingStatus(BookingStatus bookingStatus) {
+        this.bookingStatus = bookingStatus;
     }
     
     public String getBookingId() {
