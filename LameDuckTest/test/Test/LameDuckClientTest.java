@@ -4,11 +4,9 @@
  */
 package Test;
 
-import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
+
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 import dk.dtu.imm.fastmoney.types.ExpirationDateType;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -64,15 +62,15 @@ public class LameDuckClientTest {
 
     @Test
     public void testGetFlightFromAndebyToMoon() throws DatatypeConfigurationException, LameDuckException_Exception {
-        GregorianCalendar gregDate = new GregorianCalendar(2015,0,1);
         
+        GregorianCalendar gregDate = new GregorianCalendar(2015,0,1);
         DatatypeFactory df = DatatypeFactory.newInstance();
         XMLGregorianCalendar date = df.newXMLGregorianCalendar(gregDate);
         System.out.println(date.getDay() + "." + date.getMonth() + "." + date.getYear() + " " + date.getHour() + ":" + date.getMinute());
         
         List<FlightOption> flights = getFlights("Andeby", "Moon", date);
         
-        System.out.println(flights.size());
+        System.out.println("Number of flights: " + flights.size());
         assertEquals(1, flights.size());
         
         System.out.println("--------------------");
@@ -80,8 +78,8 @@ public class LameDuckClientTest {
     
     @Test
     public void testGetFlight() throws DatatypeConfigurationException, LameDuckException_Exception {
-        GregorianCalendar gregDate = new GregorianCalendar(2014,11,24);
         
+        GregorianCalendar gregDate = new GregorianCalendar(2014,11,24);
         DatatypeFactory df = DatatypeFactory.newInstance();
         XMLGregorianCalendar date = df.newXMLGregorianCalendar(gregDate);
         System.out.println(date.getDay() + "." + date.getMonth() + "." + date.getYear() + " " + date.getHour() + ":" + date.getMinute());
@@ -138,7 +136,6 @@ public class LameDuckClientTest {
         
         boolean booked = bookFlight(bookingNumber, cc);
         System.out.println(booked);
-        System.out.println("--------------------");
         
         assertTrue(booked);
         
@@ -146,6 +143,8 @@ public class LameDuckClientTest {
         boolean cancled = cancelFlight(bookingNumber, price, cc);
         
         assertTrue(cancled);
+        System.out.println("--------------------");
+        
     }
 
     private static boolean bookFlight(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCard) throws LameDuckException_Exception {

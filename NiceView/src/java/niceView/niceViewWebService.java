@@ -69,7 +69,7 @@ public class niceViewWebService {
      * Web service operation
      */
     @WebMethod(operationName = "bookHotel")
-    public boolean bookHotel(@WebParam(name = "bookingNumber") int bookingNumber, @WebParam(name = "creditCardInfo") @XmlElement(required=false) dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws NiceViewFault {
+    public boolean bookHotel(@WebParam(name = "bookingNumber") int bookingNumber, @WebParam(name = "creditCardInfo") dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws NiceViewFault {
 
         boolean booked = false;
         
