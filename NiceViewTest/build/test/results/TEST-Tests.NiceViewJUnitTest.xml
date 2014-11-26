@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="Prometeo" name="Tests.NiceViewJUnitTest" tests="3" time="0.652" timestamp="2014-11-25T17:39:38">
+<testsuite errors="0" failures="0" hostname="Prometeo" name="Tests.NiceViewJUnitTest" tests="3" time="0.581" timestamp="2014-11-26T08:53:32">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -58,7 +58,7 @@
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Tests.NiceViewJUnitTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/test/results/TEST-Tests.NiceViewJUnitTest.xml crashfile=/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/junitvmwatcher4820641092598115426.properties propsfile=/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/junit1985836122228786380.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Tests.NiceViewJUnitTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/test/results/TEST-Tests.NiceViewJUnitTest.xml crashfile=/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/junitvmwatcher1411368132037380812.properties propsfile=/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/build/junit2167573030759839672.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="build.sysclasspath" value="ignore" />
     <property name="ap.supported.internal" value="true" />
@@ -99,7 +99,7 @@
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="/" />
     <property name="wsdl-NiceViewService" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/xml-resources/web-service-references/NiceViewService/wsdl/localhost_8080/NiceView/NiceViewService.wsdl" />
-    <property name="javac.includesfile.binary" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/null1964992345" />
+    <property name="javac.includesfile.binary" value="/media/planaspa/080A0C880A0C74CA/Users/Pablo/Documents/DTU/Erasmus/Subjects/02267_Software_Development_of_Web_Services/Project/NiceViewTest/null1850008166" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:/home/planaspa/openesb-2.3.1/netbeans/platform/modules/ext/junit-4.10.jar" />
@@ -401,25 +401,12 @@
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="/home/planaspa/openesb-2.3.1/netbeans/enterprise/docs/javaee-doc-api.jar" />
   </properties>
-  <testcase classname="Tests.NiceViewJUnitTest" name="getHotelsTest" time="0.396" />
-  <testcase classname="Tests.NiceViewJUnitTest" name="CreditCardNotGuaranteeHotelTest" time="0.075" />
-  <testcase classname="Tests.NiceViewJUnitTest" name="CreditCardGuaranteeHotelTest" time="0.114">
-    <error type="java.lang.ExceptionInInitializerError">java.lang.ExceptionInInitializerError
-	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:107)
-	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:78)
-	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:135)
-	at com.sun.proxy.$Proxy28.bookHotel(Unknown Source)
-	at Tests.NiceViewJUnitTest.bookHotel(NiceViewJUnitTest.java:138)
-	at Tests.NiceViewJUnitTest.CreditCardGuaranteeHotelTest(NiceViewJUnitTest.java:111)
-Caused by: java.lang.ClassCastException: com.sun.xml.bind.v2.runtime.JAXBContextImpl cannot be cast to com.sun.xml.internal.bind.api.JAXBRIContext
-	at com.sun.xml.internal.ws.fault.SOAPFaultBuilder$1.run(SOAPFaultBuilder.java:570)
-	at com.sun.xml.internal.ws.fault.SOAPFaultBuilder$1.run(SOAPFaultBuilder.java:566)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at com.sun.xml.internal.ws.fault.SOAPFaultBuilder.createJAXBContext(SOAPFaultBuilder.java:565)
-	at com.sun.xml.internal.ws.fault.SOAPFaultBuilder.&lt;clinit&gt;(SOAPFaultBuilder.java:555)
-</error>
-  </testcase>
-  <system-out><![CDATA[Paragon Inn
+  <testcase classname="Tests.NiceViewJUnitTest" name="CreditCardGuaranteeHotelTest" time="0.363" />
+  <testcase classname="Tests.NiceViewJUnitTest" name="getHotelsTest" time="0.042" />
+  <testcase classname="Tests.NiceViewJUnitTest" name="CreditCardNotGuaranteeHotelTest" time="0.107" />
+  <system-out><![CDATA[Reserved
+Cancelled
+Paragon Inn
 =============
 Booking number = 1
 Total price = 486
@@ -436,6 +423,69 @@ CreditCardGuarantee = false
 Grand Inn Come Hotel
 =============
 Booking number = 3
+Total price = 584
+Address = 99 Moo 6 Kingkaew Rd., Rachathewa, Samutprakan
+Hotel Reservation service = http://www.grandinncome-hotel.com/ReservationService?wsdl
+CreditCardGuarantee = true
+Paragon Inn
+=============
+Booking number = 4
+Total price = 486
+Address = 22 Moo. 15, Tambun Rachatheva, Bangplee, Soi Latk
+Hotel Reservation service = http://www.theparagoninn.com/ReservationService?wsdl
+CreditCardGuarantee = true
+Grand Inn Come Hotel
+=============
+Booking number = 6
+Total price = 584
+Address = 99 Moo 6 Kingkaew Rd., Rachathewa, Samutprakan
+Hotel Reservation service = http://www.grandinncome-hotel.com/ReservationService?wsdl
+CreditCardGuarantee = true
+Paragon Inn
+=============
+Booking number = 7
+Total price = 486
+Address = 22 Moo. 15, Tambun Rachatheva, Bangplee, Soi Latk
+Hotel Reservation service = http://www.theparagoninn.com/ReservationService?wsdl
+CreditCardGuarantee = true
+Grand Inn Come Hotel
+=============
+Booking number = 9
+Total price = 584
+Address = 99 Moo 6 Kingkaew Rd., Rachathewa, Samutprakan
+Hotel Reservation service = http://www.grandinncome-hotel.com/ReservationService?wsdl
+CreditCardGuarantee = true
+Paragon Inn
+=============
+Booking number = 10
+Total price = 486
+Address = 22 Moo. 15, Tambun Rachatheva, Bangplee, Soi Latk
+Hotel Reservation service = http://www.theparagoninn.com/ReservationService?wsdl
+CreditCardGuarantee = true
+Grand Inn Come Hotel
+=============
+Booking number = 12
+Total price = 584
+Address = 99 Moo 6 Kingkaew Rd., Rachathewa, Samutprakan
+Hotel Reservation service = http://www.grandinncome-hotel.com/ReservationService?wsdl
+CreditCardGuarantee = true
+Paragon Inn
+=============
+Booking number = 13
+Total price = 486
+Address = 22 Moo. 15, Tambun Rachatheva, Bangplee, Soi Latk
+Hotel Reservation service = http://www.theparagoninn.com/ReservationService?wsdl
+CreditCardGuarantee = true
+Suphan Lake Hometel
+=============
+Booking number = 14
+Total price = 216
+Address = 106/999 Klongsongtonnun Latkrabang
+Hotel Reservation service = http://www.suphanlakehometel.com/ReservationService?wsdl
+CreditCardGuarantee = false
+Grand Inn Come Hotel
+=============
+Booking number = 15
 Total price = 584
 Address = 99 Moo 6 Kingkaew Rd., Rachathewa, Samutprakan
 Hotel Reservation service = http://www.grandinncome-hotel.com/ReservationService?wsdl
