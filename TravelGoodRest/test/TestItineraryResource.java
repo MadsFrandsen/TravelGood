@@ -5,9 +5,12 @@
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.representation.Form;
+import com.sun.jersey.core.util.MultivaluedMapImpl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import javax.ws.rs.core.MultivaluedMap;
 import model.BookingItem;
 import model.BookingItem.BookingStatus;
 import model.Flight;
@@ -54,11 +57,11 @@ public class TestItineraryResource {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
-        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "Paris", "Copenhagen", "03-01-2015");
-        addRandomHotelToItinerary(client, itineraryId, "Copenhagen", "03-01-2015", "08-01-2015");
+        addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "27-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "BKK", "SFO", "27-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "SFO", "27-12-2014", "02-02-2015");
+        addRandomFlightToItinerary(client, itineraryId, "SFO", "BKK", "02-02-2015");
         Itinerary itinerary = getItinerary(client, itineraryId);
 
         // Assert, that all flights are unconfirmed
@@ -79,8 +82,8 @@ public class TestItineraryResource {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
-        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-        cancelItinerary(client, itineraryId);
+        addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
+        //cancelItinerary(client, itineraryId);
 
         // TODO: Add assertions
     }
@@ -90,10 +93,9 @@ public class TestItineraryResource {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
-
-        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "31-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "BKK", "CPH", "31-12-2014");
 
         Itinerary itinerary = getItinerary(client, itineraryId);
 
@@ -112,9 +114,9 @@ public class TestItineraryResource {
             fail("BookingException not thrown");
         } catch(BookingException exception) {
             itinerary = getItinerary(client, itineraryId);
-            assertEquals(itinerary.getFlights()[0].getBookingStatus(), BookingStatus.CANCELLED);
-            assertEquals(itinerary.getHotels()[0].getBookingStatus(), BookingStatus.UNCONFIRMED);
-            assertEquals(itinerary.getFlights()[1].getBookingStatus(), BookingStatus.UNCONFIRMED);
+            assertEquals(itinerary.getFlights().get(0).getBookingStatus(), BookingStatus.CANCELLED);
+            assertEquals(itinerary.getHotels().get(0).getBookingStatus(), BookingStatus.UNCONFIRMED);
+            assertEquals(itinerary.getFlights().get(1).getBookingStatus(), BookingStatus.UNCONFIRMED);
         }
     }
 
@@ -123,9 +125,9 @@ public class TestItineraryResource {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
-        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "31-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "BKK", "CPH", "31-12-2014");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
 
@@ -158,9 +160,9 @@ public class TestItineraryResource {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
-        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "31-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "BKK", "CPH", "31-12-2014");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
 
@@ -180,32 +182,32 @@ public class TestItineraryResource {
         } catch(CancelException e) {
             itinerary = getItinerary(client, itineraryId);
             
-            assertEquals(itinerary.getFlights()[0].getBookingStatus(), BookingStatus.CANCELLED);
-            assertEquals(itinerary.getHotels()[0].getBookingStatus(), BookingStatus.CONFIRMED);
-            assertEquals(itinerary.getFlights()[1].getBookingStatus(), BookingStatus.CANCELLED);
+            assertEquals(itinerary.getFlights().get(0).getBookingStatus(), BookingStatus.CANCELLED);
+            assertEquals(itinerary.getHotels().get(0).getBookingStatus(), BookingStatus.CONFIRMED);
+            assertEquals(itinerary.getFlights().get(1).getBookingStatus(), BookingStatus.CANCELLED);
         }
     }
 
     private void bookItinerary(Client client, String itineraryId) throws BookingException {
-        WebResource resourceBookItinerary = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/"
+        WebResource resourceBookItinerary = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId
                 + "/book");
         resourceBookItinerary.post();
     }
 
     private void cancelItinerary(Client client, String itineraryId) throws CancelException {
-        WebResource resourceCancelItinerary = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/"
+        WebResource resourceCancelItinerary = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId);
         resourceCancelItinerary.delete();
     }
 
     private String createItinerary(Client client) {
-        WebResource resourceCreateItinerary = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/");
+        WebResource resourceCreateItinerary = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/");
         return resourceCreateItinerary.post(String.class);
     }
 
     private Itinerary getItinerary(Client client, String itineraryId) {
-        WebResource resourceGetItinerary = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/"
+        WebResource resourceGetItinerary = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId);
         return resourceGetItinerary.get(Itinerary.class);
     }
@@ -219,7 +221,7 @@ public class TestItineraryResource {
     }
 
     private Flight[] getFlights(Client client, String origin, String destination, String departureDate) {
-        WebResource resourceFlights = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/flights/"
+        WebResource resourceFlights = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/flights/"
                 + "?departureLocation=" + origin
                 + "&arrivalLocation=" + destination
                 + "&departureDate=" + departureDate);
@@ -227,10 +229,14 @@ public class TestItineraryResource {
     }
 
     private void addFlightToItinerary(Client client, String itineraryId, Flight flight) {
-        WebResource addFlightResource = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/"
+        WebResource addFlightResource = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId
-                + "/flights");
-        addFlightResource.put(flight.getBookingId());
+                + "/flights"
+                + "/" + flight.getBookingId());
+
+        Form form = new Form();
+        form.add("price", flight.getPrice());
+        addFlightResource.put(form);
     }
 
     private void addRandomHotelToItinerary(Client client, String itineraryId, String location, String arrivalDate, String departureDate) {
@@ -242,7 +248,7 @@ public class TestItineraryResource {
     }
 
     private Hotel[] getHotels(Client client, String itineraryId, String location, String arrivalDate, String departureDate) {
-        WebResource resourceFlights = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/hotels/"
+        WebResource resourceFlights = client.resource("http://localhost:8080/TravelGoodRest/webresources/hotels/"
                 + "?location=" + location
                 + "&arrivalDate=" + arrivalDate
                 + "&departureDate=" + departureDate);
@@ -250,7 +256,7 @@ public class TestItineraryResource {
     }
 
     private void addHotelToItinerary(Client client, String itineraryId, Hotel hotel) {
-        WebResource addFlightResource = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/"
+        WebResource addFlightResource = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId
                 + "/hotels");
         addFlightResource.put(hotel.getBookingId());

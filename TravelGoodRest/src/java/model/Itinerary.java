@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -19,10 +20,10 @@ public class Itinerary {
     private String id;
     
     @XmlElement
-    private Flight[] flights;
+    private List<Flight> flights = new ArrayList<Flight>();
     
     @XmlElement
-    private Hotel[] hotels;
+    private List<Hotel> hotels = new ArrayList<Hotel>();
     
     public Itinerary() {
         
@@ -32,11 +33,11 @@ public class Itinerary {
         this.id = id;
     }
     
-    public Flight[] getFlights() {
+    public List<Flight> getFlights() {
         return flights;
     }
     
-    public Hotel[] getHotels() {
+    public List<Hotel> getHotels() {
         return hotels;
     }
 }
