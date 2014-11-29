@@ -127,6 +127,13 @@ public class Flight {
     public void setAirline(String airline) {
         this.airline = airline;
     }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
     
     
     

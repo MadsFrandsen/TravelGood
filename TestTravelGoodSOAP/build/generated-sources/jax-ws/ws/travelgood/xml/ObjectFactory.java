@@ -30,35 +30,19 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link FlightBooking }
+     * 
+     */
+    public FlightBooking createFlightBooking() {
+        return new FlightBooking();
+    }
+
+    /**
      * Create an instance of {@link Stay }
      * 
      */
     public Stay createStay() {
         return new Stay();
-    }
-
-    /**
-     * Create an instance of {@link Travel }
-     * 
-     */
-    public Travel createTravel() {
-        return new Travel();
-    }
-
-    /**
-     * Create an instance of {@link AccommodationOptions }
-     * 
-     */
-    public AccommodationOptions createAccommodationOptions() {
-        return new AccommodationOptions();
-    }
-
-    /**
-     * Create an instance of {@link Flight }
-     * 
-     */
-    public Flight createFlight() {
-        return new Flight();
     }
 
     /**
@@ -70,11 +54,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TravelOptions }
+     * Create an instance of {@link AccommodationOptions }
      * 
      */
-    public TravelOptions createTravelOptions() {
-        return new TravelOptions();
+    public AccommodationOptions createAccommodationOptions() {
+        return new AccommodationOptions();
     }
 
 }
