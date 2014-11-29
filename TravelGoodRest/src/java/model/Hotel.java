@@ -21,6 +21,10 @@ public class Hotel extends BookingItem {
     private Calendar departure;
     
     public Hotel() {}
+    
+    public Hotel(String bookingNumber) {
+        super(bookingNumber);
+    }
  
     public Hotel(String bookingNumber, Location location, Calendar arrival, Calendar departure) {
         super(bookingNumber);

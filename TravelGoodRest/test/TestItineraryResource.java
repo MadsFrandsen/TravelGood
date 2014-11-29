@@ -7,6 +7,8 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.representation.Form;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -53,14 +55,14 @@ public class TestItineraryResource {
     }
 
     @Test
-    public void testP1() {
+    public void testP1() throws UnsupportedEncodingException {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
-        //addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "27-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "27-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "BKK", "SFO", "27-12-2014");
-        //addRandomHotelToItinerary(client, itineraryId, "SFO", "27-12-2014", "02-02-2015");
+        addRandomHotelToItinerary(client, itineraryId, "San Francisco", "27-12-2014", "02-02-2015");
         addRandomFlightToItinerary(client, itineraryId, "SFO", "BKK", "02-02-2015");
         Itinerary itinerary = getItinerary(client, itineraryId);
 
@@ -89,12 +91,12 @@ public class TestItineraryResource {
     }
     
     @Test
-    public void testB() {
+    public void testB() throws UnsupportedEncodingException {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
-        //addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "31-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "31-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "Andeby", "Moon", "01-01-2015");
 
         Itinerary itinerary = getItinerary(client, itineraryId);
@@ -121,12 +123,12 @@ public class TestItineraryResource {
     }
 
     @Test
-    public void testC1() throws BookingException, CancelException {
+    public void testC1() throws BookingException, CancelException, UnsupportedEncodingException {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
-        //addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "31-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "31-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "BKK", "CPH", "31-12-2014");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
@@ -156,12 +158,12 @@ public class TestItineraryResource {
     }
 
     @Test
-    public void testC2() throws BookingException {
+    public void testC2() throws BookingException, UnsupportedEncodingException {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
-        //addRandomHotelToItinerary(client, itineraryId, "BKK", "24-12-2014", "31-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "31-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "BKK", "CPH", "31-12-2014");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
@@ -244,7 +246,7 @@ public class TestItineraryResource {
         addFlightResource.put(form);
     }
 
-    private void addRandomHotelToItinerary(Client client, String itineraryId, String location, String arrivalDate, String departureDate) {
+    private void addRandomHotelToItinerary(Client client, String itineraryId, String location, String arrivalDate, String departureDate) throws UnsupportedEncodingException {
         Hotel[] hotels = getHotels(client, itineraryId, location, arrivalDate, departureDate);
 
         // Randomly picks a hotel from the array, and adds it to the itinerary
@@ -252,18 +254,18 @@ public class TestItineraryResource {
         addHotelToItinerary(client, itineraryId, hotels[randomIndex]);
     }
 
-    private Hotel[] getHotels(Client client, String itineraryId, String location, String arrivalDate, String departureDate) {
+    private Hotel[] getHotels(Client client, String itineraryId, String location, String arrivalDate, String departureDate) throws UnsupportedEncodingException {
         WebResource resourceFlights = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/hotels/"
-                + "?location=" + location
-                + "&arrivalDate=" + arrivalDate
-                + "&departureDate=" + departureDate);
+                + "?location=" + URLEncoder.encode(location,"UTF-8")
+                + "&arrivalDate=" + URLEncoder.encode(arrivalDate,"UTF-8")
+                + "&departureDate=" + URLEncoder.encode(departureDate,"UTF-8"));
         return resourceFlights.get(Hotel[].class);
     }
 
     private void addHotelToItinerary(Client client, String itineraryId, Hotel hotel) {
         WebResource addFlightResource = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId
-                + "/hotels");
-        addFlightResource.put(hotel.getBookingId());
+                + "/hotels"
+                + "/" + hotel.getBookingId());
     }
 }

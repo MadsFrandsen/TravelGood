@@ -39,6 +39,8 @@ import model.Hotel;
 import model.Itinerary;
 import model.Location;
 import model.Route;
+import niceview.NiceViewFault_Exception;
+import niceview.Reservation;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -82,7 +84,13 @@ public class ItineraryResource {
         }
 
         for (Hotel hotel : itineraries.get(itineraryId).getHotels()) {
-            // CANCEL HOTEL
+            if(hotel.getBookingStatus() == BookingItem.BookingStatus.CONFIRMED) {
+                try {
+                    cancelHotelNiceView(Integer.parseInt(hotel.getBookingId()));
+                } catch(NiceViewFault_Exception e) {
+                    failing = true;
+                }
+            }
         }
         
         if(failing) {
@@ -125,7 +133,15 @@ public class ItineraryResource {
 
         if(!failing) {
             for (Hotel hotel : itineraries.get(itineraryId).getHotels()) {
-                // BOOK HOTEL
+                int bookingNumber = Integer.parseInt(hotel.getBookingId());
+                try {
+                bookHotelNiceView(bookingNumber, cc);
+                hotel.setBookingStatus(BookingStatus.CONFIRMED);
+            } catch (NiceViewFault_Exception ex) {
+                failing = true;
+                failingException = ex;
+                break;
+            }
             }
         }
         
@@ -173,18 +189,35 @@ public class ItineraryResource {
     @Path("hotels")
     @GET
     @Produces({"application/xml"})
-    public Flight[] getHotels(@QueryParam("departureDate") String departureDate,
+    public Hotel[] getHotels(@QueryParam("departureDate") String departureDate,
             @QueryParam("arrivalDate") String arrivalDate,
-            @QueryParam("location") Location location) throws ParseException {
-        Date departure = new SimpleDateFormat().parse(departureDate);
-        Date arrival = new SimpleDateFormat().parse(arrivalDate);
-        throw new NotImplementedException();
+            @QueryParam("location") Location location) throws ParseException, DatatypeConfigurationException {
+        GregorianCalendar departure = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
+        departure.setTime(new SimpleDateFormat("dd-MM-yyyy").parse(departureDate));
+        departure.add(Calendar.DATE, 1);
+        
+        GregorianCalendar arrival = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
+        arrival.setTime(new SimpleDateFormat("dd-MM-yyyy").parse(arrivalDate));
+        arrival.add(Calendar.DATE, 1);
+        
+        List<Reservation> reservations = getHotelsNiceView(location.getName(), 
+                DatatypeFactory.newInstance().newXMLGregorianCalendar(arrival),
+                DatatypeFactory.newInstance().newXMLGregorianCalendar(departure));
+        Hotel[] hotels = new Hotel[reservations.size()];
+        for (int i = 0; i < hotels.length; i++) {
+            Reservation reservation = reservations.get(i);
+            hotels[i] = new Hotel(String.valueOf(reservation.getBookingNumber()),
+                    new Location(reservation.getAddress()),
+                    arrival,
+                    departure);
+        }
+        return hotels;
     }
 
     @Path("{itineraryId}/hotels/{hotelId}")
     @PUT
     public void addHotel(@PathParam("hotelId") String hotelId, @PathParam("itineraryId") String itineraryId) {
-        throw new NotImplementedException();
+        itineraries.get(itineraryId).getHotels().add(new Hotel(hotelId));
     }
 
     public class BookingException extends Exception {
@@ -209,5 +242,23 @@ public class ItineraryResource {
         lameduck.LameDuckWebService_Service service = new lameduck.LameDuckWebService_Service();
         lameduck.LameDuckWebService port = service.getLameDuckWebServicePort();
         return port.getFlights(from, to, date);
+    }
+
+    private static boolean bookHotelNiceView(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) throws NiceViewFault_Exception {
+        niceview.NiceViewService service = new niceview.NiceViewService();
+        niceview.NiceViewWebService port = service.getNiceViewWebServicePort();
+        return port.bookHotel(bookingNumber, creditCardInfo);
+    }
+
+    private static void cancelHotelNiceView(int bookingNumber) throws NiceViewFault_Exception {
+        niceview.NiceViewService service = new niceview.NiceViewService();
+        niceview.NiceViewWebService port = service.getNiceViewWebServicePort();
+        port.cancelHotel(bookingNumber);
+    }
+
+    private static java.util.List<niceview.Reservation> getHotelsNiceView(java.lang.String city, javax.xml.datatype.XMLGregorianCalendar arrival, javax.xml.datatype.XMLGregorianCalendar departure) {
+        niceview.NiceViewService service = new niceview.NiceViewService();
+        niceview.NiceViewWebService port = service.getNiceViewWebServicePort();
+        return port.getHotels(city, arrival, departure);
     }
 }
