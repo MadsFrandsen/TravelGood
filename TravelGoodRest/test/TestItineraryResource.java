@@ -4,9 +4,11 @@
  */
 
 import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.sun.jersey.api.representation.Form;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Random;
 import model.BookingItem;
 import model.BookingItem.BookingStatus;
@@ -19,8 +21,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Rule;
-import org.junit.rules.ExpectedException;
 import ws.travelgood.ItineraryResource.BookingException;
 import ws.travelgood.ItineraryResource.CancelException;
 
@@ -50,15 +50,15 @@ public class TestItineraryResource {
     }
 
     @Test
-    public void testP1() {
+    public void testP1() throws UnsupportedEncodingException {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
-        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "Paris", "Copenhagen", "3-1-2015");
-        addRandomHotelToItinerary(client, itineraryId, "Copenhagen", "3-1-2015", "8-1-2015");
+        addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "26-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "BKK", "SFO", "27-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "San Francisco", "27-12-2014", "29-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "SFO", "BKK", "02-02-2015");
         Itinerary itinerary = getItinerary(client, itineraryId);
 
         // Assert, that all flights are unconfirmed
@@ -79,21 +79,20 @@ public class TestItineraryResource {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
-        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-        cancelItinerary(client, itineraryId);
+        addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
+        //cancelItinerary(client, itineraryId);
 
         // TODO: Add assertions
     }
     
     @Test
-    public void testB() {
+    public void testB() throws UnsupportedEncodingException {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
-
-        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "Andeby", "Moon", "01-01-2015");
+        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "26-12-2014");
 
         Itinerary itinerary = getItinerary(client, itineraryId);
 
@@ -110,22 +109,22 @@ public class TestItineraryResource {
         try {
             bookItinerary(client, itineraryId);
             fail("BookingException not thrown");
-        } catch(BookingException exception) {
+        } catch(UniformInterfaceException exception) {
             itinerary = getItinerary(client, itineraryId);
-            assertEquals(itinerary.getFlights()[0].getBookingStatus(), BookingStatus.CANCELLED);
-            assertEquals(itinerary.getHotels()[0].getBookingStatus(), BookingStatus.UNCONFIRMED);
-            assertEquals(itinerary.getFlights()[1].getBookingStatus(), BookingStatus.UNCONFIRMED);
+            assertEquals(itinerary.getFlights().get(0).getBookingStatus(), BookingStatus.CANCELLED);
+            assertEquals(itinerary.getHotels().get(0).getBookingStatus(), BookingStatus.UNCONFIRMED);
+            assertEquals(itinerary.getFlights().get(1).getBookingStatus(), BookingStatus.UNCONFIRMED);
         }
     }
 
     @Test
-    public void testC1() throws BookingException, CancelException {
+    public void testC1() throws BookingException, CancelException, UnsupportedEncodingException {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
-        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "26-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "BKK", "CPH", "31-12-2014");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
 
@@ -154,13 +153,13 @@ public class TestItineraryResource {
     }
 
     @Test
-    public void testC2() throws BookingException {
+    public void testC2() throws BookingException, UnsupportedEncodingException {
         Client client = Client.create();
 
         String itineraryId = createItinerary(client);
-        addRandomFlightToItinerary(client, itineraryId, "Copenhagen", "London", "27-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "London", "27-12-2014", "29-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "London", "Paris", "29-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "26-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "Good", "Evil", "31-12-2014");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
 
@@ -176,36 +175,43 @@ public class TestItineraryResource {
 
         try {
             cancelItinerary(client, itineraryId);
+            
             fail("CancelException not thrown");
-        } catch(CancelException e) {
+        } catch(UniformInterfaceException e) {
             itinerary = getItinerary(client, itineraryId);
             
-            assertEquals(itinerary.getFlights()[0].getBookingStatus(), BookingStatus.CANCELLED);
-            assertEquals(itinerary.getHotels()[0].getBookingStatus(), BookingStatus.CONFIRMED);
-            assertEquals(itinerary.getFlights()[1].getBookingStatus(), BookingStatus.CANCELLED);
+            assertEquals(itinerary.getFlights().get(0).getBookingStatus(), BookingStatus.CANCELLED);
+            assertEquals(itinerary.getHotels().get(0).getBookingStatus(), BookingStatus.CANCELLED);
+            assertEquals(itinerary.getFlights().get(1).getBookingStatus(), BookingStatus.CONFIRMED);
         }
     }
 
-    private void bookItinerary(Client client, String itineraryId) throws BookingException {
-        WebResource resourceBookItinerary = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/"
+    private void bookItinerary(Client client, String itineraryId) throws UniformInterfaceException {
+        Form form = new Form();
+        form.add("creditCardOwnerName", "Tick Joachim");
+        form.add("creditCardNumber", "50408824");
+        form.add("creditCardExpMonth", "2");
+        form.add("creditCardExpYear", "11");
+        WebResource resourceBookItinerary = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId
                 + "/book");
-        resourceBookItinerary.post();
+        resourceBookItinerary.post(form);
     }
 
-    private void cancelItinerary(Client client, String itineraryId) throws CancelException {
-        WebResource resourceCancelItinerary = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/"
-                + itineraryId);
-        resourceCancelItinerary.delete();
+    private void cancelItinerary(Client client, String itineraryId) throws UniformInterfaceException {
+        WebResource resourceCancelItinerary = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
+                + itineraryId
+                + "/cancel");
+        resourceCancelItinerary.post();
     }
 
     private String createItinerary(Client client) {
-        WebResource resourceCreateItinerary = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/");
+        WebResource resourceCreateItinerary = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/");
         return resourceCreateItinerary.post(String.class);
     }
 
     private Itinerary getItinerary(Client client, String itineraryId) {
-        WebResource resourceGetItinerary = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/"
+        WebResource resourceGetItinerary = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId);
         return resourceGetItinerary.get(Itinerary.class);
     }
@@ -219,7 +225,7 @@ public class TestItineraryResource {
     }
 
     private Flight[] getFlights(Client client, String origin, String destination, String departureDate) {
-        WebResource resourceFlights = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/flights/"
+        WebResource resourceFlights = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/flights/"
                 + "?departureLocation=" + origin
                 + "&arrivalLocation=" + destination
                 + "&departureDate=" + departureDate);
@@ -227,13 +233,17 @@ public class TestItineraryResource {
     }
 
     private void addFlightToItinerary(Client client, String itineraryId, Flight flight) {
-        WebResource addFlightResource = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/"
+        WebResource addFlightResource = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId
-                + "/flights");
-        addFlightResource.put(flight.getBookingId());
+                + "/flights"
+                + "/" + flight.getBookingId());
+
+        Form form = new Form();
+        form.add("price", flight.getPrice());
+        addFlightResource.put(form);
     }
 
-    private void addRandomHotelToItinerary(Client client, String itineraryId, String location, String arrivalDate, String departureDate) {
+    private void addRandomHotelToItinerary(Client client, String itineraryId, String location, String arrivalDate, String departureDate) throws UnsupportedEncodingException {
         Hotel[] hotels = getHotels(client, itineraryId, location, arrivalDate, departureDate);
 
         // Randomly picks a hotel from the array, and adds it to the itinerary
@@ -241,18 +251,19 @@ public class TestItineraryResource {
         addHotelToItinerary(client, itineraryId, hotels[randomIndex]);
     }
 
-    private Hotel[] getHotels(Client client, String itineraryId, String location, String arrivalDate, String departureDate) {
-        WebResource resourceFlights = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/hotels/"
-                + "?location=" + location
-                + "&arrivalDate=" + arrivalDate
-                + "&departureDate=" + departureDate);
+    private Hotel[] getHotels(Client client, String itineraryId, String location, String arrivalDate, String departureDate) throws UnsupportedEncodingException {
+        WebResource resourceFlights = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/hotels/"
+                + "?location=" + URLEncoder.encode(location,"UTF-8")
+                + "&arrivalDate=" + URLEncoder.encode(arrivalDate,"UTF-8")
+                + "&departureDate=" + URLEncoder.encode(departureDate,"UTF-8"));
         return resourceFlights.get(Hotel[].class);
     }
 
     private void addHotelToItinerary(Client client, String itineraryId, Hotel hotel) {
-        WebResource addFlightResource = client.resource("http://localhost:8080/TravelGoodTestRest/webresources/itineraries/"
+        WebResource addHotelResource = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId
-                + "/hotels");
-        addFlightResource.put(hotel.getBookingId());
+                + "/hotels"
+                + "/" + hotel.getBookingId());
+        addHotelResource.put();
     }
 }
