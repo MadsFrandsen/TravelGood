@@ -16,17 +16,17 @@
 <message name="LameDuckException">
 <part name="fault" element="tns:LameDuckException"/>
 </message>
-<message name="cancelFlight">
-<part name="parameters" element="tns:cancelFlight"/>
-</message>
-<message name="cancelFlightResponse">
-<part name="parameters" element="tns:cancelFlightResponse"/>
-</message>
 <message name="getFlights">
 <part name="parameters" element="tns:getFlights"/>
 </message>
 <message name="getFlightsResponse">
 <part name="parameters" element="tns:getFlightsResponse"/>
+</message>
+<message name="cancelFlight">
+<part name="parameters" element="tns:cancelFlight"/>
+</message>
+<message name="cancelFlightResponse">
+<part name="parameters" element="tns:cancelFlightResponse"/>
 </message>
 <portType name="LameDuckWebService">
 <operation name="bookFlight">
@@ -34,15 +34,15 @@
 <output wsam:Action="http://LameDuck/LameDuckWebService/bookFlightResponse" message="tns:bookFlightResponse"/>
 <fault message="tns:LameDuckException" name="LameDuckException" wsam:Action="http://LameDuck/LameDuckWebService/bookFlight/Fault/LameDuckException"/>
 </operation>
-<operation name="cancelFlight">
-<input wsam:Action="http://LameDuck/LameDuckWebService/cancelFlightRequest" message="tns:cancelFlight"/>
-<output wsam:Action="http://LameDuck/LameDuckWebService/cancelFlightResponse" message="tns:cancelFlightResponse"/>
-<fault message="tns:LameDuckException" name="LameDuckException" wsam:Action="http://LameDuck/LameDuckWebService/cancelFlight/Fault/LameDuckException"/>
-</operation>
 <operation name="getFlights">
 <input wsam:Action="http://LameDuck/LameDuckWebService/getFlightsRequest" message="tns:getFlights"/>
 <output wsam:Action="http://LameDuck/LameDuckWebService/getFlightsResponse" message="tns:getFlightsResponse"/>
 <fault message="tns:LameDuckException" name="LameDuckException" wsam:Action="http://LameDuck/LameDuckWebService/getFlights/Fault/LameDuckException"/>
+</operation>
+<operation name="cancelFlight">
+<input wsam:Action="http://LameDuck/LameDuckWebService/cancelFlightRequest" message="tns:cancelFlight"/>
+<output wsam:Action="http://LameDuck/LameDuckWebService/cancelFlightResponse" message="tns:cancelFlightResponse"/>
+<fault message="tns:LameDuckException" name="LameDuckException" wsam:Action="http://LameDuck/LameDuckWebService/cancelFlight/Fault/LameDuckException"/>
 </operation>
 </portType>
 <binding name="LameDuckWebServicePortBinding" type="tns:LameDuckWebService">
@@ -59,7 +59,7 @@
 <soap:fault name="LameDuckException" use="literal"/>
 </fault>
 </operation>
-<operation name="cancelFlight">
+<operation name="getFlights">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -71,7 +71,7 @@
 <soap:fault name="LameDuckException" use="literal"/>
 </fault>
 </operation>
-<operation name="getFlights">
+<operation name="cancelFlight">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

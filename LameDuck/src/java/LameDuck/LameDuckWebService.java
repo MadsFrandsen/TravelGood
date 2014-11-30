@@ -171,7 +171,7 @@ public class LameDuckWebService {
 
         // hardcoded condition so that we can control our unittest.
         if (bookingNumber == 666) {
-            return canceled;
+            throw new LameDuckException("Built-in test excpetion");
         }
         int refund = (int) (price / 2);
 

@@ -5,4 +5,8 @@
     <system systemId="http://schemas.xmlsoap.org/wsdl/soap/" uri="schemas.xmlsoap.org/wsdl/soap/index.xsd"/>
     <system systemId="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/XPathFunctions" uri="www.oracle.com/us/sun/index.htm"/>
     <system systemId="http://xml.travelgood.ws" uri="xml.travelgood.ws"/>
+    <system systemId="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" uri="www.oracle.com/us/sun/index.htm"/>
+    <system systemId="http://localhost:8080/NiceView/NiceViewService?wsdl" uri="localhost_8080/NiceView/NiceViewService.wsdl"/>
+    <system systemId="http://localhost:8080/NiceView/NiceViewService?xsd=1" uri="localhost_8080/NiceView/NiceViewService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/NiceView/NiceViewService?xsd=2" uri="localhost_8080/NiceView/NiceViewService.xsd_2.xsd"/>
 </catalog>

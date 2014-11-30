@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.1.1 (branches/2.1-6844; 2011-07-29T12:07:24+0000) JAXWS-RI/2.2.5 JAXWS/2.2. --><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="ws.itineraryhandler" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns2="ws.travelgood.flightlist" xmlns:ns1="ws.travelgood.hotellist" xmlns:ns0="ws.itinerary" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="itineraryHandler" targetNamespace="ws.itineraryhandler">
+    <types>
+        <xsd:schema targetNamespace="ws.itineraryhandler">
+            <xsd:import namespace="ws.travelgood.flightlist" schemaLocation="http://localhost:8080/ItineraryHandlerService/itineraryHandlerService?xsd=1"/>
+            <xsd:import namespace="ws.travelgood.hotellist" schemaLocation="http://localhost:8080/ItineraryHandlerService/itineraryHandlerService?xsd=2"/>
+            <xsd:import namespace="ws.itinerary" schemaLocation="http://localhost:8080/ItineraryHandlerService/itineraryHandlerService?xsd=3"/>
+        </xsd:schema>
+    </types>
+    <message name="recordHotelBookingsRequest">
+        <part name="hotelBookings" type="ns1:accommodationOptions"/>
+        <part name="itineraryID" type="ns0:itineraryID"/>
+    </message>
+    <message name="recordFlightBookingsRequest">
+        <part name="flightBookings" type="ns2:travelOptions"/>
+        <part name="itineraryID" type="ns0:itineraryID"/>
+    </message>
+    <message name="firstBookingDateTimeRequest">
+        <part name="itinerary" type="ns0:itinerary"/>
+    </message>
+    <message name="firstBookingDateTimeResponse">
+        <part name="first" type="xsd:dateTime"/>
+    </message>
+    <message name="getTravelRequest">
+        <part name="bookingNumber" type="xsd:int"/>
+        <part name="itineraryID" type="ns2:itineraryID"/>
+    </message>
+    <message name="getTravelResponse">
+        <part name="travel" type="ns2:travel"/>
+    </message>
+    <message name="getStayRequest">
+        <part name="bookingNumber" type="xsd:int"/>
+        <part name="itineraryID" type="ns2:itineraryID"/>
+    </message>
+    <message name="getStayResponse">
+        <part name="stay" type="ns1:stay"/>
+    </message>
+    <message name="itineraryDoneRequest">
+        <part name="itineraryID" type="ns0:itineraryID"/>
+    </message>
+    <portType name="itineraryHandlerPortType">
+        <operation name="recordFlightBookings">
+            <input name="input2" message="tns:recordFlightBookingsRequest"/>
+        </operation>
+        <operation name="recordHotelBookings">
+            <input name="input1" message="tns:recordHotelBookingsRequest"/>
+        </operation>
+        <operation name="firstBookingDateTime">
+            <input name="input3" message="tns:firstBookingDateTimeRequest"/>
+            <output name="output1" message="tns:firstBookingDateTimeResponse"/>
+        </operation>
+        <operation name="getTravel">
+            <input name="input4" message="tns:getTravelRequest"/>
+            <output name="output2" message="tns:getTravelResponse"/>
+        </operation>
+        <operation name="getStay">
+            <input name="input5" message="tns:getStayRequest"/>
+            <output name="output3" message="tns:getStayResponse"/>
+        </operation>
+        <operation name="itineraryDone">
+            <input name="input6" message="tns:itineraryDoneRequest"/>
+        </operation>
+    </portType>
+    <binding name="itineraryHandlerPortTypeBinding" type="tns:itineraryHandlerPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="recordFlightBookings">
+            <soap:operation/>
+            <input name="input2">
+                <soap:body use="literal" namespace="ws.itineraryhandler"/>
+            </input>
+        </operation>
+        <operation name="recordHotelBookings">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="ws.itineraryhandler"/>
+            </input>
+        </operation>
+        <operation name="firstBookingDateTime">
+            <soap:operation/>
+            <input name="input3">
+                <soap:body use="literal" namespace="ws.itineraryhandler"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="ws.itineraryhandler"/>
+            </output>
+        </operation>
+        <operation name="getTravel">
+            <soap:operation/>
+            <input name="input4">
+                <soap:body use="literal" namespace="ws.itineraryhandler"/>
+            </input>
+            <output name="output2">
+                <soap:body use="literal" namespace="ws.itineraryhandler"/>
+            </output>
+        </operation>
+        <operation name="getStay">
+            <soap:operation/>
+            <input name="input5">
+                <soap:body use="literal" namespace="ws.itineraryhandler"/>
+            </input>
+            <output name="output3">
+                <soap:body use="literal" namespace="ws.itineraryhandler"/>
+            </output>
+        </operation>
+        <operation name="itineraryDone">
+            <soap:operation/>
+            <input name="input6">
+                <soap:body use="literal" namespace="ws.itineraryhandler"/>
+            </input>
+        </operation>
+    </binding>
+    <service name="itineraryHandlerService">
+        <port name="itineraryHandlerPortTypeBindingPort" binding="tns:itineraryHandlerPortTypeBinding">
+            <soap:address location="http://localhost:8080/ItineraryHandlerService/itineraryHandlerService"/>
+        </port>
+    </service>
+    <plnk:partnerLinkType name="itineraryHandler">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="itineraryHandlerPortTypeRole" portType="tns:itineraryHandlerPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

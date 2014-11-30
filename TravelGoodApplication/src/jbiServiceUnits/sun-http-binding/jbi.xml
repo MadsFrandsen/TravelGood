@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://enterprise.netbeans.org/bpel/BpelModule1/bpelModule1" xmlns:ns2="ws.itineraryhandler" xmlns:ns3="http://niceView/" xmlns:ns4="http://flightMapping.ws" xmlns:ns5="http://LameDuck/" xmlns:ns6="http://j2ee.netbeans.org/wsdl/HotelMappingService/java/hotelMapping" xmlns:ns7="http://travelgood.ws" version="1.0">
+    <services binding-component="true">
+        <provides endpoint-name="itineraryHandlerPortTypeBindingPort" interface-name="ns2:itineraryHandlerPortType" service-name="ns2:itineraryHandlerService"/>
+        <provides endpoint-name="niceViewWebServicePort" interface-name="ns3:niceViewWebService" service-name="ns3:NiceViewService"/>
+        <provides endpoint-name="flightMappingPort" interface-name="ns4:flightMappingPortType" service-name="ns4:flightMappingService"/>
+        <provides endpoint-name="LameDuckWebServicePort" interface-name="ns5:LameDuckWebService" service-name="ns5:LameDuckWebService"/>
+        <provides endpoint-name="hotelMappingPort" interface-name="ns6:hotelMappingPortType" service-name="ns6:hotelMappingService"/>
+        <consumes endpoint-name="itineraryPortTypeBindingPort" interface-name="ns7:itineraryPortType" service-name="ns7:travelgoodService"/>
+    </services>
+</jbi>

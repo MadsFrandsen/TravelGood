@@ -8,9 +8,10 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.datatype.XMLGregorianCalendar;
-import lameduck.GetFlightsResponse;
-import ws.travelgood.xml.AccommodationOptions;
-import ws.travelgood.xml.Itinerary;
+import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
+import flightlist.travelgood.ws.TravelOptions;
+import hotellist.travelgood.ws.AccommodationOptions;
+import itinerary.ws.Itinerary;
 
 
 /**
@@ -23,8 +24,9 @@ import ws.travelgood.xml.Itinerary;
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
     dk.dtu.imm.fastmoney.types.ObjectFactory.class,
-    lameduck.ObjectFactory.class,
-    ws.travelgood.xml.ObjectFactory.class
+    flightlist.travelgood.ws.ObjectFactory.class,
+    hotellist.travelgood.ws.ObjectFactory.class,
+    itinerary.ws.ObjectFactory.class
 })
 public interface ItineraryPortType {
 
@@ -43,9 +45,8 @@ public interface ItineraryPortType {
 
     /**
      * 
-     * @param cardOwner
-     * @param creditCardNumber
      * @param itineraryID
+     * @param creditCardInfo
      * @return
      *     returns boolean
      */
@@ -54,10 +55,8 @@ public interface ItineraryPortType {
     public boolean bookItinerary(
         @WebParam(name = "itineraryID", partName = "itineraryID")
         String itineraryID,
-        @WebParam(name = "creditCardNumber", partName = "creditCardNumber")
-        int creditCardNumber,
-        @WebParam(name = "cardOwner", partName = "cardOwner")
-        String cardOwner);
+        @WebParam(name = "creditCardInfo", partName = "creditCardInfo")
+        CreditCardInfoType creditCardInfo);
 
     /**
      * 
@@ -108,11 +107,11 @@ public interface ItineraryPortType {
      * @param itineraryID
      * @param destination
      * @return
-     *     returns lameduck.GetFlightsResponse
+     *     returns flightlist.travelgood.ws.TravelOptions
      */
     @WebMethod
     @WebResult(name = "flightList", partName = "flightList")
-    public GetFlightsResponse getFlights(
+    public TravelOptions getFlights(
         @WebParam(name = "itineraryID", partName = "itineraryID")
         String itineraryID,
         @WebParam(name = "source", partName = "source")
@@ -129,7 +128,7 @@ public interface ItineraryPortType {
      * @param end
      * @param city
      * @return
-     *     returns ws.travelgood.xml.AccommodationOptions
+     *     returns hotellist.travelgood.ws.AccommodationOptions
      */
     @WebMethod
     @WebResult(name = "hotels", partName = "hotels")
@@ -147,7 +146,7 @@ public interface ItineraryPortType {
      * 
      * @param itineraryID
      * @return
-     *     returns ws.travelgood.xml.Itinerary
+     *     returns itinerary.ws.Itinerary
      */
     @WebMethod
     @WebResult(name = "itinerary", partName = "itinerary")

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="ws.itinerary"
+    xmlns:tns="ws.itinerary"
+    elementFormDefault="qualified">
+    
+    <xsd:simpleType name="creditCardNumber">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="personName">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="itinerary">
+        <xsd:sequence>
+            <xsd:element name="id" type="tns:itineraryID"></xsd:element>
+            <xsd:element name="bookings" type="tns:booking" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+            <xsd:element name="owner" type="xsd:string"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="itineraryID">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="booking">
+        <xsd:sequence>
+            <xsd:element name="status" type="xsd:string"></xsd:element>
+            <xsd:element name="bookingNumber" type="xsd:int"></xsd:element>
+            <xsd:element name="isFlightElseHotel" type="xsd:boolean"></xsd:element>
+            <xsd:element name="price" type="xsd:int"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

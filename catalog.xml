@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?wsdl" uri="src/java/localhost_8080/LameDuck/LameDuckWebService.wsdl"/>
+    <system systemId="file:/Users/srnjcbsn/TravelGood/FlightMappingService/src/java/flightList.xsd" uri="src/conf/xml-resources/web-services/FlightMappingService/wsdl/flightList.xsd"/>
+    <system systemId="http://localhost:8080/ItineraryHandlerService/itineraryHandlerService?xsd=3" uri="src/java/localhost_8080/ItineraryHandlerService/itineraryHandlerService.xsd_3.xsd"/>
+    <system systemId="file:/Users/srnjcbsn/TravelGood/FlightMappingService/src/java/flightMapping.wsdl" uri="src/conf/xml-resources/web-services/FlightMappingService/wsdl/flightMapping.wsdl"/>
+    <system systemId="http://localhost:8080/ItineraryHandlerService/itineraryHandlerService?xsd=1" uri="src/conf/xml-resources/web-services/FlightMappingService/wsdl/localhost_8080/ItineraryHandlerService/itineraryHandlerService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?xsd=2" uri="src/conf/xml-resources/web-services/FlightMappingService/wsdl/localhost_8080/LameDuck/LameDuckWebService.xsd_2.xsd"/>
+    <system systemId="http://localhost:8080/LameDuck/LameDuckWebService?xsd=1" uri="src/conf/xml-resources/web-services/FlightMappingService/wsdl/localhost_8080/LameDuck/LameDuckWebService.xsd_1.xsd"/>
+</catalog>
