@@ -200,8 +200,9 @@ public class TestItineraryResource {
 
     private void cancelItinerary(Client client, String itineraryId) throws UniformInterfaceException {
         WebResource resourceCancelItinerary = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
-                + itineraryId);
-        resourceCancelItinerary.delete();
+                + itineraryId
+                + "/cancel");
+        resourceCancelItinerary.post();
     }
 
     private String createItinerary(Client client) {

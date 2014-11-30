@@ -62,8 +62,8 @@ public class ItineraryResource {
         return id;
     }
 
-    @Path("{itineraryId}")
-    @DELETE
+    @Path("{itineraryId}/cancel")
+    @POST
     public void cancelItineraryBooking(@PathParam("itineraryId") String itineraryId) {
         Itinerary itinerary = itineraries.get(itineraryId);
         
