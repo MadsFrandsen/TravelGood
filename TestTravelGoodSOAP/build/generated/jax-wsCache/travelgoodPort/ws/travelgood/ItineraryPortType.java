@@ -154,4 +154,16 @@ public interface ItineraryPortType {
         @WebParam(name = "itineraryID", partName = "itineraryID")
         String itineraryID);
 
+    /**
+     * 
+     * @param itineraryID
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(name = "success", partName = "success")
+    public boolean cancelBookedItinerary(
+        @WebParam(name = "itineraryID", partName = "itineraryID")
+        String itineraryID);
+
 }

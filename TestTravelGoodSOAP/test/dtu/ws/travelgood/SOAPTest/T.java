@@ -235,30 +235,6 @@ public class T {
         return port.addHotel(itineraryID, bookingNumber);
     }
 
-    public String createItinerary(java.lang.String personName) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
-        return port.createItinerary(personName);
-    }
-
-    public Itinerary getItinerary(java.lang.String itineraryID) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
-        return port.getItinerary(itineraryID);
-    }
-
-    public TravelOptions getFlights(java.lang.String itineraryID, java.lang.String arrivalDestination, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String departureDestination) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
-        return port.getFlights(itineraryID, arrivalDestination, time, departureDestination);
-    }
-
-    public AccommodationOptions getHotels(java.lang.String itineraryID, javax.xml.datatype.XMLGregorianCalendar start, javax.xml.datatype.XMLGregorianCalendar end, java.lang.String city) {
-        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
-        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
-        return port.getHotels(itineraryID, start, end, city);
-    }
-
     public boolean bookItinerary(java.lang.String itineraryID, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo) {
         ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
         ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
@@ -270,4 +246,35 @@ public class T {
         ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
         return port.cancelItinerary(itineraryID);
     }
+
+    public String createItinerary(java.lang.String personName) {
+        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.createItinerary(personName);
+    }
+
+    public TravelOptions getFlights(java.lang.String itineraryID, java.lang.String source, javax.xml.datatype.XMLGregorianCalendar time, java.lang.String destination) {
+        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getFlights(itineraryID, source, time, destination);
+    }
+
+    public AccommodationOptions getHotels(java.lang.String itineraryID, javax.xml.datatype.XMLGregorianCalendar start, javax.xml.datatype.XMLGregorianCalendar end, java.lang.String city) {
+        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getHotels(itineraryID, start, end, city);
+    }
+
+    public Itinerary getItinerary(java.lang.String itineraryID) {
+        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.getItinerary(itineraryID);
+    }
+
+    public boolean cancelBookedItinerary(java.lang.String itineraryID) {
+        ws.travelgood.TravelgoodService service = new ws.travelgood.TravelgoodService();
+        ws.travelgood.ItineraryPortType port = service.getItineraryPortTypeBindingPort();
+        return port.cancelBookedItinerary(itineraryID);
+    }
+
 }

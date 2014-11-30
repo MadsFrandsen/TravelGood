@@ -28,26 +28,26 @@ public class C1 extends T {
     @Test
     public void testC1() {
         //Create itinerary
-        String itinearyID = createItinerary(person[2].name);
+        String itineraryID = createItinerary(person[2].name);
         //get a booking number and book a flight 
-        int bookingNumber = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
-        addFlight(itinearyID, bookingNumber);
+        int bookingNumber = getFlights(itineraryID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
+        addFlight(itineraryID, bookingNumber);
         //get another  booking number and book a flight
-        bookingNumber = getFlights(itinearyID, bookable[2].source, bookable[2].departure, bookable[2].destination).getTravels().get(0).getBookingNumber();
-        addFlight(itinearyID, bookingNumber);
+        bookingNumber = getFlights(itineraryID, bookable[2].source, bookable[2].departure, bookable[2].destination).getTravels().get(0).getBookingNumber();
+        addFlight(itineraryID, bookingNumber);
         //add a hotel
-        addHotel(itinearyID, getHotels(itinearyID, hotels.get(0).getFromDate(), hotels.get(0).getToDate(), hotels.get(0).getCity()).getStays().get(0).getBookingNumber());
+        addHotel(itineraryID, getHotels(itineraryID, hotels.get(0).getFromDate(), hotels.get(0).getToDate(), hotels.get(0).getCity()).getStays().get(0).getBookingNumber());
 
-        bookItinerary(itinearyID, creditCardInfo[2]);
+        bookItinerary(itineraryID, creditCardInfo[2]);
         
-        for (Booking booking : getItinerary(itinearyID).getBookings())
+        for (Booking booking : getItinerary(itineraryID).getBookings())
             assertEquals("confirmed", booking.getStatus());
         
-        boolean canceled = cancelItinerary(itinearyID);
+        boolean canceled = cancelBookedItinerary(itineraryID);
         
         assertEquals(true, canceled);
         
-        for (Booking booking : getItinerary(itinearyID).getBookings())
+        for (Booking booking : getItinerary(itineraryID).getBookings())
             assertEquals("canceled", booking.getStatus());
     }
 }

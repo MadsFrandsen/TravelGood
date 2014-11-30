@@ -10,7 +10,6 @@
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
     xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
     xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="http://travelgood.ws" xmlns:ns1="http://xml.travelgood.ws" xmlns:sxxf="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/XPathFunctions" xmlns:ns2="ws.travelgood.flightlist" xmlns:ns3="ws.travelgood.hotellist" xmlns:ns4="http://niceView/" xmlns:ns5="http://LameDuck/" xmlns:ns6="ws.itinerary" xmlns:ns7="ws.itineraryhandler">
-    <import namespace="http://travelgood.ws" location="travelgood.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/LameDuckWebServiceWrapper" location="LameDuckWebServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
 <!--    <import namespace="http://LameDuck/" location="LameDuck/wsdl/LameDuckWebService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>-->
     <import namespace="http://LameDuck/" location="http://localhost:8080/LameDuck/LameDuckWebService?wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
@@ -207,11 +206,13 @@
             <sequence name="Sequence1">
                 <scope name="Scope1">
                    <variables>
+                      <variable name="CancelItineraryOut" messageType="ns0:cancelItineraryResponse"/>
+                      <variable name="CancelItineraryIn" messageType="ns0:cancelItineraryRequest"/>
                       <variable name="AddHotelIn" messageType="ns0:addHotelRequest"/>
                       <variable name="AddFlightIn" messageType="ns0:addFlightRequest"/>
                       <variable name="ItineraryDoneIn" messageType="ns7:itineraryDoneRequest"/>
-                      <variable name="CancelItineraryIn" messageType="ns0:cancelItineraryRequest"/>
-                      <variable name="CancelItineraryOut" messageType="ns0:cancelItineraryResponse"/>
+                      <variable name="CancelBookedItineraryIn" messageType="ns0:cancelBookedItineraryRequest"/>
+                      <variable name="CancelBookedItineraryOut" messageType="ns0:cancelBookedItineraryResponse"/>
                    </variables>
                     <eventHandlers>
                         <onEvent partnerLink="PartnerLink8" operation="addFlight" portType="ns0:itineraryPortType" variable="AddFlightIn" messageType="ns0:addFlightRequest">
@@ -532,7 +533,7 @@
                         </onMessage>
                             <onMessage partnerLink="PartnerLink8" operation="cancelItinerary" portType="ns0:itineraryPortType" variable="CancelItineraryIn">
                             <correlations>
-                                <correlation set="itineraryCorrelation" initiate="no"/>
+                               <correlation set="itineraryCorrelation" initiate="no"/>
                             </correlations>
                                <sequence name="Sequence19">
                                   <assign name="Assign33">
@@ -563,7 +564,7 @@
                       <variable name="deadline" type="xsd:dateTime"/>
                   </variables>
                   <eventHandlers>
-                     <onEvent partnerLink="PartnerLink8" operation="cancelItinerary" portType="ns0:itineraryPortType" variable="CancelItineraryIn" messageType="ns0:cancelItineraryRequest">
+                     <onEvent partnerLink="PartnerLink8" operation="cancelBookedItinerary" portType="ns0:itineraryPortType" variable="CancelItineraryIn" messageType="ns0:cancelBookedItineraryRequest">
                         <correlations>
                            <correlation set="itineraryCorrelation" initiate="no"/>
                         </correlations>
@@ -575,7 +576,7 @@
                                <variable name="CancelFlightIn" messageType="ns5:cancelFlight"/>
                                <variable name="GetTravelOut" messageType="ns7:getTravelResponse"/>
                                <variable name="GetTravelIn" messageType="ns7:getTravelRequest"/>
-                               <variable name="CancelItineraryOut" messageType="ns0:cancelItineraryResponse"/>
+                               <variable name="CancelItineraryOut" messageType="ns0:cancelBookedItineraryResponse"/>
                                  <variable name="itineraryLength" type="xsd:int"/>
                                  <variable name="counter" type="xsd:int"/>
                             </variables>
@@ -679,7 +680,7 @@
                                                 </assign>
                                           </sequence>
                                     </while>
-                                    <reply name="Reply9" partnerLink="PartnerLink8" operation="cancelItinerary" portType="ns0:itineraryPortType" variable="CancelItineraryOut"/>
+                                    <reply name="Reply9" partnerLink="PartnerLink8" operation="cancelBookedItinerary" portType="ns0:itineraryPortType" variable="CancelItineraryOut"/>
                               </sequence>
                         </scope>
                      </onEvent>

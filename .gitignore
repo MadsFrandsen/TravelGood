@@ -21,3 +21,6 @@ TravelGoodBPELApplication/catalog.xml
 /NiceView/build/
 /NiceView/dist/
 /TravelGoodRest/dist/
+/TravelGoodApplication/src/jbiServiceUnits/
+/TravelGoodApplication/build/
+/TravelGoodApplication/dist/

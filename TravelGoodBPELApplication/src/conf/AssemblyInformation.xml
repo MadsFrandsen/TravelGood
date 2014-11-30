@@ -2,12 +2,12 @@
 <jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/jbi ./jbi.xsd">
     <service-assembly>
         <identification>
-            <name>TravelGoodApplication</name>
-            <description>Represents the Service Assembly of TravelGoodApplication</description>
+            <name>TravelGoodBPELApplication</name>
+            <description>Represents the Service Assembly of TravelGoodBPELApplication</description>
         </identification>
         <service-unit>
             <identification>
-                <name>TravelGoodApplication-TravelGoodBPEL</name>
+                <name>TravelGoodBPELApplication-TravelGoodBPEL</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -17,7 +17,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelGoodApplication-sun-database-binding</name>
+                <name>TravelGoodBPELApplication-sun-database-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -27,7 +27,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelGoodApplication-sun-email-binding</name>
+                <name>TravelGoodBPELApplication-sun-email-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -37,7 +37,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelGoodApplication-sun-file-binding</name>
+                <name>TravelGoodBPELApplication-sun-file-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -47,7 +47,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelGoodApplication-sun-ftp-binding</name>
+                <name>TravelGoodBPELApplication-sun-ftp-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -57,7 +57,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelGoodApplication-sun-hl7-binding</name>
+                <name>TravelGoodBPELApplication-sun-hl7-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -67,7 +67,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelGoodApplication-sun-http-binding</name>
+                <name>TravelGoodBPELApplication-sun-http-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -77,7 +77,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelGoodApplication-sun-jms-binding</name>
+                <name>TravelGoodBPELApplication-sun-jms-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -87,7 +87,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelGoodApplication-sun-ldap-binding</name>
+                <name>TravelGoodBPELApplication-sun-ldap-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -97,7 +97,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelGoodApplication-sun-rest-binding</name>
+                <name>TravelGoodBPELApplication-sun-rest-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -107,7 +107,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelGoodApplication-sun-scheduler-binding</name>
+                <name>TravelGoodBPELApplication-sun-scheduler-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>
@@ -117,7 +117,7 @@
         </service-unit>
         <service-unit>
             <identification>
-                <name>TravelGoodApplication-sun-webspheremq-binding</name>
+                <name>TravelGoodBPELApplication-sun-webspheremq-binding</name>
                 <description>Represents this Service Unit</description>
             </identification>
             <target>

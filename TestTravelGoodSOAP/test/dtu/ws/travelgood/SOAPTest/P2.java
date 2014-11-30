@@ -33,8 +33,9 @@ public class P2 extends T {
         itinearyID = createItinerary(person[0].name);
        
         int bookingNumber = getFlights(itinearyID, bookable[0].source, bookable[0].departure, bookable[0].destination).getTravels().get(0).getBookingNumber();
-        addFlight(itinearyID, bookingNumber);
-
+        boolean flightAdded = addFlight(itinearyID, bookingNumber);
+        assertEquals(true, flightAdded);
+        
         boolean retval = cancelItinerary(itinearyID);
         assertEquals(true, retval);
         

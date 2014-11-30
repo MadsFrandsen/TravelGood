@@ -5,7 +5,7 @@
              xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://travelgood.ws" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns1="http://xml.travelgood.ws" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:ns0="ws.travelgood.flightlist" xmlns:ns2="ws.travelgood.hotellist" xmlns:ns3="urn://types.fastmoney.imm.dtu.dk" xmlns:ns7="ws.itinerary" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
     <types>
         <xsd:schema targetNamespace="http://travelgood.ws" xmlns:ns3="ws.travelgood.flightlist" xmlns:ns4="ws.travelgood.hotellist">
-            <xsd:import schemaLocation="http://localhost:8080/FlightMappingService/flightMappingService?xsd=1" namespace="ws.travelgood.flightlist"/>
+            <xsd:import schemaLocation="http://localhost:8080/ItineraryHandlerService/itineraryHandlerService?xsd=1" namespace="ws.travelgood.flightlist"/>
             <xsd:import schemaLocation="http://localhost:8080/ItineraryHandlerService/itineraryHandlerService?xsd=2" namespace="ws.travelgood.hotellist"/>
             <xsd:import schemaLocation="http://fastmoney.imm.dtu.dk:8080/BankService?xsd=1" namespace="urn://types.fastmoney.imm.dtu.dk"/>
             <xsd:import schemaLocation="http://localhost:8080/ItineraryHandlerService/itineraryHandlerService?xsd=3" namespace="ws.itinerary"/>
@@ -69,7 +69,12 @@
     <message name="getItineraryResponse">
         <part name="itinerary" type="ns7:itinerary"/>
     </message>
-    
+    <message name="cancelBookedItineraryRequest">
+        <part name="itineraryID" type="ns7:itineraryID"/>
+    </message>
+    <message name="cancelBookedItineraryResponse">
+        <part name="success" type="xsd:boolean"/>
+    </message>
     <portType name="itineraryPortType">
         <operation name="createItinerary">
             <input name="input1" message="tns:createItineraryRequest"/>
@@ -103,15 +108,17 @@
             <input name="input8" message="tns:getItineraryRequest"/>
             <output name="output8" message="tns:getItineraryResponse"/>
         </operation>
-    
-    
+        <operation name="cancelBookedItinerary">
+            <input name="input9" message="tns:cancelBookedItineraryRequest"/>
+            <output name="output9" message="tns:cancelBookedItineraryResponse"/>
+        </operation>
     </portType>
     <binding name="itineraryPortTypeBinding" type="tns:itineraryPortType">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
         <operation name="createItinerary">
             <soap:operation/>
             <input name="input1">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws" />
             </input>
             <output name="output1">
                 <soap:body use="literal" namespace="http://travelgood.ws" />
@@ -129,7 +136,7 @@
         <operation name="addFlight">
             <soap:operation/>
             <input name="input3">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws" />
             </input>
             <output name="output3">
                 <soap:body use="literal" namespace="http://travelgood.ws" />
@@ -138,7 +145,7 @@
         <operation name="addHotel">
             <soap:operation/>
             <input name="input4">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://travelgood.ws" />
             </input>
             <output name="output4">
                 <soap:body use="literal" namespace="http://travelgood.ws" />
@@ -180,6 +187,15 @@
                 <soap:body use="literal" namespace="http://travelgood.ws" />
             </output>
         </operation>
+        <operation name="cancelBookedItinerary">
+            <soap:operation/>
+            <input name="input9">
+                <soap:body use="literal" namespace="http://travelgood.ws" />
+            </input>
+            <output name="output9">
+                <soap:body use="literal" namespace="http://travelgood.ws" />
+            </output>
+        </operation>
     </binding>
     <service name="travelgoodService">
         <port name="itineraryPortTypeBindingPort" binding="tns:itineraryPortTypeBinding">
@@ -198,6 +214,7 @@
     <vprop:propertyAlias messageType="tns:addFlightRequest" part="itineraryID" propertyName="tns:ItineraryID"/>
     <vprop:propertyAlias messageType="tns:addHotelRequest" part="itineraryID" propertyName="tns:ItineraryID"/>
     <vprop:propertyAlias messageType="tns:cancelItineraryRequest" part="itineraryID" propertyName="tns:ItineraryID"/>
+    <vprop:propertyAlias messageType="tns:cancelBookedItineraryRequest" part="itineraryID" propertyName="tns:ItineraryID"/>
     <vprop:propertyAlias messageType="tns:getItineraryRequest" part="itineraryID" propertyName="tns:ItineraryID"/>
     <vprop:propertyAlias messageType="tns:getFlightsRequest" part="itineraryID" propertyName="tns:ItineraryID"/>
     <vprop:propertyAlias messageType="tns:getHotelsRequest" part="itineraryID" propertyName="tns:ItineraryID"/>

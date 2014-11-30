@@ -58,7 +58,7 @@ public class C2 extends T {
         assertEquals("confirmed", itineraryBooked.get(2).getStatus());
 
         //Chancel itinarary
-        cancelItinerary(itinearyID);
+        cancelBookedItinerary(itinearyID);
         
         //Check status of bookings
         List<Booking> itineraryCanceled = getItinerary(itinearyID).getBookings();

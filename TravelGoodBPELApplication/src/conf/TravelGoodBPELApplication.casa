@@ -15,7 +15,7 @@
         <endpoint display-name="PartnerLink9" endpoint-name="itineraryHandlerPortTypeRole_partnerRole" file-path="travelGoodBPEL.bpel" interface-name="ns1:itineraryHandlerPortType" name="endpoint12" process-name="bpelModule1" service-name="ns7:PartnerLink9"/>
     </endpoints>
     <service-units>
-        <service-engine-service-unit artifacts-zip="TravelGoodBPEL.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="TravelGoodApplication-TravelGoodBPEL" unit-name="TravelGoodBPEL" unknown="false" x="141" y="97">
+        <service-engine-service-unit artifacts-zip="TravelGoodBPEL.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="TravelGoodBPELApplication-TravelGoodBPEL" unit-name="TravelGoodBPEL" unknown="false" x="141" y="97">
             <provides endpoint="endpoint7"/>
             <consumes endpoint="endpoint8"/>
             <consumes endpoint="endpoint9"/>
@@ -23,7 +23,7 @@
             <consumes endpoint="endpoint11"/>
             <consumes endpoint="endpoint12"/>
         </service-engine-service-unit>
-        <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="TravelGoodApplication-sun-http-binding" unit-name="sun-http-binding">
+        <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="TravelGoodBPELApplication-sun-http-binding" unit-name="sun-http-binding">
             <ports>
                 <port x="67" y="422">
                     <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/localhost_8080/FlightMappingService/flightMappingService.wsdl#xpointer(/definitions/service[@name='flightMappingService']/port[@name='flightMappingPort'])" xlink:type="simple"/>
@@ -67,7 +67,6 @@
         <connection consumer="endpoint6" provider="endpoint7" state="unchanged"/>
     </connections>
     <porttypes>
-        <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/fastmoney.imm.dtu.dk_8080/BankService.wsdl#xpointer(/definitions/portType[@name='BankPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/localhost_8080/FlightMappingService/flightMappingService.wsdl#xpointer(/definitions/portType[@name='flightMappingPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/localhost_8080/HotelMappingService/hotelMappingService.wsdl#xpointer(/definitions/portType[@name='hotelMappingPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/localhost_8080/ItineraryHandlerService/itineraryHandlerService.wsdl#xpointer(/definitions/portType[@name='itineraryHandlerPortType'])" xlink:type="simple"/>
@@ -76,7 +75,6 @@
         <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/TravelGood.wsdl#xpointer(/definitions/portType[@name='itineraryPortType'])" xlink:type="simple"/>
     </porttypes>
     <bindings>
-        <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/fastmoney.imm.dtu.dk_8080/BankService.wsdl#xpointer(/definitions/binding[@name='BankPortBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/localhost_8080/FlightMappingService/flightMappingService.wsdl#xpointer(/definitions/binding[@name='mapFlightList'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/localhost_8080/HotelMappingService/hotelMappingService.wsdl#xpointer(/definitions/binding[@name='hotelMappingBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/localhost_8080/ItineraryHandlerService/itineraryHandlerService.wsdl#xpointer(/definitions/binding[@name='itineraryHandlerPortTypeBinding'])" xlink:type="simple"/>
@@ -85,7 +83,6 @@
         <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/TravelGood.wsdl#xpointer(/definitions/binding[@name='itineraryPortTypeBinding'])" xlink:type="simple"/>
     </bindings>
     <services>
-        <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/fastmoney.imm.dtu.dk_8080/BankService.wsdl#xpointer(/definitions/service[@name='BankService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/localhost_8080/FlightMappingService/flightMappingService.wsdl#xpointer(/definitions/service[@name='flightMappingService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/localhost_8080/HotelMappingService/hotelMappingService.wsdl#xpointer(/definitions/service[@name='hotelMappingService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/TravelGoodBPEL/localhost_8080/ItineraryHandlerService/itineraryHandlerService.wsdl#xpointer(/definitions/service[@name='itineraryHandlerService'])" xlink:type="simple"/>
