@@ -4,6 +4,7 @@
  */
 
 import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.representation.Form;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
@@ -114,7 +115,7 @@ public class TestItineraryResource {
         try {
             bookItinerary(client, itineraryId);
             fail("BookingException not thrown");
-        } catch(BookingException exception) {
+        } catch(UniformInterfaceException exception) {
             itinerary = getItinerary(client, itineraryId);
             assertEquals(itinerary.getFlights().get(0).getBookingStatus(), BookingStatus.CANCELLED);
             assertEquals(itinerary.getHotels().get(0).getBookingStatus(), BookingStatus.UNCONFIRMED);
@@ -164,7 +165,7 @@ public class TestItineraryResource {
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
         addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "31-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "BKK", "CPH", "31-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "Good", "Evil", "31-12-2014");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
 
@@ -180,17 +181,18 @@ public class TestItineraryResource {
 
         try {
             cancelItinerary(client, itineraryId);
+            
             fail("CancelException not thrown");
-        } catch(CancelException e) {
+        } catch(UniformInterfaceException e) {
             itinerary = getItinerary(client, itineraryId);
             
             assertEquals(itinerary.getFlights().get(0).getBookingStatus(), BookingStatus.CANCELLED);
-            assertEquals(itinerary.getHotels().get(0).getBookingStatus(), BookingStatus.CONFIRMED);
-            assertEquals(itinerary.getFlights().get(1).getBookingStatus(), BookingStatus.CANCELLED);
+            assertEquals(itinerary.getHotels().get(0).getBookingStatus(), BookingStatus.CANCELLED);
+            assertEquals(itinerary.getFlights().get(1).getBookingStatus(), BookingStatus.CONFIRMED);
         }
     }
 
-    private void bookItinerary(Client client, String itineraryId) throws BookingException {
+    private void bookItinerary(Client client, String itineraryId) throws UniformInterfaceException {
         Form form = new Form();
         form.add("creditCardOwnerName", "Tick Joachim");
         form.add("creditCardNumber", "50408824");
@@ -202,7 +204,7 @@ public class TestItineraryResource {
         resourceBookItinerary.post(form);
     }
 
-    private void cancelItinerary(Client client, String itineraryId) throws CancelException {
+    private void cancelItinerary(Client client, String itineraryId) throws UniformInterfaceException {
         WebResource resourceCancelItinerary = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId);
         resourceCancelItinerary.delete();
@@ -263,9 +265,10 @@ public class TestItineraryResource {
     }
 
     private void addHotelToItinerary(Client client, String itineraryId, Hotel hotel) {
-        WebResource addFlightResource = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
+        WebResource addHotelResource = client.resource("http://localhost:8080/TravelGoodRest/webresources/itineraries/"
                 + itineraryId
                 + "/hotels"
                 + "/" + hotel.getBookingId());
+        addHotelResource.put();
     }
 }

@@ -64,6 +64,7 @@ public class LameDuckWebService {
         flights.add(new Flight("KLM", "AMS", "12122014", "1730", "DAR", "12122014", "2300"));
         flights.add(new Flight("KLM", "DAR", "15122014", "1500", "AMS", "15122014", "2100"));
         flights.add(new Flight("Disney", "Andeby", "01012015", "1200", "Moon", "01012015", "2300"));
+        flights.add(new Flight("Mordor", "Good", "31122014", "1200", "Evil", "01022015", "1200"));
 
     }
 
@@ -132,6 +133,7 @@ public class LameDuckWebService {
 
             if (flightOptions.get(bookingNumber) != null) {
                 relevantFlight = flightOptions.get(bookingNumber);
+                break;
             }
         }
 

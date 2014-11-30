@@ -28,6 +28,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import lameduck.FlightOption;
@@ -68,15 +69,19 @@ public class ItineraryResource {
 
     @Path("{itineraryId}")
     @DELETE
-    public void cancelItineraryBooking(@PathParam("itineraryId") String itineraryId) throws CancelException {
+    public void cancelItineraryBooking(@PathParam("itineraryId") String itineraryId) {
         Itinerary itinerary = itineraries.get(itineraryId);
         
         boolean failing = false;
         for (Flight flight : itinerary.getFlights()) {
             if(flight.getBookingStatus() == BookingItem.BookingStatus.CONFIRMED) {
                 try {    
-                    cancelFlightLameDuck(Integer.parseInt(flight.getBookingId()), flight.getPrice(), itinerary.getCreditCard());
-                    flight.setBookingStatus(BookingStatus.CANCELLED);
+                    boolean cancelled = cancelFlightLameDuck(Integer.parseInt(flight.getBookingId()), flight.getPrice(), itinerary.getCreditCard());
+                    if(cancelled) {
+                        flight.setBookingStatus(BookingStatus.CANCELLED);
+                    } else {
+                        failing = true;
+                    }
                 } catch (LameDuckException_Exception ex) {
                     failing = true;
                 }
@@ -87,6 +92,7 @@ public class ItineraryResource {
             if(hotel.getBookingStatus() == BookingItem.BookingStatus.CONFIRMED) {
                 try {
                     cancelHotelNiceView(Integer.parseInt(hotel.getBookingId()));
+                    hotel.setBookingStatus(BookingStatus.CANCELLED);
                 } catch(NiceViewFault_Exception e) {
                     failing = true;
                 }
@@ -104,7 +110,7 @@ public class ItineraryResource {
             @FormParam("creditCardNumber") String creditCardNumber,
             @FormParam("creditCardOwnerName") String creditCardOwnerName,
             @FormParam("creditCardExpMonth") int creditCardExpMonth,
-            @FormParam("creditCardExpYear") int creditCardExpYear) throws BookingException {
+            @FormParam("creditCardExpYear") int creditCardExpYear) {
 
         CreditCardInfoType cc = new CreditCardInfoType();
         cc.setName(creditCardOwnerName);
@@ -122,8 +128,12 @@ public class ItineraryResource {
         for (Flight flight : itinerary.getFlights()) {
             int bookingNumber = Integer.parseInt(flight.getBookingId());
             try {
-                bookFlightLameDuck(bookingNumber, cc);
+                boolean booked = bookFlightLameDuck(bookingNumber, cc);
+                if(booked) {
                 flight.setBookingStatus(BookingStatus.CONFIRMED);
+                } else {
+                    failing = true;
+                }
             } catch (LameDuckException_Exception ex) {
                 failing = true;
                 failingException = ex;
@@ -135,8 +145,12 @@ public class ItineraryResource {
             for (Hotel hotel : itineraries.get(itineraryId).getHotels()) {
                 int bookingNumber = Integer.parseInt(hotel.getBookingId());
                 try {
-                bookHotelNiceView(bookingNumber, cc);
-                hotel.setBookingStatus(BookingStatus.CONFIRMED);
+                boolean booked = bookHotelNiceView(bookingNumber, cc);
+                if(booked) {
+                    hotel.setBookingStatus(BookingStatus.CONFIRMED);
+                } else {
+                    failing = true;
+                }
             } catch (NiceViewFault_Exception ex) {
                 failing = true;
                 failingException = ex;
@@ -220,10 +234,10 @@ public class ItineraryResource {
         itineraries.get(itineraryId).getHotels().add(new Hotel(hotelId));
     }
 
-    public class BookingException extends Exception {
+    public class BookingException extends WebApplicationException {
     }
 
-    public class CancelException extends Exception {
+    public class CancelException extends WebApplicationException {
     }
 
     private static boolean bookFlightLameDuck(int bookingNumber, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCard) throws LameDuckException_Exception {
