@@ -12,35 +12,35 @@
   <message name="getHotelsResponse">
     <part name="parameters" element="tns:getHotelsResponse"/>
   </message>
-  <message name="cancelHotel">
-    <part name="parameters" element="tns:cancelHotel"/>
-  </message>
-  <message name="cancelHotelResponse">
-    <part name="parameters" element="tns:cancelHotelResponse"/>
-  </message>
-  <message name="NiceViewFault">
-    <part name="fault" element="tns:NiceViewFault"/>
-  </message>
   <message name="bookHotel">
     <part name="parameters" element="tns:bookHotel"/>
   </message>
   <message name="bookHotelResponse">
     <part name="parameters" element="tns:bookHotelResponse"/>
   </message>
+  <message name="NiceViewFault">
+    <part name="fault" element="tns:NiceViewFault"/>
+  </message>
+  <message name="cancelHotel">
+    <part name="parameters" element="tns:cancelHotel"/>
+  </message>
+  <message name="cancelHotelResponse">
+    <part name="parameters" element="tns:cancelHotelResponse"/>
+  </message>
   <portType name="niceViewWebService">
     <operation name="getHotels">
       <input wsam:Action="http://niceView/niceViewWebService/getHotelsRequest" message="tns:getHotels"/>
       <output wsam:Action="http://niceView/niceViewWebService/getHotelsResponse" message="tns:getHotelsResponse"/>
     </operation>
-    <operation name="cancelHotel">
-      <input wsam:Action="http://niceView/niceViewWebService/cancelHotelRequest" message="tns:cancelHotel"/>
-      <output wsam:Action="http://niceView/niceViewWebService/cancelHotelResponse" message="tns:cancelHotelResponse"/>
-      <fault message="tns:NiceViewFault" name="NiceViewFault" wsam:Action="http://niceView/niceViewWebService/cancelHotel/Fault/NiceViewFault"/>
-    </operation>
     <operation name="bookHotel">
       <input wsam:Action="http://niceView/niceViewWebService/bookHotelRequest" message="tns:bookHotel"/>
       <output wsam:Action="http://niceView/niceViewWebService/bookHotelResponse" message="tns:bookHotelResponse"/>
       <fault message="tns:NiceViewFault" name="NiceViewFault" wsam:Action="http://niceView/niceViewWebService/bookHotel/Fault/NiceViewFault"/>
+    </operation>
+    <operation name="cancelHotel">
+      <input wsam:Action="http://niceView/niceViewWebService/cancelHotelRequest" message="tns:cancelHotel"/>
+      <output wsam:Action="http://niceView/niceViewWebService/cancelHotelResponse" message="tns:cancelHotelResponse"/>
+      <fault message="tns:NiceViewFault" name="NiceViewFault" wsam:Action="http://niceView/niceViewWebService/cancelHotel/Fault/NiceViewFault"/>
     </operation>
   </portType>
   <binding name="niceViewWebServicePortBinding" type="tns:niceViewWebService">
@@ -54,7 +54,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="cancelHotel">
+    <operation name="bookHotel">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -66,7 +66,7 @@
         <soap:fault name="NiceViewFault" use="literal"/>
       </fault>
     </operation>
-    <operation name="bookHotel">
+    <operation name="cancelHotel">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
