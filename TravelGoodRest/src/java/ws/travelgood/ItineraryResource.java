@@ -6,19 +6,15 @@ package ws.travelgood;
 
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 import dk.dtu.imm.fastmoney.types.ExpirationDateType;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -42,7 +38,6 @@ import model.Location;
 import model.Route;
 import niceview.NiceViewFault_Exception;
 import niceview.Reservation;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
