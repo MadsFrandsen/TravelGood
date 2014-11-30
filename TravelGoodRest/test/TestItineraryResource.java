@@ -55,9 +55,9 @@ public class TestItineraryResource {
 
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "27-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "26-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "BKK", "SFO", "27-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "San Francisco", "27-12-2014", "02-02-2015");
+        addRandomHotelToItinerary(client, itineraryId, "San Francisco", "27-12-2014", "29-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "SFO", "BKK", "02-02-2015");
         Itinerary itinerary = getItinerary(client, itineraryId);
 
@@ -91,8 +91,8 @@ public class TestItineraryResource {
 
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "31-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "Andeby", "Moon", "01-01-2015");
+        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "26-12-2014");
 
         Itinerary itinerary = getItinerary(client, itineraryId);
 
@@ -123,7 +123,7 @@ public class TestItineraryResource {
 
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "31-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "26-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "BKK", "CPH", "31-12-2014");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
@@ -158,7 +158,7 @@ public class TestItineraryResource {
 
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
-        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "31-12-2014");
+        addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "26-12-2014");
         addRandomFlightToItinerary(client, itineraryId, "Good", "Evil", "31-12-2014");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
