@@ -7,7 +7,7 @@ package niceView;
 import javax.xml.ws.WebFault;
 
 /**
- *
+ * @author Pablo Lanaspa Ferrer
  * 
  */
 @WebFault(name="NiceViewFault")

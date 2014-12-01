@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- Author: Soren and Jonas -->
 <process
     name="bpelModule1"
     targetNamespace="http://enterprise.netbeans.org/bpel/BpelModule1/bpelModule1"

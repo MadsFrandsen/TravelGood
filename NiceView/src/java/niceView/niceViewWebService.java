@@ -16,7 +16,10 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.ws.WebFault;
-
+/**
+ * 
+ * @author Pablo Lanaspa Ferrer
+ */
 @WebService(serviceName = "NiceViewService")
 @WebFault(name="NiceViewFault")
 public class niceViewWebService {

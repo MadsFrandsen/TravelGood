@@ -5,7 +5,7 @@
 package niceView;
 
 /**
- *
+ * @author Pablo Lanaspa Ferrer
  * 
  */
 public class ReservationNotFoundFault extends Exception {

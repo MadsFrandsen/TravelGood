@@ -7,7 +7,7 @@ package niceView;
 import dk.dtu.imm.fastmoney.types.CreditCardInfoType;
 
 /**
- *
+ * @author Pablo Lanaspa Ferrer
  * 
  */
 public class FinalReservation {

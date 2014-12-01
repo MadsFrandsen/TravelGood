@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * @author Pablo Lanaspa Ferrer
  * 
  */
 @XmlRootElement
