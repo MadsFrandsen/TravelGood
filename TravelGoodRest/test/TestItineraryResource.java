@@ -159,7 +159,7 @@ public class TestItineraryResource {
         String itineraryId = createItinerary(client);
         addRandomFlightToItinerary(client, itineraryId, "CPH", "BKK", "24-12-2014");
         addRandomHotelToItinerary(client, itineraryId, "Bangkok", "24-12-2014", "26-12-2014");
-        addRandomFlightToItinerary(client, itineraryId, "Good", "Evil", "31-12-2014");
+        addRandomFlightToItinerary(client, itineraryId, "Nice", "Evil", "06-06-2015");
         bookItinerary(client, itineraryId);
         Itinerary itinerary = getItinerary(client, itineraryId);
 
